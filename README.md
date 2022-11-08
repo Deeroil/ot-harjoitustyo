@@ -1,6 +1,6 @@
 # Ohjelmistotekniikan harjoitustyö 2022
 
-Helsingin Yliopiston kurssin *Ohjelmistotekniikka* harjoitustyölle ja laskuharjoituksille tehty repo.
+Helsingin Yliopiston *Ohjelmistotekniikka*-kurssin harjoitustyölle ja laskuharjoituksille tehty repo.
 
 ## Tehtävät
 
