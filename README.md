@@ -9,4 +9,4 @@ Helsingin Yliopiston kurssin *Ohjelmistotekniikka* harjoitustyölle ja laskuharj
 
 [komentorivi.txt](https://github.com/Deeroil/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
-Ekan viikon harjoitukseen kuului myös **bold**ata tekstistä jokin osa, *ja käyttää kursiivia.*
+Ensimmäisen viikon harjoituksiin kuului myös **bold**ata tekstistä jokin osa, *ja käyttää kursiivia.*
