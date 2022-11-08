@@ -1,0 +1,86 @@
+commit c298c98dd19b10137c3d3dddedd6bdf165174f83
+Author: Miina Saroma <email removed>
+Date:   Mon Nov 7 22:10:33 2022 +0200
+
+    Rm file1 rename file2 to file22
+
+ tiedostoja/file2.txt                 | 0
+ tiedostoja/{file1.txt => file22.txt} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit bad0ae742d955ce1596f119b8c3c3c2bc4a38566
+Author: Miina Saroma <email removed>
+Date:   Tue Nov 1 17:25:04 2022 +0200
+
+    Add tiedostoja
+
+ tiedostoja/file1.txt | 0
+ tiedostoja/file2.txt | 0
+ tiedostoja/file3.txt | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit c28e4bb09321ac5f436ac707f3c1025fb47fd035
+Author: Miina Saroma <email removed>
+Date:   Tue Nov 1 16:34:22 2022 +0200
+
+    Edit files
+
+ eka.txt    | 3 ++-
+ kolmas.txt | 1 +
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+
+commit 653dd3420073a79ded85d62ca1a7f27055872e32
+Author: Miina Saroma <email removed>
+Date:   Tue Nov 1 16:31:33 2022 +0200
+
+    Rename tiedosto
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 639baa8c6f6a8d2134220be80d36172372c681d6
+Author: Miina Saroma <email removed>
+Date:   Tue Nov 1 16:28:46 2022 +0200
+
+    Poista toinen
+
+ toinen.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+<email removed>
+commit 4036d6ab7f34ececdeb93e3e4c1a83d14d5ad5c7
+Author: Miina Saroma <email removed>
+Date:   Tue Nov 1 16:23:52 2022 +0200
+
+    Lisää stuff
+
+ stuff/jokin.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit ad7aad40a474d2312c5ac0c0d2c7b97c1497700c
+Author: Miina Saroma <email removed>
+Date:   Tue Nov 1 16:23:14 2022 +0200
+
+    Lisää kolmas
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 7e82d7ed2c4cbd4969c2fc68df42aed0d6c32d47
+Author: Miina Saroma <email removed>
+Date:   Tue Nov 1 16:09:16 2022 +0200
+
+    muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit caed49bb273268de3365e9886c7b8f77ce6c934e
+Author: Miina Saroma <email removed>
+Date:   Tue Nov 1 15:45:21 2022 +0200
+
+    tiedosto.txt luotu
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
