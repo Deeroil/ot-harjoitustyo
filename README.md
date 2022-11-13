@@ -10,3 +10,9 @@ Helsingin Yliopiston *Ohjelmistotekniikka*-kurssin harjoitustyölle ja laskuharj
 [komentorivi.txt](https://github.com/Deeroil/ot-harjoitustyo/blob/master/laskarit/viikko1/komentorivi.txt)
 
 Ensimmäisen viikon harjoituksiin kuului myös **bold**ata tekstistä jokin osa, *ja käyttää kursiivia.*
+
+### Viikko 2
+
+[tuntikirjanpito](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
+
+[vaatimusmäärittely](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/vaatimusmaarittely.md)
