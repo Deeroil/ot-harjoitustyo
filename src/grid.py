@@ -7,68 +7,65 @@ from math import sqrt, pow
 # list that equals a n*n matrix
 # TODO: rename?
 
-def grid_list(n):
-  list = []
-  n = int(pow(n, 2))
-  for i in range(n):
-    list.append(0)
-  # print('length', len(list))
-  return list
+class Grid:
+  def __init__(self, n):
+    self.grid = []
+    self.width = n
+    self.len = n**2
+    for i in range(n**2):
+      self.grid.append(0)
 
-# TODO: add errorhandling or smth
-def set_mines(grid_list, n):
-  if len(grid_list) < n or n < 0:
-    print('errorhandling here')
-    return grid_list
+  # TODO: add errorhandling or smth
+  def set_mines(self, n):
+    if len(self.grid) < n or n < 0:
+      print('errorhandling here')
+      return
 
-  for i in range(0, n):
-    grid_list[i] = 9 # 9 = a mine
+    for i in range(0, n):
+      self.grid[i] = 9 # 9 = a mine
 
-  shuffle(grid_list)
-  return grid_list
+    shuffle(self.grid)
 
-# TODO: fix this, there's some problems
-def count_neighbors(grid_list, index):
-  row_len = int(sqrt(len(grid_list)))
-  # print('row_len', row_len)
+  # TODO: fix this, there's some problems
+  def count_neighbors(self, index):
+    # index is not its own neighbor
+    # do I want this to be hard-coded?
+    neighbor_indexes = [index - self.width - 1, index - self.width, index - self.width + 1,
+                        index - 1, index + 1,
+                        index + self.width - 1, index + self.width, index + self.width + 1]
+    # print(neighbor_indexes)
 
-  # index is not its own neighbor
-  # do I want this to be hard-coded?
-  neighbor_indexes = [index - row_len - 1, index - row_len, index - row_len + 1,
-                      index - 1, index + 1,
-                      index + row_len - 1, index + row_len, index + row_len + 1]
-  # print(neighbor_indexes)
+    mines = 0
+    for i in neighbor_indexes:
+      if i < 0 or i >= self.len:
+        continue
+      if self.grid[i] == 9:
+        # print("mine spotted in", i)
+        mines += 1
+    return mines
 
-  mines = 0
-  for i in neighbor_indexes:
-    if i < 0 or i >= len(grid_list):
-      continue
-    if grid_list[i] == 9:
-      # print("mine spotted in", i)
-      mines += 1
-  return mines
+  # muista testata ettei miinojen päälle aseteta numeroita!
+  def set_neighbors(self):
+    for i in range(self.len):
+      if(self.grid[i] == 9):
+        continue
+      self.grid[i] = self.count_neighbors(i)
+    # print("laskettu")
+    # return self.grid
 
-# muista testata ettei miinojen päälle aseteta numeroita!
-def set_neighbors(grid_list):
-  for i in range(len(grid_list)):
-    if(grid_list[i] == 9):
-      continue
-    grid_list[i] = count_neighbors(grid_list, i)
-  # print("laskettu")
-  return grid_list
+  # TODO: fix this
+  # laittaa nyt ihan vääriä lukuja matriisiin, mutta en jaksa fiksaa heti
+  # muokkaa __str__ -metodiksi?
+  def print_as_matrix(self):
+    n = self.width
+    print('n on:', n)
+    matrix = [[0 for i in range(n)] for j in range(n)]
 
-# TODO: fix this
-# laittaa nyt ihan vääriä lukuja matriisiin, mutta en jaksa fiksaa heti
-def print_as_matrix(grid_list):
-  n = int(sqrt(len(grid_list)))
-  print('n on:', n)
-  matrix = [[0 for i in range(n)] for j in range(n)]
+    for i in range(len(self.grid) - 1):
+      for j in range(n):
+        for k in range(n):
+          matrix[j][k] = self.grid[i]
+          # print(matrix)
 
-  for i in range(len(grid_list) - 1):
-    for j in range(n):
-      for k in range(n):
-        matrix[j][k] = grid_list[i]
-        # print(matrix)
-
-  for i in matrix:
-    print(i)
+    for i in matrix:
+      print(i)

@@ -29,14 +29,16 @@ if __name__ == "__main__":
       break
     m = int(input("And how many mines? "))
 
-    grid = set_neighbors(set_mines(grid_list(n), m))
+    grid = Grid(n)
+    grid.set_mines(m)
+    grid.set_neighbors()
 
     # prints
     x = ""
-    for i in range(len(grid)):
-      if i % int(sqrt(len(grid))) == 0:
+    for i in range(grid.len):
+      if i % grid.width == 0:
         x += "\n"
-      x += f" {grid[i]} "
+      x += f" {grid.grid[i]} "
     print(x)
   
     print("\n")
