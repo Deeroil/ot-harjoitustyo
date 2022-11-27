@@ -1,4 +1,4 @@
-from grid import *
+from grid import Grid
 
 # TODO:
 #     - uudelleennimeä grid_list englanniksi, ehkä ennemminkin joku_list?
@@ -22,8 +22,8 @@ from grid import *
 # there are still bugs with the neighbors, should rewrite bounds
 if __name__ == "__main__":
 
-    bool = True
-    while (bool):
+    repeat = True
+    while repeat:
         n = int(input(
             "Create a minesweeper grid of what size? (0 or negative will quit program) "))
         if n <= 0:

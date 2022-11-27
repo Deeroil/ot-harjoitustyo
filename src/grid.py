@@ -1,33 +1,25 @@
 from random import shuffle
-from math import sqrt, pow
-
-# turn into a class later?
-
-# n = number of rows and columns
-# list that equals a n*n matrix
-# TODO: rename?
-
 
 class Grid:
-    def __init__(self, n):
+    def __init__(self, width):
         self.grid = []
-        self.width = n
-        self.len = n**2
-        for i in range(n**2):
+        self.width = width
+        self.len = width**2
+        for _ in range(width**2):
             self.grid.append(0)
 
     # TODO: add errorhandling or smth
-    def set_mines(self, n):
-        if len(self.grid) < n or n < 0:
+    def set_mines(self, amount):
+        if len(self.grid) < amount or amount < 0:
             print('errorhandling here')
             return
 
-        for i in range(0, n):
+        for i in range(0, amount):
             self.grid[i] = 9  # 9 = a mine
 
         shuffle(self.grid)
 
-    # TODO: fix this, there's some problems
+    # TODO
     def count_neighbors(self, index):
         # index is not its own neighbor
         # do I want this to be hard-coded?
@@ -48,23 +40,23 @@ class Grid:
     # muista testata ettei miinojen päälle aseteta numeroita!
     def set_neighbors(self):
         for i in range(self.len):
-            if (self.grid[i] == 9):
+            if self.grid[i] == 9:
                 continue
             self.grid[i] = self.count_neighbors(i)
         # print("laskettu")
         # return self.grid
 
-    # TODO: fix this
+    # TODO
     # laittaa nyt ihan vääriä lukuja matriisiin, mutta en jaksa fiksaa heti
     # muokkaa __str__ -metodiksi?
     def print_as_matrix(self):
-        n = self.width
-        print('n on:', n)
-        matrix = [[0 for i in range(n)] for j in range(n)]
+        wid = self.width
+        print('width on:', wid)
+        matrix = [[0 for _ in range(wid)] for _ in range(wid)]
 
         for i in range(len(self.grid) - 1):
-            for j in range(n):
-                for k in range(n):
+            for j in range(wid):
+                for k in range(wid):
                     matrix[j][k] = self.grid[i]
                     # print(matrix)
 
