@@ -1,6 +1,6 @@
 from grid import *
 
-### TODO:
+# TODO:
 #     - uudelleennimeä grid_list englanniksi, ehkä ennemminkin joku_list?
 #     - miten sliceet kivasti printattavasti taulukon, ehkä if index % row_len == 0?
 #     - naapureiden laskenta, haluanko bound checking funktion erikseen?
@@ -18,27 +18,28 @@ from grid import *
 #     - onks se siistimpää selkeästi palauttaa grid_list vai muuttaa sitä funktion sisällä xd
 #     - myös virheidenkäsittely!
 
-### Note:
+# Note:
 # there are still bugs with the neighbors, should rewrite bounds
 if __name__ == "__main__":
 
-  bool = True
-  while(bool):
-    n = int(input("Create a minesweeper grid of what size? (0 or negative will quit program) "))
-    if n <= 0:
-      break
-    m = int(input("And how many mines? "))
+    bool = True
+    while (bool):
+        n = int(input(
+            "Create a minesweeper grid of what size? (0 or negative will quit program) "))
+        if n <= 0:
+            break
+        m = int(input("And how many mines? "))
 
-    grid = Grid(n)
-    grid.set_mines(m)
-    grid.set_neighbors()
+        grid = Grid(n)
+        grid.set_mines(m)
+        grid.set_neighbors()
 
-    # prints
-    x = ""
-    for i in range(grid.len):
-      if i % grid.width == 0:
-        x += "\n"
-      x += f" {grid.grid[i]} "
-    print(x)
-  
-    print("\n")
+        # prints
+        x = ""
+        for i in range(grid.len):
+            if i % grid.width == 0:
+                x += "\n"
+            x += f" {grid.grid[i]} "
+        print(x)
+
+        print("\n")
