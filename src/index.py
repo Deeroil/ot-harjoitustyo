@@ -1,4 +1,5 @@
 from grid import Grid
+from minesweeper import Minesweeper
 
 # TODO:
 #     - uudelleennimeä grid_list englanniksi, ehkä ennemminkin joku_list?
@@ -22,12 +23,13 @@ from grid import Grid
 # there are still bugs with the neighbors, should rewrite bounds
 if __name__ == "__main__":
 
-    repeat = True
-    while repeat:
+    # repeat = True
+    # while repeat:
         n = int(input(
             "Create a minesweeper grid of what size? (0 or negative will quit program) "))
         if n <= 0:
-            break
+            # break
+            quit()
         m = int(input("And how many mines? "))
 
         grid = Grid(n)
@@ -43,3 +45,17 @@ if __name__ == "__main__":
         print(x)
 
         print("\n")
+
+        msweep = Minesweeper(grid)
+
+        while True:
+          x_koord = int(input("Mikä x-koordinaatti?"))
+          y_koord = int(input("Mikä y-koordinaatti?"))
+
+          msweep.check_tile(x_koord, y_koord)
+          msweep.add_shown_tiles(x_koord + y_koord*msweep.backgrid.width)
+          # msweep.add_shown_tiles(0)
+          msweep.__str__()
+          # ei oo lopetusehtoa paitsi miinaan osuminen
+
+        
