@@ -5,9 +5,9 @@ from grid import Grid
 class Minesweeper:
     def __init__(self, grid: Grid):
         self.backgrid = grid
-        self.showindexes = []
+        self.showntiles = []
         for _ in range(grid.width**2):
-            self.showindexes.append("_")
+            self.showntiles.append("_")
 
     # muista selittää että indeksointi alkaa 0:sta ja ylävasemmasta kulmasta TAI muuta näitä
     def check_tile(self, x: int, y: int):
@@ -17,7 +17,7 @@ class Minesweeper:
 
     def add_shown_tiles(self, index):
       number = self.backgrid.grid[index]
-      self.showindexes[index] = number
+      self.showntiles[index] = number
 
       number = self.backgrid.grid[index]
 
@@ -34,5 +34,5 @@ class Minesweeper:
         for i in range(bgrid.len):
             if i % bgrid.width == 0:
                 x += "\n"
-            x += f" {self.showindexes[i]} "
+            x += f" {self.showntiles[i]} "
         print(x)
