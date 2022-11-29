@@ -16,12 +16,22 @@ Harjoitustyönä Miinaharava.
 
 [changelog](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/changelog.md)
 
+[arkkitehtuuri](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
 ### Installation and running
 
 Install dependencies by running `poetry install`
 
 Run the app with `poetry run invoke start`
+
+
+### Other invoke tasks
+
+`poetry run invoke test`
+`poetry run invoke coverage`
+`poetry run invoke coverage-report`
+`poetry run invoke lint`
+`poetry run invoke format`
 
 
 ### Features
@@ -35,9 +45,17 @@ Then it will print a grid with tiles
 - 1-8: tiles with mines as neighbors
 - 9: a tile with a mine
 
-So there isn't any game functionality yet.
+After that, you can give (x,y) coordinates to open tiles of the grid.
+After opening a tile, you'll see which number was inside.
+If it was 9 (a mine), the game ends.
 
-So the app knows just how to
+You can't win yet, and you can only quit by hitting a mine.
+
+
+So the app knows how to
 - make a custom sized n*n grid (actually a list)
 - fill it with mines
-- count how many mines each non-mine tile has as a neighbor (this part is still under construction, well most of this is.)
+- count how many mines each non-mine tile has as a neighbor (this part is still under construction)
+- check a tile and keep track of opened tiles
+- quit if you hit a mine
+- and a bit more
