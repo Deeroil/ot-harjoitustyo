@@ -6,15 +6,21 @@ Miinaharava-pelin pelaaminen työpöytäsovelluksena
 ## Perusversion tarjoama toiminnallisuus
 
 ### Pelinäkymä
-* Käyttäjä voi "avata" peliruudukosta kerralla yhden ruudun
-	* Jos ruudussa on miina, peli päättyy
-		* ensimmäisellä kierroksella ensimmäinen klikkaus ei voi osua miinaan
-		* Kun peli päättyy näin, näytetään kaikkien miinojen sijainnit
-	* Sen sijaan jos ruudulla on naapurina miina/miinoja, tulee näkyviin kyseinen numero
+
+TEHTY:
+* Käyttäjä voi "avata" peliruudukosta kerralla yhden ruudun (tehty osittain)
+	* Jos ruudussa on miina, peli päättyy (tehty)
+	* ensimmäisellä kierroksella ensimmäinen avattu ruutu ei voi osua miinaan (tarkistaa kerran)
+	* Kun peli päättyy miinaan, näytetään kaikkien miinojen sijainnit (tehty osittain: näyttää koko taustaruudukon)
+
+EI TEHTY:
+* Ruudun avaamisesta tekemättömät
+	* Jos klikatulla ruudulla on naapurina miina/miinoja, tulee näkyviin kyseinen numero
 	* Jos ruutu on "tyhjä" eli ruudussa ei ole miinaa eikä sen välittömänä naapurina ole miinaa/miinoja, paljastuu ruudukosta alue joka on reunustettu naapurinumeroita sisältävillä ruuduilla.
-		* Jos tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
+	* Jos ruutu on tyhjä ja tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
 * Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi". Vaarallisuus merkitsee miinan oletettua sijaitsemiskohtaa. Vaaralliseksi voi merkitä vain yhtä monta ruutua kuin miinoja on peliruudukossa.
-* Peli voitetaan kun käyttäjä on merkannut kaikki miinat vaarallisiksi osumatta yhteenkään miinaan.
+* Peli voitetaan kun käyttäjä on merkannut kaikki miinat vaarallisiksi osumatta yhteenkään miinaan
+* Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 * Pelin päättyessä voi aloittaa pelin alusta
 
 ## Jatkokehitysideoita
@@ -22,9 +28,9 @@ Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
 * Käyttäjä voi käyttää sekä näppäimistöä että hiirtä toimintoihin
 ### Ennen peliä ja asetukset
 - Käyttäjä voi valita peliruudukon koon useammasta valmiiksi määritellystä vaihtoehdosta
-	- Peliruudukon koon valitseminen omavalintaisesti rajatulta väliltä
+	- Peliruudukon koon valitseminen omavalintaisesti rajatulta väliltä (tehty)
 - Käyttäjä voi valita miinojen määrän useammasta valmiiksi määritellystä vaihtoehdosta
-	- Miinojen määrän valitseminen kustomoidusti rajatulta väliltä
+	- Miinojen määrän valitseminen kustomoidusti rajatulta väliltä (tehty)
 - Pelin haastavuuden lisääminen, erilaiset pelimuodot
 ### UI
 - Graafinen käyttöliittymä

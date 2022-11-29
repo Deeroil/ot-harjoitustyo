@@ -6,7 +6,12 @@
 | 14.11.|  2   | projektin alustaminen ja aloittelu |
 | 20.11.|  5   | perusfunktionaalisuuden jatkaminen |
 | 21.11.|  3   | grid luokaksi, testien aloittaminen jne|
+| 27.11.|  3   | minesweeper-luokan aloittelu ja testejä, pylint |
+| 28.11.|  1   | luokkakaavioon tutustuminen jne, koodia |
+| 29.11.|  4   | osittain ui erottelemista pois luokista, flag-toiminnon aloittaminen|
 |       |      | |
 |       |      | |
 |       |      | |
-| yht   |   1  | | 
+|       |      | |
+|       |      | |
+| yht   |  19  | | 
