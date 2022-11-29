@@ -10,10 +10,10 @@ class TestMinesweeper(unittest.TestCase):
         self.minesw = Minesweeper(self.test_grid)
 
     def test_check_tile_1_2(self):
-        self.assertEqual(self.minesw.check_tile(1, 2), 7)
+        self.assertEqual(self.minesw.check_tile(7), 7)
 
     def test_check_tile_0_0(self):
-        self.assertEqual(self.minesw.check_tile(0, 0), 0)
+        self.assertEqual(self.minesw.check_tile(0), 0)
 
     def test_check_tile_false(self):
-        self.assertFalse(self.minesw.check_tile(0, 0), 10)        
+        self.assertFalse(self.minesw.check_tile(0), 10)

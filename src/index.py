@@ -52,8 +52,10 @@ if __name__ == "__main__":
           x_koord = int(input("Mikä x-koordinaatti?"))
           y_koord = int(input("Mikä y-koordinaatti?"))
 
-          msweep.check_tile(x_koord, y_koord)
-          msweep.add_shown_tiles(x_koord + y_koord*msweep.backgrid.width)
+          index = x_koord + y_koord*grid.width
+
+          msweep.check_tile(index)
+          msweep.add_shown_tiles(index)
           # msweep.add_shown_tiles(0)
           msweep.__str__()
           # ei oo lopetusehtoa paitsi miinaan osuminen
