@@ -48,14 +48,42 @@ if __name__ == "__main__":
 
         msweep = Minesweeper(grid)
 
+        print("Tervetuloa pelaamaan miinahavaraa! Anna koordinaattit niin voit avata ruudun.")
+        print("Koordinaattien alkaa 0:sta ja ylävasemmalta.")
+        x_koord = int(input("Mikä x-koordinaatti?"))
+        y_koord = int(input("Mikä y-koordinaatti?"))
+        index = x_koord + y_koord*grid.width
+        # ensimmäisen kierroksen tarkistus ettei osuta pommiin
+        # jos osuu pommiin, tehdään uusi miinaharava
+        eka = msweep.check_tile(index)
+        print(f"eka osuma: {eka}")
+        print(f"typeof eka: {type(eka)}")
+        if msweep.check_tile(index) == 9:
+          grid2 = Grid(n)
+          grid2.set_mines(m)
+          grid2.set_neighbors()
+          msweep = Minesweeper(grid2)
+
+        msweep.add_shown_tiles(index)
+        msweep.print_current()
+
         while True:
           x_koord = int(input("Mikä x-koordinaatti?"))
           y_koord = int(input("Mikä y-koordinaatti?"))
 
           index = x_koord + y_koord*grid.width
 
-          msweep.check_tile(index)
+          tile = msweep.check_tile(index)
           msweep.add_shown_tiles(index)
+          msweep.print_current()
+
+          if tile == 9:
+              print("Hävisit pelin :(")
+              msweep.backgrid.print_grid()
+              quit()  # tää huono tapa lopettaa peli?
+          elif tile == 0:
+              print("ööh mun pitää keksiä tähän algo :D sori siitä")
+
           # msweep.add_shown_tiles(0)
           # ei oo lopetusehtoa paitsi miinaan osuminen
 

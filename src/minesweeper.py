@@ -15,16 +15,11 @@ class Minesweeper:
         print(f"chosen tile has number: {self.backgrid.grid[index]}")
         return self.backgrid.grid[index]
 
+    # vois kans olla lista indeksejä jotka on avattu..?
     def add_shown_tiles(self, index):
         number = self.backgrid.grid[index]
         self.showntiles[index] = number
-
-        # siirrä nää pois täältä
-        if number == 9:
-            print("Hävisit pelin :(")
-            quit()  # tää huono?
-        elif number == 0:
-            print("ööh mun pitää keksiä tähän algo :D")
+        return number
 
 # tulostaa grid jossa näkyy auki klikatut
 #     _: avaamaton
