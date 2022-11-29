@@ -57,7 +57,6 @@ if __name__ == "__main__":
           msweep.check_tile(index)
           msweep.add_shown_tiles(index)
           # msweep.add_shown_tiles(0)
-          msweep.__str__()
           # ei oo lopetusehtoa paitsi miinaan osuminen
 
         

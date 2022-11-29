@@ -26,7 +26,14 @@ class Minesweeper:
         elif number == 0:
             print("ööh mun pitää keksiä tähän algo :D")
 
-    def __str__(self):
+# tulostaa grid jossa näkyy auki klikatut
+#     _: avaamaton
+#     F: flag, merkitty vaaralliseksi
+#   Avatut ruudut:
+#     0: tyhjä
+#     1-8: ruudulla n naapuria
+#     9: pommi/miina
+    def print_current(self):
         bgrid = self.backgrid
         x = ""
         for i in range(bgrid.len):

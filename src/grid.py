@@ -46,19 +46,14 @@ class Grid:
         # print("laskettu")
         # return self.grid
 
-    # TODO
-    # laittaa nyt ihan vääriä lukuja matriisiin, mutta en jaksa fiksaa heti
-    # muokkaa __str__ -metodiksi?
-    def print_as_matrix(self):
-        wid = self.width
-        print('width on:', wid)
-        matrix = [[0 for _ in range(wid)] for _ in range(wid)]
-
-        for i in range(len(self.grid) - 1):
-            for j in range(wid):
-                for k in range(wid):
-                    matrix[j][k] = self.grid[i]
-                    # print(matrix)
-
-        for i in matrix:
-            print(i)
+# tulostaa grid jossa näkyy naapurit, tyhjät ja pommit
+#   0: tyhjä
+#   1-8: montako pomminaapuria
+#   9: pommi/miina
+    def print_grid(self):
+        x = ""
+        for i in range(self.len):
+            if i % self.width == 0:
+                x += "\n"
+            x += f" {self.grid[i]} "
+        print(x)
