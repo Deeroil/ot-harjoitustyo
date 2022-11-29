@@ -2,6 +2,7 @@ import unittest
 from grid import Grid
 from minesweeper import Minesweeper
 
+
 class TestMinesweeper(unittest.TestCase):
     def setUp(self):
         # self.grid = Grid(5)

@@ -1,5 +1,6 @@
 from random import shuffle
 
+
 class Grid:
     def __init__(self, width):
         self.grid = []
@@ -50,10 +51,11 @@ class Grid:
 #   0: tyhjä
 #   1-8: montako pomminaapuria
 #   9: pommi/miina
+# TODO: rename printable
     def print_grid(self):
-        x = ""
+        printable = ""
         for i in range(self.len):
             if i % self.width == 0:
-                x += "\n"
-            x += f" {self.grid[i]} "
-        print(x)
+                printable += "\n"
+            printable += f" {self.grid[i]} "
+        print(printable)

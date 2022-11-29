@@ -28,11 +28,12 @@ class Minesweeper:
 #     0: tyhjä
 #     1-8: ruudulla n naapuria
 #     9: pommi/miina
+# TODO: rename printables
     def print_current(self):
         bgrid = self.backgrid
-        x = ""
+        printable = ""
         for i in range(bgrid.len):
             if i % bgrid.width == 0:
-                x += "\n"
-            x += f" {self.showntiles[i]} "
-        print(x)
+                printable += "\n"
+            printable += f" {self.showntiles[i]} "
+        print(printable)
