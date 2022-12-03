@@ -18,3 +18,14 @@ class TestMinesweeper(unittest.TestCase):
 
     def test_check_tile_false(self):
         self.assertFalse(self.minesw.check_tile(0), 10)
+
+    def test_shown_tiles_index_2_is_underscore(self):
+        self.assertEqual(self.minesw.showntiles[2], "_")
+
+    def test_add_shown_tiles_adds_to_shown(self):
+        self.minesw.add_shown_tiles(3)
+        self.assertEqual(self.minesw.showntiles[3], 3)
+
+    #Flag tests
+
+    # def test_set_flag_
