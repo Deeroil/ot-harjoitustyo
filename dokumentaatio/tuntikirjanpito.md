@@ -9,9 +9,9 @@
 | 27.11.|  3   | minesweeper-luokan aloittelu ja testejä, pylint |
 | 28.11.|  1   | luokkakaavioon tutustuminen jne, koodia |
 | 29.11.|  5   | osittain ui erottelemista pois luokista, flag-toiminnon aloittaminen|
-|  3.12.|  2   | edistä flag-toimintoa, lisää testejä|
+|  3.12.|  5   | edistä flag-toimintoa, lisää testejä, eriytä luokat ja ui kansioihin|
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
-| yht   |  22  | | 
+| yht   |  25  | | 
