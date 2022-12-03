@@ -76,15 +76,17 @@ class CLI:
           continue
 
         tile = self.msweep.check_tile(index)
-        self.msweep.add_shown_tiles(index)
-        self.msweep.print_current()
 
-        if tile == 9:
-            print("Hävisit pelin :(")
-            self.msweep.backgrid.print_grid()
-            sys.exit(0)
-        elif tile == 0:
-            print("ööh mun pitää keksiä tähän algo :D sori siitä")
+        if tile != False:
+          self.msweep.add_shown_tiles(index)
+          self.msweep.print_current()
+
+          if tile == 9:
+              print("Hävisit pelin :(")
+              self.msweep.backgrid.print_grid()
+              sys.exit(0)
+          elif tile == 0:
+              print("ööh mun pitää keksiä tähän algo :D sori siitä")
 
         # msweep.add_shown_tiles(0)
         # ei oo lopetusehtoa paitsi miinaan osuminen

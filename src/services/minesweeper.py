@@ -11,17 +11,31 @@ class Minesweeper:
         self.flags = [] #maybe change to a set?
 
     # muista selittää että indeksointi alkaa 0:sta ja ylävasemmasta kulmasta TAI muuta näitä
+    # tässä on uhkia että otan suoraan indeksin, jos esim antaisi ihan väärät x/y-koordinaatit
+    # mutta luku olisi sopiva silti?
     def check_tile(self, index):
-        print(f"chosen tile has number: {self.backgrid.grid[index]}")
+        # print(f"chosen tile has number: {self.backgrid.grid[index]}")
+        if self.check_index_viability(index) is False:
+            return
         return self.backgrid.grid[index]
+
+    def check_index_viability(self, index):
+        if index < 0 or index > self.backgrid.len:
+            print("index not viable")
+            return False
+        return True
 
     # vois kans olla lista indeksejä jotka on avattu..?
     def add_shown_tiles(self, index):
+        if self.check_index_viability(index) is False:
+            return
         number = self.backgrid.grid[index]
         self.showntiles[index] = number
         return number
 
     def set_flag(self, index):
+        if self.check_index_viability(index) is False:
+            return
         flags_left = self.mines_total - len(self.flags)
         print('lippuja:', flags_left)
         if flags_left <= 0:
@@ -35,6 +49,8 @@ class Minesweeper:
 
     # TODO: check later
     def remove_flag(self, index):
+        if self.check_index_viability(index) is False:
+            return
         if self.showntiles[index] == "_" or self.showntiles[index] != "F":
             print("no flag here!")
             return
@@ -43,10 +59,11 @@ class Minesweeper:
 
     # purkkaa
     def index_has_flag(self, index):
+        if self.check_index_viability(index) is False:
+            return
         if index in self.flags:
             return "F"
-        else:
-          return False
+        return False
 
 # tulostaa grid jossa näkyy auki klikatut
 #     _: avaamaton
