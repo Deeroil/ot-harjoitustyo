@@ -12,13 +12,14 @@ TEHTY:
 	* Jos ruudussa on miina, peli päättyy (tehty)
 	* ensimmäisellä kierroksella ensimmäinen avattu ruutu ei voi osua miinaan (tarkistaa kerran)
 	* Kun peli päättyy miinaan, näytetään kaikkien miinojen sijainnit (tehty osittain: näyttää koko taustaruudukon)
+	* Jos klikatulla ruudulla on naapurina miina/miinoja, tulee näkyviin kyseinen numero
+	* Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi" (lippu/flag). Vaarallisuus merkitsee miinan oletettua sijaitsemiskohtaa.
+	* Vaaralliseksi voi merkitä vain yhtä monta ruutua kuin miinoja on peliruudukossa.
 
 EI TEHTY:
 * Ruudun avaamisesta tekemättömät
-	* Jos klikatulla ruudulla on naapurina miina/miinoja, tulee näkyviin kyseinen numero
 	* Jos ruutu on "tyhjä" eli ruudussa ei ole miinaa eikä sen välittömänä naapurina ole miinaa/miinoja, paljastuu ruudukosta alue joka on reunustettu naapurinumeroita sisältävillä ruuduilla.
 	* Jos ruutu on tyhjä ja tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
-* Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi". Vaarallisuus merkitsee miinan oletettua sijaitsemiskohtaa. Vaaralliseksi voi merkitä vain yhtä monta ruutua kuin miinoja on peliruudukossa.
 * Peli voitetaan kun käyttäjä on merkannut kaikki miinat vaarallisiksi osumatta yhteenkään miinaan
 * Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 * Pelin päättyessä voi aloittaa pelin alusta
