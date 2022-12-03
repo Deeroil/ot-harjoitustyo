@@ -1,7 +1,5 @@
 from grid import Grid
 
-# TODO: onks mitkä näistä käli-asioita? uh oh
-
 
 class Minesweeper:
     def __init__(self, grid: Grid):
@@ -9,6 +7,8 @@ class Minesweeper:
         self.showntiles = []
         for _ in range(grid.width**2):
             self.showntiles.append("_")
+        self.mines_total = grid.mines
+        self.flags = [] #maybe change to a set?
 
     # muista selittää että indeksointi alkaa 0:sta ja ylävasemmasta kulmasta TAI muuta näitä
     def check_tile(self, index):
@@ -20,6 +20,33 @@ class Minesweeper:
         number = self.backgrid.grid[index]
         self.showntiles[index] = number
         return number
+
+    def set_flag(self, index):
+        flags_left = self.mines_total - len(self.flags)
+        print('lippuja:', flags_left)
+        if flags_left <= 0:
+            print("couldn't set flag! remove one first")
+            return
+        if self.showntiles[index] != "_" or self.showntiles[index] == "F":
+            print("couldn't set flag, as the tile has already been opened or has a flag!")
+            return
+        self.showntiles[index] = "F"
+        self.flags.append(index)
+
+    # TODO: check later
+    def remove_flag(self, index):
+        if self.showntiles[index] == "_" or self.showntiles[index] != "F":
+            print("no flag here!")
+            return
+        self.flags.remove(index)
+        self.showntiles[index] = "_"
+
+    # purkkaa
+    def index_has_flag(self, index):
+        if index in self.flags:
+            return "F"
+        else:
+          return False
 
 # tulostaa grid jossa näkyy auki klikatut
 #     _: avaamaton
@@ -35,5 +62,5 @@ class Minesweeper:
         for i in range(bgrid.len):
             if i % bgrid.width == 0:
                 printable += "\n"
-            printable += f" {self.showntiles[i]} "
+            printable += f" {self.index_has_flag(i) or self.showntiles[i]} "
         print(printable)

@@ -28,4 +28,60 @@ class TestMinesweeper(unittest.TestCase):
 
     #Flag tests
 
-    # def test_set_flag_
+    def test_set_flag_works_on_unopened_tile_when_grid_has_mines(self):
+        self.minesw.mines_total = 2
+        self.minesw.set_flag(1)
+        self.assertEqual(self.minesw.showntiles[1], "F")
+        self.assertIn(1, self.minesw.flags)
+        self.assertEqual(len(self.minesw.flags), 1)
+
+    def test_set_flag_doesnt_set_if_no_mines(self):
+        self.minesw.set_flag(1)
+        self.assertEqual(self.minesw.showntiles[1], "_")
+        self.assertNotIn(1, self.minesw.flags)
+        self.assertEqual(len(self.minesw.flags), 0)   
+
+    def test_set_flag_doesnt_set_if_not_enough_mines_left(self):
+        self.minesw.mines_total = 1
+        self.minesw.set_flag(1)
+        self.minesw.set_flag(2)
+        self.assertEqual(self.minesw.showntiles[2], "_")
+        self.assertNotIn(2, self.minesw.flags)
+        self.assertEqual(len(self.minesw.flags), 1)
+
+    def test_set_flag_doesnt_change_anything_if_flag_exists(self):
+        self.minesw.mines_total = 2
+        self.minesw.set_flag(1)
+        self.minesw.set_flag(1)
+        self.assertEqual(self.minesw.showntiles[1], "F")
+        self.assertIn(1, self.minesw.flags)
+        self.assertEqual(len(self.minesw.flags), 1)
+
+    def test_set_flag_doesnt_change_anything_if_tile_has_been_opened(self):
+        self.minesw.showntiles[1] = 10
+        self.minesw.mines_total = 2
+        self.minesw.set_flag(1)
+        self.assertEqual(self.minesw.showntiles[1], 10)
+        self.assertNotIn(1, self.minesw.flags)
+        self.assertEqual(len(self.minesw.flags), 0)
+
+    def test_remove_flag_works(self):
+        self.minesw.mines_total = 1
+        self.minesw.set_flag(1)
+        self.minesw.remove_flag(1)
+        self.assertEqual(self.minesw.showntiles[1], "_")
+        self.assertNotIn(1, self.minesw.flags)
+        self.assertEqual(len(self.minesw.flags), 0)
+
+    def test_remove_flag_doesnt_change_tile_if_tile_has_been_opened(self):
+        self.minesw.showntiles[1] = 10
+        self.minesw.remove_flag(1)
+        self.assertEqual(self.minesw.showntiles[1], 10)
+
+    def test_index_has_flag_returns_F_if_flag(self):
+        self.minesw.mines_total = 1
+        self.minesw.set_flag(1)
+        self.assertEqual(self.minesw.index_has_flag(1), "F")
+
+    def test_index_has_flag_returns_False_if_no_flag(self):
+        self.assertFalse(self.minesw.index_has_flag(1))

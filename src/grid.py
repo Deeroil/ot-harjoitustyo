@@ -8,12 +8,14 @@ class Grid:
         self.len = width**2
         for _ in range(width**2):
             self.grid.append(0)
+        self.mines = 0
 
     # TODO: add errorhandling or smth
     def set_mines(self, amount):
         if len(self.grid) < amount or amount < 0:
             print('errorhandling here')
             return
+        self.mines = amount
 
         for i in range(0, amount):
             self.grid[i] = 9  # 9 = a mine

@@ -61,10 +61,22 @@ if __name__ == "__main__":
     msweep.print_current()
 
     while True:
+        lippu = input("Kirjoita F asettaaksesi lipun tai R poistaaksesi lipun. Muulla syötteellä skipataan lipun asettaminen")
+#
         x_koord = int(input("Mikä x-koordinaatti?"))
         y_koord = int(input("Mikä y-koordinaatti?"))
 
         index = x_koord + y_koord*grid.width
+
+        if lippu == "F":
+            msweep.set_flag(index)
+            msweep.print_current()
+            continue
+
+        if lippu == "R":
+            msweep.remove_flag(index)
+            msweep.print_current()
+            continue
 
         tile = msweep.check_tile(index)
         msweep.add_shown_tiles(index)
