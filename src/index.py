@@ -1,6 +1,6 @@
 import sys
-from grid import Grid
-from minesweeper import Minesweeper
+from services.grid import Grid
+from services.minesweeper import Minesweeper
 
 # TODO:
 #     - miten sliceet kivasti printattavasti taulukon, ehkä if index % row_len == 0?

@@ -1,4 +1,4 @@
-from grid import Grid
+from services.grid import Grid
 
 
 class Minesweeper:

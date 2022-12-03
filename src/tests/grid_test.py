@@ -1,5 +1,5 @@
 import unittest
-from grid import Grid
+from services.grid import Grid
 
 # TODO:
 # test grid_list with negatives and 0, 1.

@@ -1,6 +1,6 @@
 import unittest
-from grid import Grid
-from minesweeper import Minesweeper
+from services.grid import Grid
+from services.minesweeper import Minesweeper
 
 
 class TestMinesweeper(unittest.TestCase):
