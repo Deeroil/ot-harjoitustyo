@@ -1,1 +1,2 @@
-![Luokkakaavio](./luokkakaavio_alustava.png)
+![Luokkakaavio](./Luokkakaavio_entities.png)
+
