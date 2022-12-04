@@ -16,7 +16,7 @@ class Minesweeper:
     def check_tile(self, index):
         # print(f"chosen tile has number: {self.backgrid.grid[index]}")
         if self.check_index_viability(index) is False:
-            return
+            return False
         return self.backgrid.grid[index]
 
     def check_index_viability(self, index):
@@ -28,7 +28,7 @@ class Minesweeper:
     # vois kans olla lista indeksejä jotka on avattu..?
     def add_shown_tiles(self, index):
         if self.check_index_viability(index) is False:
-            return
+            return False
         number = self.backgrid.grid[index]
         self.showntiles[index] = number
         return number
@@ -47,6 +47,7 @@ class Minesweeper:
         self.showntiles[index] = "F"
         self.flags.add(index)
 
+    # ehkä helpompi vaan tehdä index_has_flag avulla?
     def remove_flag(self, index):
         if self.check_index_viability(index) is False:
             return
@@ -56,10 +57,7 @@ class Minesweeper:
         self.flags.remove(index)
         self.showntiles[index] = "_"
 
-    # purkkaa
     def index_has_flag(self, index):
-        if self.check_index_viability(index) is False:
-            return
         if index in self.flags:
             return "F"
         return False
