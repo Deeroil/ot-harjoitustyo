@@ -18,5 +18,7 @@
 - käyttäjä voi merkitä avaamattoman ruudun lipulla "F"
 - käyttäjä voi poistaa merkitsemänsä lipun
 - ruudukon vaihtaminen jos avattava ruutu lopettaisi pelin toiminee nyt vaikka sama tapahtuisi useammin
+- käyttäjä voittaa pelin kun kaikki miinat on merkitty lipuilla
 - eriytetty tekstikäyttöliittymä omaan luokkaansa ja luokat kansioihin
 - lisätty testikattavuutta minesweeper ja grid -luokille
+- korjattu miinaruudukon naapurien laskenta
