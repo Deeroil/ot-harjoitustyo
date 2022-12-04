@@ -22,14 +22,42 @@ class Grid:
 
         shuffle(self.grid)
 
+    def check_bounds(self, index):
+        top_row = {index - self.width - 1, index - self.width, index - self.width + 1}
+        middle_row = {index - 1, index + 1} #is this useless?
+        bottom_row = {index + self.width - 1, index + self.width, index + self.width + 1}
+        left_col = {index - self.width - 1, index - 1, index + self.width - 1}
+        right_col = {index - self.width + 1, index + 1, index + self.width + 1}
+
+        neighbor_indexes = set()
+        neighbor_indexes.update(top_row, middle_row, left_col, right_col, bottom_row)
+
+        #index on top row
+        if 0 <= index <= self.width - 1: #huh, 3x3-matriisissa 3 luuli olevansa täällä ehkä koska <= width?
+            print("index on top row")
+            neighbor_indexes = neighbor_indexes - top_row
+
+        #index on bottom row
+        if (self.len - 1) - self.width <= index <= self.len - 1: #TODO: TARKISTA TÄÄ
+            print("index on bottom row")
+            neighbor_indexes = neighbor_indexes - bottom_row
+        
+        #index on left column
+        if index % self.width == 0:
+            print("index on left column")
+            neighbor_indexes = neighbor_indexes - left_col
+
+        #index on right column
+        if index % 3 == 2: #TODO: CHECK THIS, toimi 3x3 gridille mutta en tiedä toimiiko oikeasti
+            print("index on right column")
+            neighbor_indexes = neighbor_indexes - right_col
+
+        return neighbor_indexes
+
+
     # TODO
     def count_neighbors(self, index):
-        # index is not its own neighbor
-        # do I want this to be hard-coded?
-        neighbor_indexes = [index - self.width - 1, index - self.width, index - self.width + 1,
-                            index - 1, index + 1,
-                            index + self.width - 1, index + self.width, index + self.width + 1]
-        # print(neighbor_indexes)
+        neighbor_indexes = self.check_bounds(index)
 
         mines = 0
         for i in neighbor_indexes:
