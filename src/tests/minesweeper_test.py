@@ -5,9 +5,8 @@ from services.minesweeper import Minesweeper
 
 class TestMinesweeper(unittest.TestCase):
     def setUp(self):
-        # self.grid = Grid(5)
         self.test_grid = Grid(3)
-        self.test_grid.grid = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        self.test_grid.list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
         self.minesw = Minesweeper(self.test_grid)
 
     def test_check_tile_1_2(self):
@@ -29,7 +28,7 @@ class TestMinesweeper(unittest.TestCase):
     #Flag tests
 
     def test_set_flag_works_on_unopened_tile_when_grid_has_mines(self):
-        self.minesw.mines_total = 2
+        self.minesw.grid.mines = 2
         self.minesw.set_flag(1)
         self.assertEqual(self.minesw.showntiles[1], "F")
         self.assertIn(1, self.minesw.flags)
@@ -42,7 +41,7 @@ class TestMinesweeper(unittest.TestCase):
         self.assertEqual(len(self.minesw.flags), 0)   
 
     def test_set_flag_doesnt_set_if_not_enough_mines_left(self):
-        self.minesw.mines_total = 1
+        self.minesw.grid.mines = 1
         self.minesw.set_flag(1)
         self.minesw.set_flag(2)
         self.assertEqual(self.minesw.showntiles[2], "_")
@@ -50,7 +49,7 @@ class TestMinesweeper(unittest.TestCase):
         self.assertEqual(len(self.minesw.flags), 1)
 
     def test_set_flag_doesnt_change_anything_if_flag_exists(self):
-        self.minesw.mines_total = 2
+        self.minesw.grid.mines = 2
         self.minesw.set_flag(1)
         self.minesw.set_flag(1)
         self.assertEqual(self.minesw.showntiles[1], "F")
@@ -59,14 +58,14 @@ class TestMinesweeper(unittest.TestCase):
 
     def test_set_flag_doesnt_change_anything_if_tile_has_been_opened(self):
         self.minesw.showntiles[1] = 10
-        self.minesw.mines_total = 2
+        self.minesw.grid.mines = 2
         self.minesw.set_flag(1)
         self.assertEqual(self.minesw.showntiles[1], 10)
         self.assertNotIn(1, self.minesw.flags)
         self.assertEqual(len(self.minesw.flags), 0)
 
     def test_remove_flag_works(self):
-        self.minesw.mines_total = 1
+        self.minesw.grid.mines = 1
         self.minesw.set_flag(1)
         self.minesw.remove_flag(1)
         self.assertEqual(self.minesw.showntiles[1], "_")
@@ -79,7 +78,7 @@ class TestMinesweeper(unittest.TestCase):
         self.assertEqual(self.minesw.showntiles[1], 10)
 
     def test_index_has_flag_returns_F_if_flag(self):
-        self.minesw.mines_total = 1
+        self.minesw.grid.mines = 1
         self.minesw.set_flag(1)
         self.assertEqual(self.minesw.index_has_flag(1), "F")
 

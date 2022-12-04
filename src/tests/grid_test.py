@@ -13,7 +13,7 @@ class TestGrid(unittest.TestCase):
         self.grid2 = Grid(3)
 
     def test_grid_length_matches_5x5_grid(self):
-        self.assertEqual(len(self.grid.grid), 25)
+        self.assertEqual(len(self.grid.list), 25)
 
     def test_grid_len_matches_5x5_grid(self):
         self.assertEqual(self.grid.len, 25)
@@ -21,7 +21,7 @@ class TestGrid(unittest.TestCase):
     def test_set_mines_adds_one_mine(self):
         self.grid.set_mines(1)
         mines = 0
-        for i in self.grid.grid:
+        for i in self.grid.list:
             if i == 9:
                 mines += 1
         self.assertEqual(mines, 1)
@@ -29,7 +29,7 @@ class TestGrid(unittest.TestCase):
     def test_set_mines_adds_6_mines(self):
         self.grid.set_mines(6)
         mines = 0
-        for i in self.grid.grid:
+        for i in self.grid.list:
             if i == 9:
                 mines += 1
         self.assertEqual(mines, 6)
@@ -37,7 +37,7 @@ class TestGrid(unittest.TestCase):
     def test_set_mines_wont_add_too_many_mines(self):
         self.grid.set_mines(30)
         mines = 0
-        for i in self.grid.grid:
+        for i in self.grid.list:
             if i == 9:
                 mines += 1
         self.assertEqual(mines, 0)
@@ -48,6 +48,6 @@ class TestGrid(unittest.TestCase):
     #remember to also test that the functionality works as intended!
     def test_set_neighbors_with3x3_and_one_mine(self):
         compare_grid = [1,1,1,1,9,1,1,1,1]
-        self.grid2.grid[4] = 9 #setting a mine
+        self.grid2.list[4] = 9 #setting a mine
         self.grid2.set_neighbors()
-        self.assertEqual(self.grid2.grid, compare_grid)
+        self.assertEqual(self.grid2.list, compare_grid)

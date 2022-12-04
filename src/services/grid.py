@@ -3,23 +3,23 @@ from random import shuffle
 
 class Grid:
     def __init__(self, width):
-        self.grid = []
+        self.list = []
         self.width = width
         self.len = width**2
         for _ in range(width**2):
-            self.grid.append(0)
+            self.list.append(0)
         self.mines = 0
 
     def set_mines(self, amount):
-        if len(self.grid) < amount or amount < 0:
+        if len(self.list) < amount or amount < 0:
             print('errorhandling here')
             return
         self.mines = amount
 
         for i in range(0, amount):
-            self.grid[i] = 9  # 9 = a mine
+            self.list[i] = 9  # 9 = a mine
 
-        shuffle(self.grid)
+        shuffle(self.list)
 
     def check_bounds(self, index):
         top_row = {index - self.width - 1, index - self.width, index - self.width + 1}
@@ -60,16 +60,16 @@ class Grid:
         for i in neighbor_indexes:
             if i < 0 or i >= self.len:
                 continue
-            if self.grid[i] == 9:
+            if self.list[i] == 9:
                 # print("mine spotted in", i)
                 mines += 1
         return mines
 
     def set_neighbors(self):
         for i in range(self.len):
-            if self.grid[i] == 9:
+            if self.list[i] == 9:
                 continue
-            self.grid[i] = self.count_neighbors(i)
+            self.list[i] = self.count_neighbors(i)
 
 # tulostaa grid jossa näkyy naapurit, tyhjät ja pommit
 #   0: tyhjä
@@ -81,5 +81,5 @@ class Grid:
         for i in range(self.len):
             if i % self.width == 0:
                 printable += "\n"
-            printable += f" {self.grid[i]} "
+            printable += f" {self.list[i]} "
         print(printable)

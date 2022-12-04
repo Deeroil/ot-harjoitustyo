@@ -42,7 +42,7 @@ class CLI:
         grid2 = Grid(self.grid.width)
         grid2.set_mines(self.grid.mines)
 
-        if grid2.grid[index] != 9:
+        if grid2.list[index] != 9:
           grid2.set_neighbors()
           self.grid = grid2
           self.msweep = Minesweeper(grid2)
@@ -91,7 +91,7 @@ class CLI:
 
           if tile == 9:
               print("Hävisit pelin :(")
-              self.msweep.backgrid.print_grid()
+              self.msweep.grid.print_grid()
               sys.exit(0)
           elif tile == 0:
               print("ööh mun pitää keksiä tähän algo :D sori siitä")

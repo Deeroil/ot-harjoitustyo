@@ -3,11 +3,10 @@ from services.grid import Grid
 
 class Minesweeper:
     def __init__(self, grid: Grid):
-        self.backgrid = grid
+        self.grid = grid
         self.showntiles = []
         for _ in range(grid.width**2):
             self.showntiles.append("_")
-        self.mines_total = grid.mines
         self.flags = set()
 
     # muista selittää että indeksointi alkaa 0:sta ja ylävasemmasta kulmasta TAI muuta näitä
@@ -17,10 +16,10 @@ class Minesweeper:
         # print(f"chosen tile has number: {self.backgrid.grid[index]}")
         if self.check_index_viability(index) is False:
             return False
-        return self.backgrid.grid[index]
+        return self.grid.list[index]
 
     def check_index_viability(self, index):
-        if index < 0 or index > self.backgrid.len:
+        if index < 0 or index > self.grid.len:
             print("index not viable")
             return False
         return True
@@ -29,15 +28,15 @@ class Minesweeper:
     def add_shown_tiles(self, index):
         if self.check_index_viability(index) is False:
             return False
-        number = self.backgrid.grid[index]
+        number = self.grid.list[index]
         self.showntiles[index] = number
         return number
 
     #checks only by flags
     def check_win(self):
-        if len(self.flags) == self.mines_total:
+        if len(self.flags) == self.grid.mines:
             for i in self.flags:
-                if self.backgrid.grid[i] != 9:
+                if self.grid.list[i] != 9:
                     return False
             return True
         return False
@@ -45,7 +44,7 @@ class Minesweeper:
     def set_flag(self, index):
         if self.check_index_viability(index) is False:
             return
-        flags_left = self.mines_total - len(self.flags)
+        flags_left = self.grid.mines - len(self.flags)
         print('lippuja:', flags_left)
         if flags_left <= 0:
             print("couldn't set flag! remove one first")
@@ -80,7 +79,7 @@ class Minesweeper:
 #     9: pommi/miina
 # TODO: rename printables
     def print_current(self):
-        bgrid = self.backgrid
+        bgrid = self.grid
         printable = ""
         for i in range(bgrid.len):
             if i % bgrid.width == 0:
