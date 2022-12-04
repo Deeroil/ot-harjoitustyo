@@ -33,6 +33,15 @@ class Minesweeper:
         self.showntiles[index] = number
         return number
 
+    #checks only by flags
+    def check_win(self):
+        if len(self.flags) == self.mines_total:
+            for i in self.flags:
+                if self.backgrid.grid[i] != 9:
+                    return False
+            return True        
+        return False
+
     def set_flag(self, index):
         if self.check_index_viability(index) is False:
             return

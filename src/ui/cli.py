@@ -68,6 +68,14 @@ class CLI:
     self.msweep.print_current() # not for final release
 
     while True:
+        if self.msweep.check_win():
+          print("Voitit pelin!")
+          cont = input("Kirjoita y aloittaaksesi alusta, muulla syötteellä suljet pelin")
+          if cont == "y":
+            self.__init__()
+          else:
+            sys.exit(0)
+
         inp = input("Kirjoita F asettaaksesi lipun tai R poistaaksesi lipun. Muulla syötteellä skipataan lipun asettaminen")
         index = self.ask_coordinates()
         
