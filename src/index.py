@@ -1,19 +1,11 @@
 from ui.cli import CLI
-# TODO:
-#     - miten sliceet kivasti printattavasti taulukon, ehkä if index % row_len == 0?
-#     - naapureiden laskenta, haluanko bound checking funktion erikseen?
-#         - jokaiselle ruudulle: +1 joka naapuripommista, talleta ruutuun naapurien määrä
-#         - pommin merkitseminen varmaan lukuna 9 tai 10
+# TODO: kaikenlaista
 #     - tulosta grid_list jossa näkyy naapurit, tyhjät ja pommit
 #         - 0: tyhjä
 #         - 1-8: montako pomminaapuria
 #         - 9: pommi/miina
-#     - funktio jolla voi valita ("klikata") jonkun ruuduista: mitä tapahtuu?
-#           - jos tyhjä: näytä vierekkäiset / return lista jossa vierekkäiset
-#           - jos pommi: peli loppuu (aluksi esim: printtaa "Peli loppui")
-#           - jos numero: return numero
 #     - muista testit! toimiiko random.seed() kivasti, vai mielummin käsin tehdyt taulukot?
-#     - onks se siistimpää selkeästi palauttaa grid_list vai muuttaa sitä funktion sisällä xd
+#         - testaa kans bound checker
 #     - myös virheidenkäsittely!
 
 # Note:

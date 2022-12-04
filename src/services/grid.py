@@ -10,7 +10,6 @@ class Grid:
             self.grid.append(0)
         self.mines = 0
 
-    # TODO: add errorhandling or smth
     def set_mines(self, amount):
         if len(self.grid) < amount or amount < 0:
             print('errorhandling here')
@@ -33,29 +32,27 @@ class Grid:
         neighbor_indexes.update(top_row, middle_row, left_col, right_col, bottom_row)
 
         #index on top row
-        if 0 <= index <= self.width - 1: #huh, 3x3-matriisissa 3 luuli olevansa täällä ehkä koska <= width?
+        if 0 <= index <= self.width - 1:
             print("index on top row")
             neighbor_indexes = neighbor_indexes - top_row
 
         #index on bottom row
-        if (self.len - 1) - self.width <= index <= self.len - 1: #TODO: TARKISTA TÄÄ
+        if (self.len - 1) - self.width <= index <= self.len - 1:
             print("index on bottom row")
             neighbor_indexes = neighbor_indexes - bottom_row
-        
+
         #index on left column
         if index % self.width == 0:
             print("index on left column")
             neighbor_indexes = neighbor_indexes - left_col
 
         #index on right column
-        if index % 3 == 2: #TODO: CHECK THIS, toimi 3x3 gridille mutta en tiedä toimiiko oikeasti
+        if index % 3 == 2:
             print("index on right column")
             neighbor_indexes = neighbor_indexes - right_col
 
         return neighbor_indexes
 
-
-    # TODO
     def count_neighbors(self, index):
         neighbor_indexes = self.check_bounds(index)
 
@@ -68,14 +65,11 @@ class Grid:
                 mines += 1
         return mines
 
-    # muista testata ettei miinojen päälle aseteta numeroita!
     def set_neighbors(self):
         for i in range(self.len):
             if self.grid[i] == 9:
                 continue
             self.grid[i] = self.count_neighbors(i)
-        # print("laskettu")
-        # return self.grid
 
 # tulostaa grid jossa näkyy naapurit, tyhjät ja pommit
 #   0: tyhjä
