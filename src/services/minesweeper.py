@@ -8,7 +8,7 @@ class Minesweeper:
         for _ in range(grid.width**2):
             self.showntiles.append("_")
         self.mines_total = grid.mines
-        self.flags = [] #maybe change to a set?
+        self.flags = set()
 
     # muista selittää että indeksointi alkaa 0:sta ja ylävasemmasta kulmasta TAI muuta näitä
     # tässä on uhkia että otan suoraan indeksin, jos esim antaisi ihan väärät x/y-koordinaatit
@@ -45,9 +45,8 @@ class Minesweeper:
             print("couldn't set flag, as the tile has already been opened or has a flag!")
             return
         self.showntiles[index] = "F"
-        self.flags.append(index)
+        self.flags.add(index)
 
-    # TODO: check later
     def remove_flag(self, index):
         if self.check_index_viability(index) is False:
             return
