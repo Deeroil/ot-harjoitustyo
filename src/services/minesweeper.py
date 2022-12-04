@@ -39,7 +39,7 @@ class Minesweeper:
             for i in self.flags:
                 if self.backgrid.grid[i] != 9:
                     return False
-            return True        
+            return True
         return False
 
     def set_flag(self, index):
