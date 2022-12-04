@@ -52,9 +52,8 @@ Then it will print a grid with tiles
 After that, you can give (x,y) coordinates to open tiles of the grid.
 After opening a tile, you'll see which number was inside.
 If it was 9 (a mine), the game ends.
-
-You can't win yet, and you can only quit by hitting a mine or otherwise quitting the program.
-
+You can also flag unknown tiles or remove the flag.
+You win when you've flagged all tiles with mines
 
 So the app knows how to
 - make a custom sized n*n grid (actually a list)
@@ -64,6 +63,7 @@ So the app knows how to
 - mark an unopened tile with a "F" (flag)
 - remove a flag
 - quit if you hit a mine
+- win if you flag all correct tiles
 - and a bit more
 
 ### Known issues/bugs
