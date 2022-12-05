@@ -10,11 +10,11 @@
 | 28.11.|  1   | luokkakaavioon tutustuminen jne, koodia |
 | 29.11.|  5   | osittain ui erottelemista pois luokista, flag-toiminnon aloittaminen|
 |  3.12.|  5   | edistä flag-toimintoa, lisää testejä, eriytä luokat ja ui kansioihin|
-|  4.12.|  2   | korjaa naapurien laskemisen virhe |
+|  4.12.|  4   | korjaa naapurien laskemisen virhe, päivitä luokkakaaviota, lisää voittoehto |
+|  5.12.|  3  | sekvenssikaavio, siistiminen ja release |
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
-|       |      | |
-| yht   |  27  | | 
+| yht   |  32  | | 
