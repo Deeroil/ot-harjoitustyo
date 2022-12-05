@@ -33,22 +33,22 @@ class Grid:
 
         #index on top row
         if 0 <= index <= self.width - 1:
-            print("index on top row")
+            # print("index on top row")
             neighbor_indexes = neighbor_indexes - top_row
 
         #index on bottom row
         if (self.len - 1) - self.width <= index <= self.len - 1:
-            print("index on bottom row")
+            # print("index on bottom row")
             neighbor_indexes = neighbor_indexes - bottom_row
 
         #index on left column
         if index % self.width == 0:
-            print("index on left column")
+            # print("index on left column")
             neighbor_indexes = neighbor_indexes - left_col
 
         #index on right column
         if index % 3 == 2:
-            print("index on right column")
+            # print("index on right column")
             neighbor_indexes = neighbor_indexes - right_col
 
         return neighbor_indexes

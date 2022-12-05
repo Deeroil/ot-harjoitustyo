@@ -4,23 +4,22 @@ from services.minesweeper import Minesweeper
 
 ### TODO:
 #     - function for replaying
-#     - function for checking win condition? wait that sounds like game logic, no.
 
 # command line interface
 class CLI:
   def __init__(self):
     n = int(input(
-        "Create a minesweeper grid of what size? (0 or less quits game) "))
+        "Minkä kokoinen ruudukko (sivun pituus)? (0 tai vähemmän sulkee ohjelman) "))
     if n <= 0:
         sys.exit(0)
-    m = int(input("And how many mines? (0 or less quits game) "))
+    m = int(input("Montako miinaa? (0 tai vähemmän sulkee ohjelman)"))
     if m <= 0:
         sys.exit(0)
 
     self.grid = Grid(n)
     self.grid.set_mines(m)
     self.grid.set_neighbors()
-    self.grid.print_grid()
+    # self.grid.print_grid()
 
     print("\n")
     self.msweep = Minesweeper(self.grid)
@@ -37,6 +36,7 @@ class CLI:
   def generate_new_game_if_hit_bomb(self, index):
     if self.msweep.check_tile(index) == 9:
       print("osuttiin pommiin jo")
+      # TODO: laske esim 10 kertaa ja sitten lopeta jos ei onnistunut
       while True:
         print("...generoidaan toinen ruudukko")
         grid2 = Grid(self.grid.width)
@@ -94,7 +94,7 @@ class CLI:
               self.msweep.grid.print_grid()
               sys.exit(0)
           elif tile == 0:
-              print("ööh mun pitää keksiä tähän algo :D sori siitä")
+              print("(ei vielä avaa muita läheisiä 0-tiiliä)")
 
         # msweep.add_shown_tiles(0)
         # ei oo lopetusehtoa paitsi miinaan osuminen

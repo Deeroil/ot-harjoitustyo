@@ -20,7 +20,7 @@ class Minesweeper:
 
     def check_index_viability(self, index):
         if index < 0 or index > self.grid.len:
-            print("index not viable")
+            print("indeksi ei kelpaa")
             return False
         return True
 
@@ -45,12 +45,12 @@ class Minesweeper:
         if self.check_index_viability(index) is False:
             return
         flags_left = self.grid.mines - len(self.flags)
-        print('lippuja:', flags_left)
+        # print('lippuja:', flags_left)
         if flags_left <= 0:
-            print("couldn't set flag! remove one first")
+            print("lippuja liikaa! poista ensin lippu ")
             return
         if self.showntiles[index] != "_" or self.showntiles[index] == "F":
-            print("couldn't set flag, as the tile has already been opened or has a flag!")
+            print("ei voitu asettaa lippua, ruutu oli avattu tai siinä oli jo lippu!")
             return
         self.showntiles[index] = "F"
         self.flags.add(index)
@@ -60,7 +60,7 @@ class Minesweeper:
         if self.check_index_viability(index) is False:
             return
         if self.showntiles[index] == "_" or self.showntiles[index] != "F":
-            print("no flag here!")
+            print("ei ollut poistettavaa lippua")
             return
         self.flags.remove(index)
         self.showntiles[index] = "_"
