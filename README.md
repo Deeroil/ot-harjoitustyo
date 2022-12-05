@@ -18,11 +18,13 @@ Harjoitustyönä Miinaharava.
 
 [arkkitehtuuri](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[release](https://github.com/Deeroil/ot-harjoitustyo/releases/tag/viikko5)
+
 ### Installation and running
 
-Install dependencies by running `poetry install`
+First install dependencies by running `poetry install` in the project directory.
 
-Run the app with `poetry run invoke start`
+Then you can run the app with `poetry run invoke start`
 
 
 ### Other invoke tasks
@@ -44,7 +46,7 @@ It will ask you for
 - size of the grid (n) and
 - how many mines you want there.
 
-Then it will print a grid with tiles
+Then it will fill a grid with tiles
 - 0: empty tiles 
 - 1-8: tiles with mines as neighbors
 - 9: a tile with a mine
@@ -53,7 +55,7 @@ After that, you can give (x,y) coordinates to open tiles of the grid.
 After opening a tile, you'll see which number was inside.
 If it was 9 (a mine), the game ends.
 You can also flag unknown tiles or remove the flag.
-You win when you've flagged all tiles with mines
+You win when you've flagged all tiles with mines.
 
 So the app knows how to
 - make a custom sized n*n grid (actually a list)
