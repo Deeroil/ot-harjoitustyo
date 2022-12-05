@@ -15,18 +15,21 @@ TEHTY:
 	* Jos klikatulla ruudulla on naapurina miina/miinoja, tulee näkyviin kyseinen numero
 	* Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi" (lippu/flag). Vaarallisuus merkitsee miinan oletettua sijaitsemiskohtaa.
 	* Vaaralliseksi voi merkitä vain yhtä monta ruutua kuin miinoja on peliruudukossa.
+* Peli voitetaan kun käyttäjä on merkannut kaikki miinat vaarallisiksi osumatta yhteenkään miinaan
+	* täytyy ehkä pohtia vielä haluanko tämän riittävän voittoon.
+* Käyttäjä voi aloittaa uuden pelin voittaessaan sulkematta ohjelmaa
 
 EI TEHTY:
 * Ruudun avaamisesta tekemättömät
 	* Jos ruutu on "tyhjä" eli ruudussa ei ole miinaa eikä sen välittömänä naapurina ole miinaa/miinoja, paljastuu ruudukosta alue joka on reunustettu naapurinumeroita sisältävillä ruuduilla.
 	* Jos ruutu on tyhjä ja tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
-* Peli voitetaan kun käyttäjä on merkannut kaikki miinat vaarallisiksi osumatta yhteenkään miinaan
 * Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 * Pelin päättyessä voi aloittaa pelin alusta
 
 ## Jatkokehitysideoita
 Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
 * Käyttäjä voi käyttää sekä näppäimistöä että hiirtä toimintoihin
+
 ### Ennen peliä ja asetukset
 - Käyttäjä voi valita peliruudukon koon useammasta valmiiksi määritellystä vaihtoehdosta
 	- Peliruudukon koon valitseminen omavalintaisesti rajatulta väliltä (tehty)
