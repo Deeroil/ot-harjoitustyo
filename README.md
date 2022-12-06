@@ -5,10 +5,12 @@ Helsingin Yliopiston Ohjelmistotekniikka-kurssin harjoitustyölle ja laskuharjoi
 
 Harjoitustyönä Miinaharava.
 
+Miinaharava on logiikkapeli, jossa yritetään päätellä ruudukon kaikki ruudut joissa ei ole miinaa. Pelin alkutilanteessa on ruudukko avaamattomia ruutuja, joista joidenkin taakse on piilotettu miina. Miinojen lukumäärä pelin aloittaessa tiedetään. Ruutuja avaamalla pelaaja saa tietää, onko kyseisessä ruudussa miina. Jos miina löytyy, peli päättyy. Jos ruudussa ei ole miinaa, ilmestyy avatun ruudun kohdalle numero joka kertoo kuinka moni kyseisen ruudun vierekkäisistä ruuduista sisältää miinan.
+
 *Minesweeper in Python as a school project.*
 
 
-### Dokumentaatio
+### Dokumentaatio / Documentation, in Finnish
 
 [tuntikirjanpito](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/tuntikirjanpito.md)
 
@@ -49,7 +51,7 @@ It will ask you for
 Then it will fill a grid with tiles
 - 0: empty tiles 
 - 1-8: tiles with mines as neighbors
-- 9: a tile with a mine
+- 9: a tile with a mine (will probably change this to some other sign later)
 
 After that, you can give (x,y) coordinates to open tiles of the grid.
 After opening a tile, you'll see which number was inside.
@@ -70,7 +72,14 @@ So the app knows how to
 
 ### Known issues/bugs
 
+- no errorhandling yet
+
+- most of the code can't handle wrong sort of input
+  - for example asking for grid size, mines, coordinates...
+  - right now these default to printing stack trace and quitting the program, as expected
+
 - creating a 1x1 grid with 1 mine and trying to open it as the first move (as there are no other options) will cause an infinite loop, as it will try to create a substitute grid where user wouldn't instantly lose, even though this isn't possible
+  - should probably set some minimum grid size
 
 - input will try to convert string to int, this won't work with all inputs and will cause an error
 
