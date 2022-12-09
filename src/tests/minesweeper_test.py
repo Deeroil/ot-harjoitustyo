@@ -9,34 +9,40 @@ class TestMinesweeper(unittest.TestCase):
         self.test_grid.list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
         self.minesw = Minesweeper(self.test_grid)
 
+    # check tile
     def test_check_tile_1_2(self):
         self.assertEqual(self.minesw.check_tile(7), 7)
 
     def test_check_tile_0_0(self):
         self.assertEqual(self.minesw.check_tile(0), 0)
+    
+    def test_check_tile_doesnt_work_with_negative_index(self):
+        self.assertFalse(self.minesw.check_tile(-2))
 
     def test_check_tile_false(self):
         self.assertFalse(self.minesw.check_tile(0), 10)
 
-    def test_shown_tiles_index_2_is_underscore(self):
-        self.assertEqual(self.minesw.showntiles[2], "_")
+    # check index viability
+    def test_check_index_viability_with_neg_one_returns_False(self):
+        self.assertFalse(self.minesw.check_index_viability(-1))
+    
+    def test_check_index_viability_with_too_big_index_returns_False(self):
+        self.assertFalse(self.minesw.check_index_viability(10))
 
-    def test_add_shown_tiles_adds_to_shown(self):
-        self.minesw.add_shown_tiles(3)
-        self.assertEqual(self.minesw.showntiles[3], 3)
+    def test_check_index_viability_with_too_big_index_returns_False(self):
+        self.assertFalse(self.minesw.check_index_viability(10))
 
-    #Flag tests
-
+    #flag tests
     def test_set_flag_works_on_unopened_tile_when_grid_has_mines(self):
         self.minesw.grid.mines = 2
         self.minesw.set_flag(1)
-        self.assertEqual(self.minesw.showntiles[1], "F")
+        self.assertEqual(self.minesw.get_shown_tile(1), "F")
         self.assertIn(1, self.minesw.flags)
         self.assertEqual(len(self.minesw.flags), 1)
 
     def test_set_flag_doesnt_set_if_no_mines(self):
         self.minesw.set_flag(1)
-        self.assertEqual(self.minesw.showntiles[1], "_")
+        self.assertEqual(self.minesw.get_shown_tile(1), "_")
         self.assertNotIn(1, self.minesw.flags)
         self.assertEqual(len(self.minesw.flags), 0)   
 
@@ -44,7 +50,7 @@ class TestMinesweeper(unittest.TestCase):
         self.minesw.grid.mines = 1
         self.minesw.set_flag(1)
         self.minesw.set_flag(2)
-        self.assertEqual(self.minesw.showntiles[2], "_")
+        self.assertEqual(self.minesw.get_shown_tile(2), "_")
         self.assertNotIn(2, self.minesw.flags)
         self.assertEqual(len(self.minesw.flags), 1)
 
@@ -52,15 +58,16 @@ class TestMinesweeper(unittest.TestCase):
         self.minesw.grid.mines = 2
         self.minesw.set_flag(1)
         self.minesw.set_flag(1)
-        self.assertEqual(self.minesw.showntiles[1], "F")
+        self.assertEqual(self.minesw.get_shown_tile(1), "F")
         self.assertIn(1, self.minesw.flags)
         self.assertEqual(len(self.minesw.flags), 1)
 
     def test_set_flag_doesnt_change_anything_if_tile_has_been_opened(self):
-        self.minesw.showntiles[1] = 10
+        self.minesw.grid.list[1] = 10
+        self.minesw.showntiles.add(1)
         self.minesw.grid.mines = 2
         self.minesw.set_flag(1)
-        self.assertEqual(self.minesw.showntiles[1], 10)
+        self.assertEqual(self.minesw.get_shown_tile(1), 10)
         self.assertNotIn(1, self.minesw.flags)
         self.assertEqual(len(self.minesw.flags), 0)
 
@@ -68,19 +75,30 @@ class TestMinesweeper(unittest.TestCase):
         self.minesw.grid.mines = 1
         self.minesw.set_flag(1)
         self.minesw.remove_flag(1)
-        self.assertEqual(self.minesw.showntiles[1], "_")
+        self.assertEqual(self.minesw.get_shown_tile(1), "_")
         self.assertNotIn(1, self.minesw.flags)
         self.assertEqual(len(self.minesw.flags), 0)
 
     def test_remove_flag_doesnt_change_tile_if_tile_has_been_opened(self):
-        self.minesw.showntiles[1] = 10
+        self.minesw.grid.list[1] = 10
+        self.minesw.showntiles.add(1)
         self.minesw.remove_flag(1)
-        self.assertEqual(self.minesw.showntiles[1], 10)
+        self.assertEqual(self.minesw.get_shown_tile(1), 10)
 
-    def test_index_has_flag_returns_F_if_flag(self):
+    # get shown tiles
+    def test_get_shown_tiles_index_2_is_underscore(self):
+        self.assertEqual(self.minesw.get_shown_tile(2), "_")
+
+    def test_get_shown_tile_returns_right_number(self):
+        self.minesw.add_shown_tiles(3)
+        self.assertEqual(self.minesw.get_shown_tile(3), 3)
+    
+    def test_get_shown_tile_returns_right_number2(self):
+        self.minesw.grid.list[1] = 10
+        self.minesw.add_shown_tiles(1)
+        self.assertEqual(self.minesw.get_shown_tile(1), 10)
+
+    def test_get_shown_tile_returns_F_if_flag(self):
         self.minesw.grid.mines = 1
         self.minesw.set_flag(1)
-        self.assertEqual(self.minesw.index_has_flag(1), "F")
-
-    def test_index_has_flag_returns_False_if_no_flag(self):
-        self.assertFalse(self.minesw.index_has_flag(1))
+        self.assertEqual(self.minesw.get_shown_tile(1), "F")

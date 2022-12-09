@@ -4,9 +4,7 @@ from services.grid import Grid
 class Minesweeper:
     def __init__(self, grid: Grid):
         self.grid = grid
-        self.showntiles = []
-        for _ in range(grid.width**2):
-            self.showntiles.append("_")
+        self.showntiles = set()
         self.flags = set()
 
     # muista selittää että indeksointi alkaa 0:sta ja ylävasemmasta kulmasta TAI muuta näitä
@@ -28,8 +26,9 @@ class Minesweeper:
     def add_shown_tiles(self, index):
         if self.check_index_viability(index) is False:
             return False
+
         number = self.grid.list[index]
-        self.showntiles[index] = number
+        self.showntiles.add(index)
         return number
 
     #checks only by flags
@@ -49,26 +48,25 @@ class Minesweeper:
         if flags_left <= 0:
             print("lippuja liikaa! poista ensin lippu ")
             return
-        if self.showntiles[index] != "_" or self.showntiles[index] == "F":
+        if index in self.showntiles or index in self.flags:
             print("ei voitu asettaa lippua, ruutu oli avattu tai siinä oli jo lippu!")
             return
-        self.showntiles[index] = "F"
         self.flags.add(index)
 
-    # ehkä helpompi vaan tehdä index_has_flag avulla?
     def remove_flag(self, index):
         if self.check_index_viability(index) is False:
             return
-        if self.showntiles[index] == "_" or self.showntiles[index] != "F":
+        if index not in self.flags:
             print("ei ollut poistettavaa lippua")
             return
         self.flags.remove(index)
-        self.showntiles[index] = "_"
 
-    def index_has_flag(self, index):
+    def get_shown_tile(self, index):
         if index in self.flags:
             return "F"
-        return False
+        if index in self.showntiles:
+            return self.check_tile(index)
+        return "_"
 
 # tulostaa grid jossa näkyy auki klikatut
 #     _: avaamaton
@@ -84,5 +82,5 @@ class Minesweeper:
         for i in range(bgrid.len):
             if i % bgrid.width == 0:
                 printable += "\n"
-            printable += f" {self.index_has_flag(i) or self.showntiles[i]} "
+            printable += f" {self.get_shown_tile(i)} "
         print(printable)
