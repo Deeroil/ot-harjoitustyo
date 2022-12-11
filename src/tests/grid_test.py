@@ -43,10 +43,26 @@ class TestGrid(unittest.TestCase):
                 mines += 1
         self.assertEqual(mines, 0)
 
-    # def test_set_neighbors_with_1_mine(self):
-    # grid like 000 090 000  sets 111 191 111?
+    #check index viability
+    def test_check_index_viability_with_0_returns_True(self):
+        self.assertTrue(self.grid.check_index_viability(0))
 
-    #remember to also test that the functionality works as intended!
+    def test_check_index_viability_with_last_index_returns_True(self):
+        self.assertTrue(self.grid.check_index_viability(self.grid.len - 1))
+    
+    def test_check_index_viability_with_length_returns_False(self):
+        self.assertFalse(self.grid.check_index_viability(self.grid.len))
+
+    def test_check_index_viability_with_neg_one_returns_False(self):
+        self.assertFalse(self.grid.check_index_viability(-1))
+    
+    def test_check_index_viability_with_too_big_index_returns_False(self):
+        self.assertFalse(self.grid.check_index_viability(100))
+
+    def test_check_index_viability_with_ok_index_returns_True(self):
+        self.assertTrue(self.grid.check_index_viability(4))
+
+    #set neighbors
     def test_set_neighbors_with3x3_and_one_mine(self):
         compare_grid = [1,1,1,1,9,1,1,1,1]
         self.grid2.list[4] = 9 #setting a mine
@@ -59,7 +75,6 @@ class TestGrid(unittest.TestCase):
                         1,1,1,0,0,
                         0,0,0,1,1,
                         0,0,0,1,9]
-        #setting mines
         self.grid.list[6] = 9
         self.grid.list[24] = 9
         self.grid.set_neighbors()

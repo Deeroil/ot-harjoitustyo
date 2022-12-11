@@ -12,19 +12,13 @@ class Minesweeper:
     # mutta luku olisi sopiva silti?
     def check_tile(self, index):
         # print(f"chosen tile has number: {self.backgrid.grid[index]}")
-        if self.check_index_viability(index) is False:
+        if self.grid.check_index_viability(index) is False:
             return False
         return self.grid.list[index]
 
-    def check_index_viability(self, index):
-        if index < 0 or index > self.grid.len:
-            print("indeksi ei kelpaa")
-            return False
-        return True
-
     # vois kans olla lista indeksejä jotka on avattu..?
     def add_shown_tiles(self, index):
-        if self.check_index_viability(index) is False:
+        if self.grid.check_index_viability(index) is False:
             return False
 
         number = self.grid.list[index]
@@ -41,7 +35,7 @@ class Minesweeper:
         return False
 
     def set_flag(self, index):
-        if self.check_index_viability(index) is False:
+        if self.grid.check_index_viability(index) is False:
             return
         flags_left = self.grid.mines - len(self.flags)
         # print('lippuja:', flags_left)
@@ -54,7 +48,7 @@ class Minesweeper:
         self.flags.add(index)
 
     def remove_flag(self, index):
-        if self.check_index_viability(index) is False:
+        if self.grid.check_index_viability(index) is False:
             return
         if index not in self.flags:
             print("ei ollut poistettavaa lippua")

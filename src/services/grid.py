@@ -20,8 +20,17 @@ class Grid:
             self.list[i] = 9  # 9 = a mine
 
         shuffle(self.list)
+    
+    def check_index_viability(self, index):
+        if index < 0 or index >= self.len:
+            print("indeksi ei kelpaa")
+            return False
+        return True
 
     def check_neighbors(self, index):
+        if self.check_index_viability(index) is False:
+            return False
+
         top_row = {index - self.width - 1, index - self.width, index - self.width + 1}
         middle_row = {index - 1, index + 1} #is this useless?
         bottom_row = {index + self.width - 1, index + self.width, index + self.width + 1}
@@ -54,6 +63,9 @@ class Grid:
         return neighbor_indexes
 
     def count_neighbors(self, index):
+        if self.check_index_viability(index) is False:
+            return False
+
         neighbor_indexes = self.check_neighbors(index)
 
         mines = 0

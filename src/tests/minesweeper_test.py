@@ -22,16 +22,6 @@ class TestMinesweeper(unittest.TestCase):
     def test_check_tile_false(self):
         self.assertFalse(self.minesw.check_tile(0), 10)
 
-    # check index viability
-    def test_check_index_viability_with_neg_one_returns_False(self):
-        self.assertFalse(self.minesw.check_index_viability(-1))
-    
-    def test_check_index_viability_with_too_big_index_returns_False(self):
-        self.assertFalse(self.minesw.check_index_viability(10))
-
-    def test_check_index_viability_with_too_big_index_returns_False(self):
-        self.assertFalse(self.minesw.check_index_viability(10))
-
     #flag tests
     def test_set_flag_works_on_unopened_tile_when_grid_has_mines(self):
         self.minesw.grid.mines = 2
