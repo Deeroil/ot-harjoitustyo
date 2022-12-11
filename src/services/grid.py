@@ -21,7 +21,7 @@ class Grid:
 
         shuffle(self.list)
 
-    def check_bounds(self, index):
+    def check_neighbors(self, index):
         top_row = {index - self.width - 1, index - self.width, index - self.width + 1}
         middle_row = {index - 1, index + 1} #is this useless?
         bottom_row = {index + self.width - 1, index + self.width, index + self.width + 1}
@@ -54,7 +54,7 @@ class Grid:
         return neighbor_indexes
 
     def count_neighbors(self, index):
-        neighbor_indexes = self.check_bounds(index)
+        neighbor_indexes = self.check_neighbors(index)
 
         mines = 0
         for i in neighbor_indexes:
