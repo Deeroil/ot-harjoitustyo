@@ -11,6 +11,7 @@ class TestGrid(unittest.TestCase):
     def setUp(self):
         self.grid = Grid(5)
         self.grid2 = Grid(3)
+        self.grid2x2 = Grid(2)
 
     def test_grid_length_matches_5x5_grid(self):
         self.assertEqual(len(self.grid.list), 25)
@@ -49,5 +50,38 @@ class TestGrid(unittest.TestCase):
     def test_set_neighbors_with3x3_and_one_mine(self):
         compare_grid = [1,1,1,1,9,1,1,1,1]
         self.grid2.list[4] = 9 #setting a mine
+        self.grid2.set_neighbors()
+        self.assertEqual(self.grid2.list, compare_grid)
+
+    def test_set_neighbors_5x5_2mines_1(self):
+        compare_grid = [1,1,1,0,0,
+                        1,9,1,0,0,
+                        1,1,1,0,0,
+                        0,0,0,1,1,
+                        0,0,0,1,9]
+        #setting mines
+        self.grid.list[6] = 9
+        self.grid.list[24] = 9
+        self.grid.set_neighbors()
+        self.assertEqual(self.grid.list, compare_grid)
+
+    def test_set_neighbors_3x3_3mines_1(self):
+        compare_grid = [2,9,2,
+                        3,9,3,
+                        2,9,2]
+        self.grid2.list[1] = 9
+        self.grid2.list[4] = 9
+        self.grid2.list[7] = 9
+        self.grid2.set_neighbors()
+        self.assertEqual(self.grid2.list, compare_grid)
+
+    def test_set_neighbors_3x3_corners(self):
+        compare_grid = [9,2,9,
+                        2,4,2,
+                        9,2,9]
+        self.grid2.list[0] = 9
+        self.grid2.list[2] = 9
+        self.grid2.list[6] = 9
+        self.grid2.list[8] = 9
         self.grid2.set_neighbors()
         self.assertEqual(self.grid2.list, compare_grid)

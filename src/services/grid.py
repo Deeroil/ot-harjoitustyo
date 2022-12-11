@@ -37,7 +37,7 @@ class Grid:
             neighbor_indexes = neighbor_indexes - top_row
 
         #index on bottom row
-        if (self.len - 1) - self.width <= index <= self.len - 1:
+        if self.len - self.width <= index <= self.len - 1:
             # print("index on bottom row")
             neighbor_indexes = neighbor_indexes - bottom_row
 
@@ -47,7 +47,7 @@ class Grid:
             neighbor_indexes = neighbor_indexes - left_col
 
         #index on right column
-        if index % 3 == 2:
+        if index % self.width == self.width - 1:
             # print("index on right column")
             neighbor_indexes = neighbor_indexes - right_col
 
