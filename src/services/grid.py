@@ -83,15 +83,14 @@ class Grid:
                 continue
             self.list[i] = self.count_neighbors(i)
 
-# tulostaa grid jossa näkyy naapurit, tyhjät ja pommit
+# palauttaa stringinä grid jossa näkyy naapurit, tyhjät ja pommit
 #   0: tyhjä
 #   1-8: montako pomminaapuria
 #   9: pommi/miina
-# TODO: rename printable
-    def print_grid(self):
+    def __str__(self):
         printable = ""
         for i in range(self.len):
             if i % self.width == 0:
                 printable += "\n"
             printable += f" {self.list[i]} "
-        print(printable)
+        return printable

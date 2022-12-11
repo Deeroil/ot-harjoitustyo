@@ -52,11 +52,11 @@ class CLI:
   def handle_flags(self, input, index):
     if input == "F":
       self.msweep.set_flag(index)
-      self.msweep.print_current()
+      print(self.msweep.current_state())
 
     elif input == "R":
       self.msweep.remove_flag(index)
-      self.msweep.print_current()
+      print(self.msweep.current_state())
 
   def play(self):
     print("Tervetuloa pelaamaan miinaharavaa! Anna koordinaatit niin voit avata ruudun.")
@@ -65,7 +65,7 @@ class CLI:
     self.generate_new_game_if_hit_bomb(index) #for the first round
 
     self.msweep.add_shown_tiles(index)
-    self.msweep.print_current() # not for final release
+    print(self.msweep.current_state()) # not for final release
 
     while True:
         if self.msweep.check_win():
@@ -87,11 +87,11 @@ class CLI:
 
         if tile != False:
           self.msweep.add_shown_tiles(index)
-          self.msweep.print_current()
+          print(self.msweep.current_state())
 
           if tile == 9:
               print("Hävisit pelin :(")
-              self.msweep.grid.print_grid()
+              print(str(self.msweep.grid))
               sys.exit(0)
           elif tile == 0:
               print("(ei vielä avaa muita läheisiä 0-tiiliä)")

@@ -62,19 +62,18 @@ class Minesweeper:
             return self.check_tile(index)
         return "_"
 
-# tulostaa grid jossa näkyy auki klikatut
+# palauttaa stringinä grid jossa näkyy auki klikatut
 #     _: avaamaton
 #     F: flag, merkitty vaaralliseksi
 #   Avatut ruudut:
 #     0: tyhjä
 #     1-8: ruudulla n naapuria
 #     9: pommi/miina
-# TODO: rename printables
-    def print_current(self):
+    def current_state(self):
         bgrid = self.grid
         printable = ""
         for i in range(bgrid.len):
             if i % bgrid.width == 0:
                 printable += "\n"
             printable += f" {self.get_shown_tile(i)} "
-        print(printable)
+        return printable
