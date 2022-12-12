@@ -4,8 +4,10 @@ from services.minesweeper import Minesweeper
 
 
 ###TODO:
-# move font placement
+# move font placements
 # add Minesweeper functionality hahah
+#   - check win
+#   - flags
 # add later some other than 3x3 grid, but with pygame we'll start with only that
 
 class Tile:
@@ -48,7 +50,7 @@ def pygame_play():
 
     for y in range(n):
         for x in range(n):
-            print(f"y: {y} x:{x} y+x", y+x)
+            # print(f"y: {y} x:{x} y+x", y+x)
             rec = pygame.Rect(x*100, y*100, 80, 80)
             t = Tile(rec)
             tiles.append(t)
@@ -59,15 +61,21 @@ def pygame_play():
                 pygame.quit()
                 raise SystemExit
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
+        # left click
+        # TODO: use showntiles instead of just setting value? or?
+        # TODO: open neighbors
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             mouse_pos = event.pos
-            # print("mouse button down")
-            # for i in tiles:
             for i in range(len(tiles)):
                 if tiles[i].rect.collidepoint(mouse_pos):
                     tiles[i].value = str(msweep.grid.list[i])
-                    # print('button was pressed at {0}'.format(mouse_pos))
-                    # print(f'rect {i.rect} was pressed)')
+        
+        # right click
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
+            mouse_pos = event.pos
+            print("Right click")
+            # do flag stuff here, set or remove flag
+
 
         if event.type == pygame.MOUSEMOTION:
             mouse_pos = event.pos
@@ -77,6 +85,14 @@ def pygame_play():
         screen.fill("lightgreen")
 
         for t in tiles:
+            if t.value == "9":
+                pygame.display.flip()
+                pygame.draw.rect(screen, "darkred", t.rect)
+                screen.blit(t.font.render("Hävisit", True, "black"), t.rect)
+                pygame.display.flip()
+                pygame.time.delay(1000)
+                return
+
             pygame.draw.rect(screen, t.color, t.rect, width=2, border_radius=2,
                             border_top_left_radius=-1, border_top_right_radius=-1,
                             border_bottom_left_radius=-1, border_bottom_right_radius=-1)
