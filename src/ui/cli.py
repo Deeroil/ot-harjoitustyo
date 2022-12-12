@@ -19,7 +19,9 @@ class CLI:
     self.grid = Grid(n)
     self.grid.set_mines(m)
     self.grid.set_neighbors()
-    # self.grid.print_grid()
+
+    print("Vastaus:")
+    print(str(self.grid))
 
     print("\n")
     self.msweep = Minesweeper(self.grid)
@@ -84,8 +86,10 @@ class CLI:
           continue
 
         tile = self.msweep.check_tile(index)
+        print('tile', tile)
 
-        if tile != False:
+        #TODO: 0 is falsy so != doesnt work
+        if tile is not False:
           self.msweep.add_shown_tiles(index)
           print(self.msweep.current_state())
 
