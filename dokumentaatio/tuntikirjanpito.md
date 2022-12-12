@@ -12,9 +12,12 @@
 |  3.12.|  5   | edistä flag-toimintoa, lisää testejä, eriytä luokat ja ui kansioihin|
 |  4.12.|  4   | korjaa naapurien laskemisen virhe, päivitä luokkakaaviota, lisää voittoehto |
 |  5.12.|  3  | sekvenssikaavio, siistiminen ja release |
+|  9.12.|  2   |  refaktorointia |
+| 11.12.|  4   |  naapurien laskemisen bugien korjailua lisää, refaktorointia, docstring aloittaminen|
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
-| yht   |  32  | | 
+|       |      | |
+| yht   |  38  | |
