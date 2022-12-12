@@ -92,3 +92,12 @@ class TestMinesweeper(unittest.TestCase):
         self.minesw.grid.mines = 1
         self.minesw.set_flag(1)
         self.assertEqual(self.minesw.get_shown_tile(1), "F")
+
+    def test_current_state(self):
+        compare_str = "\n 0  1  2 \n 3  4  5 \n 6  7  8 "
+        self.minesw.grid.list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+        for i in range(self.minesw.grid.len):
+            self.minesw.add_shown_tiles(i)
+
+        self.assertEqual(self.minesw.current_state(), compare_str)

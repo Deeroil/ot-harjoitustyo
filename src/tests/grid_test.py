@@ -100,3 +100,8 @@ class TestGrid(unittest.TestCase):
         self.grid2.list[8] = 9
         self.grid2.set_neighbors()
         self.assertEqual(self.grid2.list, compare_grid)
+
+    def test_str(self):
+        compare_str = "\n 0  1  2 \n 3  4  5 \n 6  7  8 "
+        self.grid2.list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+        self.assertEqual(str(self.grid2), compare_str)
