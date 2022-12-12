@@ -4,11 +4,12 @@ from services.minesweeper import Minesweeper
 
 
 ###TODO:
-# move font placements
-# add Minesweeper functionality hahah
-#   - check win
-#   - flags
-# add later some other than 3x3 grid, but with pygame we'll start with only that
+# Visual:
+#   - move font placements
+#   - show amount of flags ("mines") left
+# Minesweeper functionality
+#
+# choices: some other than only 3x3 grid
 
 class Tile:
     def __init__(self, rect):
@@ -43,7 +44,7 @@ def pygame_play():
     msweep = Minesweeper(grid)
 
     pygame.init()
-    screen = pygame.display.set_mode([500, 500])
+    screen = pygame.display.set_mode([300, 300])
     clock = pygame.time.Clock()
 
     tiles = []
@@ -62,19 +63,35 @@ def pygame_play():
                 raise SystemExit
 
         # left click
-        # TODO: use showntiles instead of just setting value? or?
+        # TODO: use showntiles instead of just setting value?
+        #       or maybe it doesnt matter?
         # TODO: open neighbors
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+        if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             mouse_pos = event.pos
             for i in range(len(tiles)):
                 if tiles[i].rect.collidepoint(mouse_pos):
                     tiles[i].value = str(msweep.grid.list[i])
         
         # right click
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 3:
+        # TODO: fix flickering
+        # TODO: this is unrealiable - doesn't always switch.
+        #        - SORT OF fixed with MOUSEBUTTONUP instead of DOWN, but not really
+        # TODO: fix underscores in a cleaner way
+        # TODO: this right now will hide the shown tile's value
+        if event.type == pygame.MOUSEBUTTONUP and event.button == 3:
             mouse_pos = event.pos
             print("Right click")
-            # do flag stuff here, set or remove flag
+            for i in range(len(tiles)):
+                if tiles[i].rect.collidepoint(mouse_pos):
+                    if i in msweep.flags:
+                        msweep.remove_flag(i)
+                    else:
+                        msweep.set_flag(i)
+                    tiles[i].value = msweep.get_shown_tile(i)
+
+                    # TODO: fix, this is quickfix
+                    if tiles[i].value == "_":
+                        tiles[i].value = ""
 
 
         if event.type == pygame.MOUSEMOTION:
@@ -85,19 +102,31 @@ def pygame_play():
         screen.fill("lightgreen")
 
         for t in tiles:
-            if t.value == "9":
-                pygame.display.flip()
-                pygame.draw.rect(screen, "darkred", t.rect)
-                screen.blit(t.font.render("Hävisit", True, "black"), t.rect)
-                pygame.display.flip()
-                pygame.time.delay(1000)
-                return
+            pygame.draw.rect(screen, "aquamarine1", t.rect)
 
             pygame.draw.rect(screen, t.color, t.rect, width=2, border_radius=2,
                             border_top_left_radius=-1, border_top_right_radius=-1,
                             border_bottom_left_radius=-1, border_bottom_right_radius=-1)
 
             screen.blit(t.font.render(t.value, True, "darkgreen"), t.rect)
+
+        # TODO: use msweep.check_loss instead?
+        # or do I want to get the rect placement from somewhere?
+        for t in tiles:
+            if t.value == "9":
+                pygame.draw.rect(screen, "darkred", t.rect)
+                screen.blit(t.font.render("Hävisit", True, "black"), t.rect)
+                pygame.display.flip()
+                pygame.time.delay(1000)
+                return
+
+        if msweep.check_win():
+            rect = (100, 100, 150, 100)
+            pygame.draw.rect(screen, "green", rect)
+            screen.blit(pygame.font.SysFont('Comic Sans', 30).render("Voitit! :)", True, "black"), rect)
+            # pysäytä peli? anna mahdollisuus aloittaa alusta?
+
+
 
         pygame.display.flip()
         clock.tick(60)
