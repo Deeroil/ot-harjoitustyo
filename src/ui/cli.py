@@ -88,7 +88,7 @@ class CLI:
         tile = self.msweep.check_tile(index)
         print('tile', tile)
 
-        #TODO: 0 is falsy so != doesnt work
+        #0 is falsy so != doesnt work
         if tile is not False:
           self.msweep.add_shown_tiles(index)
           print(self.msweep.current_state())
@@ -99,6 +99,3 @@ class CLI:
               sys.exit(0)
           elif tile == 0:
               print("(ei vielä avaa muita läheisiä 0-tiiliä)")
-
-        # msweep.add_shown_tiles(0)
-        # ei oo lopetusehtoa paitsi miinaan osuminen
