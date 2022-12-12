@@ -1,6 +1,6 @@
 # Miinaharava CLI käyttöohje
 
->> EDIT THESE Aloita lataamalla projektin  [releasen](https://github.com/ohjelmistotekniikka-hy/python-todo-app/releases) lähdekoodi valitsemalla _Assets_-osion alta _Source code_.
+Aloita lataamalla projektin viimeisimmän [releasen](https://github.com/Deeroil/ot-harjoitustyo/releases) lähdekoodi lataamalla _Assets_-osion alta _Source code_.
 
 Graafisen käyttöliittymän sisältämän version käyttöohje [täällä](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)
 
