@@ -7,10 +7,20 @@ Miinaharava-pelin pelaaminen työpöytäsovelluksena
 
 ### Pelinäkymä
 
-TEHTY:
+TEHTY (graafisella käyttöliittymällä)
+* yksinkertainen graafinen käyttöliittymä pygamella
+* Käyttäjä voi klikata peliruudukosta auki ruudun hiiren vasemmalla näppäimellä
+	* jos ruudussa on miina, hävitään peli ja ohjelma sulkeutuu
+	* jos ruudussa ei ollut miinaa, ruudussa lukee viereisten miinojen määrä
+* Käyttäjä voi merkata avaamattomaan ruutuun lipun hiiren oikealla näppäimellä. Uudestaan klikkaaminen poistaa lipun.
+	* (tässä vielä hieman jokin bugi)
+* Käyttäjä voi laittaa lipun vain yhtä moneen ruutuun kuin miinoja on peliruudukossa.
+* Peli voitetaan merkitsemällä oikeat ruudut lipulla, tästä näkyy ilmoitus käyttäjälle
+
+TEHTY (tästä alaspäin koskee komentorivikäyttöliittymää)
 * Käyttäjä voi "avata" peliruudukosta kerralla yhden ruudun (tehty osittain)
 	* Jos ruudussa on miina, peli päättyy (tehty)
-	* ensimmäisellä kierroksella ensimmäinen avattu ruutu ei voi osua miinaan (tarkistaa kerran)
+	* ensimmäisellä kierroksella ensimmäinen avattu ruutu ei voi osua miinaan (tarkistaa CLI-versiossa)
 	* Kun peli päättyy miinaan, näytetään kaikkien miinojen sijainnit (tehty osittain: näyttää koko taustaruudukon)
 	* Jos klikatulla ruudulla on naapurina miina/miinoja, tulee näkyviin kyseinen numero
 	* Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi" (lippu/flag). Vaarallisuus merkitsee miinan oletettua sijaitsemiskohtaa.
@@ -32,9 +42,9 @@ Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
 
 ### Ennen peliä ja asetukset
 - Käyttäjä voi valita peliruudukon koon useammasta valmiiksi määritellystä vaihtoehdosta
-	- Peliruudukon koon valitseminen omavalintaisesti rajatulta väliltä (tehty)
+	- Peliruudukon koon valitseminen omavalintaisesti rajatulta väliltä (tehty CLI)
 - Käyttäjä voi valita miinojen määrän useammasta valmiiksi määritellystä vaihtoehdosta
-	- Miinojen määrän valitseminen kustomoidusti rajatulta väliltä (tehty)
+	- Miinojen määrän valitseminen kustomoidusti rajatulta väliltä (tehty CLI)
 - Pelin haastavuuden lisääminen, erilaiset pelimuodot
 ### UI
 - Graafinen käyttöliittymä

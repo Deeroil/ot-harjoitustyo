@@ -22,3 +22,13 @@
 - eriytetty tekstikäyttöliittymä omaan luokkaansa ja luokat kansioihin
 - lisätty testikattavuutta minesweeper ja grid -luokille
 - korjattu miinaruudukon naapurien laskenta
+
+## Viikko 6
+
+- lisätty alustava graafinen käyttöliittymä
+  - kaikki edelliset ominaisuudet eivät täysin vielä siirretty
+  - kiinteän kokoinen ruudukko
+  - pelin pääfunktionaalisuus toimii: ruudun avaaminen, pelin voittaminen/häviäminen, lipun asettaminen/poisto.
+  - lisäksi käyttäjä näkee visuaalisesti, mikä ruutu on hiiren alla (hover-efekti)
+- korjattu miinaruudukon naapurien laskentaa vielä lisää
+- lisätty testejä

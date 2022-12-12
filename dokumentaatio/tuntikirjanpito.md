@@ -14,10 +14,10 @@
 |  5.12.|  3  | sekvenssikaavio, siistiminen ja release |
 |  9.12.|  2   |  refaktorointia |
 | 11.12.|  4   |  naapurien laskemisen bugien korjailua lisää, refaktorointia, docstring aloittaminen|
+| 12.12.|  8   | pygameen tutustuminen, graafisen käyttöliittymän aloittaminen, käyttöohjeiden tekeminen |
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
-|       |      | |
-| yht   |  38  | |
+| yht   |  46  | |
