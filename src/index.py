@@ -1,4 +1,5 @@
 from ui.cli import CLI
+from ui.pygame_ui import pygame_play
 # TODO: kaikenlaista
 #     - tulosta grid_list jossa näkyy naapurit, tyhjät ja pommit
 #         - 0: tyhjä
@@ -11,5 +12,7 @@ from ui.cli import CLI
 # Note:
 # there are still bugs with the neighbors, should rewrite bounds
 if __name__ == "__main__":
-    game = CLI()
-    game.play()
+    # game = CLI()
+    # game.play()
+
+    pygame_play()
