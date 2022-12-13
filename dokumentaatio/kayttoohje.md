@@ -30,7 +30,7 @@ Pelin tavoitteena on selviytyä miinakentästä avaamalla ruutuja, jotta voi pä
 
 Tällä hetkellä ohjelma aukeaa suoraan näyttäen 3x3-kokoisen peliruudukon, jossa on piilossa 3 miinaa. Muun kokoisia ruudukoita ei ole vielä mahdollista valita.
 
-Käyttäjä voi avata ruudun klikkaamalla hiiren vasenta painiketta ruudun päällä. Kun hiiri on ruudun päällä, sen reunat ovat eri väriset. Klikatessa ruutua sen alta paljastuu joko miina, jolloin peli päättyy häviöön, tai numero, joka merkitsee viereisissä ruuduissa olevien miinojen määrää.
+Käyttäjä voi avata ruudun klikkaamalla hiiren vasenta painiketta ruudun päällä. Kun hiiri on ruudun päällä, sen reunat ovat keltaiset. Klikatessa ruutua sen alta paljastuu joko miina, jolloin peli päättyy häviöön, tai numero, joka merkitsee viereisissä ruuduissa olevien miinojen määrää.
 
 Avaamattoman ruudun voi merkitä lipulla painaen hiiren oikealla painikkeella. Lippu (F) kuvastaa ruutua, jonka alla pelaaja uskoo olevan miina.
 Samalla tavalla uudestaan klikkaamalla voi poistaa lipun ruudusta. Lippuja voi asettaa yhteensä yhtä monta kuin miinoja on ruudukossa.
@@ -40,4 +40,18 @@ Peli voitetaan jos kaikki miinat saadaan merkittyä oikein lipuilla ilman että 
 Peli hävitään jos pelaaja avaa ruudun, jossa oli miina. Tällöin ohjelma sulkeutuu hetken kuluttua.
 
 
+## Ohjeita tukevia kuvia
+
+Pelin alkutilanne, tyhjä 3x3 -ruudukko:
+
+![Aloitustilanne](./pygame_aloitus.png)
+
+Seuraavaa kuvaa varten on avattu 4 ruutua klikkaamalla, ja merkitty keskimmäinen ruutu lipulla (F). Hiiri on yläkeskimmäisen ruudun päällä,sen näkee keltaisista reunoista.
+
+![Peli](./pygame_pelitilanne.png)
+
+Avataan ruutu jossa on miina ja peli hävitään.
+Ohjelma sulkeutuu pian.
+
+![Häviö](./pygame_havio.png)
 
