@@ -15,9 +15,9 @@
 |  9.12.|  2   |  refaktorointia |
 | 11.12.|  4   |  naapurien laskemisen bugien korjailua lisää, refaktorointia, docstring aloittaminen|
 | 12.12.|  8   | pygameen tutustuminen, graafisen käyttöliittymän aloittaminen, käyttöohjeiden tekeminen |
+| 13.12.|  1   | arkkitehtuurikuvauksen edistäminen, dokumentaation parantaminen jne|
 |       |      | |
 |       |      | |
 |       |      | |
 |       |      | |
-|       |      | |
-| yht   |  46  | |
+| yht   |  47  | |
