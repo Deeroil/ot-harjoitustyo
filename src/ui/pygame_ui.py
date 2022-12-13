@@ -62,42 +62,42 @@ def pygame_play():
                 pygame.quit()
                 raise SystemExit
 
-        # left click
-        # TODO: use showntiles instead of just setting value?
-        #       or maybe it doesnt matter?
-        # TODO: open neighbors
-        if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-            mouse_pos = event.pos
-            for i in range(len(tiles)):
-                if tiles[i].rect.collidepoint(mouse_pos):
-                    tiles[i].value = str(msweep.grid.list[i])
-        
-        # right click
-        # TODO: fix flickering
-        # TODO: this is unrealiable - doesn't always switch.
-        #        - SORT OF fixed with MOUSEBUTTONUP instead of DOWN, but not really
-        # TODO: fix underscores in a cleaner way
-        # TODO: this right now will hide the shown tile's value
-        if event.type == pygame.MOUSEBUTTONUP and event.button == 3:
-            mouse_pos = event.pos
-            print("Right click")
-            for i in range(len(tiles)):
-                if tiles[i].rect.collidepoint(mouse_pos):
-                    if i in msweep.flags:
-                        msweep.remove_flag(i)
-                    else:
-                        msweep.set_flag(i)
-                    tiles[i].value = msweep.get_shown_tile(i)
+            # left click
+            # TODO: use showntiles instead of just setting value?
+            #       or maybe it doesnt matter?
+            # TODO: open neighbors
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
+                mouse_pos = event.pos
+                for i in range(len(tiles)):
+                    if tiles[i].rect.collidepoint(mouse_pos):
+                        tiles[i].value = str(msweep.grid.list[i])
 
-                    # TODO: fix, this is quickfix
-                    if tiles[i].value == "_":
-                        tiles[i].value = ""
+            # right click
+            # TODO: fix flickering
+            # TODO: this is unrealiable - doesn't always switch.
+            #           - SORT OF fixed with MOUSEBUTTONUP instead of DOWN, but not really
+            # TODO: fix underscores in a cleaner way
+            # TODO: this right now will hide the shown tile's value
+            if event.type == pygame.MOUSEBUTTONUP and event.button == 3:
+                mouse_pos = event.pos
+                print("Right click")
+                for i in range(len(tiles)):
+                    if tiles[i].rect.collidepoint(mouse_pos):
+                        if i in msweep.flags:
+                            msweep.remove_flag(i)
+                        else:
+                            msweep.set_flag(i)
+                        tiles[i].value = msweep.get_shown_tile(i)
+
+                        # TODO: fix, this is quickfix
+                        if tiles[i].value == "_":
+                            tiles[i].value = ""
 
 
-        if event.type == pygame.MOUSEMOTION:
-            mouse_pos = event.pos
-            for i in tiles:
-                i.handle_hover(mouse_pos)
+            if event.type == pygame.MOUSEMOTION:
+                mouse_pos = event.pos
+                for i in tiles:
+                    i.handle_hover(mouse_pos)
 
         screen.fill("lightgreen")
 
