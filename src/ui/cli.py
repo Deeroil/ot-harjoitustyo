@@ -97,5 +97,5 @@ class CLI:
               print("Hävisit pelin :(")
               print(str(self.msweep.grid))
               sys.exit(0)
-          elif tile == 0:
-              print("(ei vielä avaa muita läheisiä 0-tiiliä)")
+          # elif tile == 0:
+          #     print("(ei vielä avaa muita läheisiä 0-tiiliä)")

@@ -101,3 +101,45 @@ class TestMinesweeper(unittest.TestCase):
             self.minesw.add_shown_tiles(i)
 
         self.assertEqual(self.minesw.current_state(), compare_str)
+
+    def test_find_nearby_zeros_works_for_zero_grid(self):
+        compare_indices = {0, 1, 2, 3, 4, 5, 6, 7, 8}
+        msw = Minesweeper(Grid(3))
+        self.assertEqual(msw.find_nearby_zeros(0, set()), compare_indices)
+
+    def test_find_nearby_zeros_works_1(self):
+        msw = Minesweeper(Grid(4))
+        msw.grid.list = [1, 1, 0, 0,
+                        0, 1, 1, 0,
+                        0, 0, 1, 0,
+                        0, 1, 1, 1]
+        compare_indices = {4, 8, 9, 12}
+        self.assertEqual(msw.find_nearby_zeros(4, set()), compare_indices)
+
+    def test_find_nearby_zeros_works_2(self):
+        msw = Minesweeper(Grid(4))
+        msw.grid.list = [1, 1, 0, 0,
+                        0, 1, 1, 0,
+                        0, 0, 1, 0,
+                        0, 1, 1, 1]
+        compare_indices = {2, 3, 7, 11}
+        self.assertEqual(msw.find_nearby_zeros(3, set()), compare_indices)
+
+    def test_add_shown_tiles_adds_nearby_zeros_and_neighbors(self):
+        msw = Minesweeper(Grid(3))
+        msw.grid.list = [1, 0, 0,
+                        1, 1, 0,
+                        0, 1, 1]
+        msw.add_shown_tiles(1)
+        added_indices = {0, 1, 2, 3, 4, 5, 7, 8}
+        self.assertEqual(msw.showntiles, added_indices)
+
+    def test_add_shown_tiles_doesnt_add_all_zeros(self):
+        msw = Minesweeper(Grid(3))
+        msw.grid.list = [1, 0, 0,
+                        1, 1, 0,
+                        0, 1, 1]
+        msw.add_shown_tiles(1)
+        all_zero_indices = {1, 2, 5, 6}
+        self.assertNotEqual(msw.showntiles, all_zero_indices)
+        self.assertNotIn(6, msw.showntiles)

@@ -38,14 +38,56 @@ class Minesweeper:
             return False
         return self.grid.list[index]
 
-    # vois kans olla lista indeksejä jotka on avattu..?
+    def find_nearby_zeros(self, index, zeros: set):
+        """Returns a set of nearby indices which have zeros and does the same for each zero.
+
+        Finds zeros neighboring each other and collects a set of their indices using recursion.
+
+        Args:
+            index: an index of the grid.list
+            zeros: set of indices for found nearby zeros
+
+        Returns:
+            The set with indices for the cluster of zeros found
+
+        """
+        neighbors = self.grid.check_neighbors(index)
+        for i in neighbors:
+            if self.check_tile(i) == 0 and i not in zeros:
+                zeros.add(i)
+                self.find_nearby_zeros(i, zeros)
+        return zeros
+
     def add_shown_tiles(self, index):
+        """Adds index to shown tiles, if 0, adds surrounding tiles for each surrounding zero.
+
+        If the tile has no surrounding mines (is a zero), then the neighbours will be added
+        to showntiles. If zero is neighbor to other zeros, this will be done to them as well.
+
+        Returns:
+            An int containing the number of the index in the grid
+            False if index couldn't be added
+
+        """
         if self.grid.check_index_viability(index) is False:
             return False
 
+        # is this useful?
+        if index in self.showntiles:
+            print("Already opened")
+            return False
+
         number = self.grid.list[index]
-        self.showntiles.add(index)
-        return number
+        if number == 0 and index not in self.showntiles:
+            neighbors = set()
+            zeros = self.find_nearby_zeros(index, set())
+            for i in zeros:
+                neighbors = neighbors.union(self.grid.check_neighbors(i))
+            self.showntiles = self.showntiles.union(zeros)
+            self.showntiles = self.showntiles.union(neighbors)
+
+        self.add_shown_tiles(i)
+        return number #is this used?
 
     def check_win(self):
         """Returns true if win condition is fulfilled.
