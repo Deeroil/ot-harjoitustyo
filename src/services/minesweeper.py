@@ -92,6 +92,7 @@ class Minesweeper:
         if number == 0 and index not in self.showntiles:
             neighbors = set()
             zeros = self.find_nearby_zeros(index, set())
+            zeros |= {index}
             for i in zeros:
                 neighbors = neighbors.union(self.grid.check_neighbors(i))
             self.showntiles = self.showntiles.union(zeros)

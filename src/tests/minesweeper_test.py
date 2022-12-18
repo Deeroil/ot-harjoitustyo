@@ -125,6 +125,19 @@ class TestMinesweeper(unittest.TestCase):
         compare_indices = {2, 3, 7, 11}
         self.assertEqual(msw.find_nearby_zeros(3, set()), compare_indices)
 
+    def test_single_zero(self):
+        msw = Minesweeper(Grid(5))
+        msw.grid.list = [9, 9, 9, 9, 9,
+                        9, 0, 0, 0, 9,
+                        9, 0, 0, 0, 9,
+                        9, 0, 0, 0, 9,
+                        9, 9, 9, 9, 9]
+        msw.grid.set_neighbors()
+        msw.add_shown_tiles(12)
+        print('showntiles', msw.showntiles)
+        self.assertEqual(msw.showntiles, {6, 7, 8, 11, 12, 13, 16, 17, 18})
+        self.assertNotIn(0, msw.showntiles)
+
     def test_add_shown_tiles_adds_nearby_zeros_and_neighbors(self):
         msw = Minesweeper(Grid(3))
         msw.grid.list = [1, 0, 0,
