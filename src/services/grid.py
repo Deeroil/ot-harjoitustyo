@@ -77,6 +77,7 @@ class Grid:
 
             Checks all possible indices for given index and adds them to a set.
             Then checks which indices are out of bounds, as the matrix/grid is presented as a list.
+            Doesn't work on 1x1 or 2x2 grids.
 
             Args:
                 index: Integer, an index of the list to be checked.
@@ -91,33 +92,23 @@ class Grid:
             return False
 
         top_row = {index - self.width - 1, index - self.width, index - self.width + 1}
-        middle_row = {index - 1, index + 1} #is this useless?
         bottom_row = {index + self.width - 1, index + self.width, index + self.width + 1}
         left_col = {index - self.width - 1, index - 1, index + self.width - 1}
         right_col = {index - self.width + 1, index + 1, index + self.width + 1}
 
-        neighbor_indexes = set()
-        neighbor_indexes.update(top_row, middle_row, left_col, right_col, bottom_row)
+        neighbor_indexes = top_row | bottom_row | left_col | right_col
 
-        #index on top row
-        if 0 <= index <= self.width - 1:
-            # print("index on top row")
-            neighbor_indexes = neighbor_indexes - top_row
+        if 0 <= index <= self.width - 1: #index on top row
+            neighbor_indexes -= top_row
 
-        #index on bottom row
-        if self.len - self.width <= index <= self.len - 1:
-            # print("index on bottom row")
-            neighbor_indexes = neighbor_indexes - bottom_row
+        if self.len - self.width <= index <= self.len - 1: #index on bottom row
+            neighbor_indexes -= bottom_row
 
-        #index on left column
-        if index % self.width == 0:
-            # print("index on left column")
-            neighbor_indexes = neighbor_indexes - left_col
+        if index % self.width == 0: #index on left column
+            neighbor_indexes -= left_col
 
-        #index on right column
-        if index % self.width == self.width - 1:
-            # print("index on right column")
-            neighbor_indexes = neighbor_indexes - right_col
+        if index % self.width == self.width - 1: #index on right column
+            neighbor_indexes -= right_col
 
         return neighbor_indexes
 
