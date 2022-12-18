@@ -1,4 +1,5 @@
 from random import shuffle
+from .errors import InvalidGridSize, InvalidMineAmount
 
 
 class Grid:
@@ -28,6 +29,9 @@ class Grid:
             width: An integer indicating the amount of rows (or columns) the grid has
 
         """
+        if width < 3 or width > 30:
+            raise InvalidGridSize
+
         self.list = []
         self.width = width
         self.len = width**2
@@ -48,9 +52,8 @@ class Grid:
                 amount: Number of the mines.
 
         """
-        if len(self.list) < amount or amount < 0:
-            print('errorhandling here')
-            return
+        if len(self.list) < amount or amount <= 0:
+            raise InvalidMineAmount
         self.mines = amount
 
         for i in range(0, amount):
