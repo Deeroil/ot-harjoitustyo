@@ -1,23 +1,34 @@
 import unittest
+from services.errors import InvalidMineAmount, InvalidGridSize
 from services.grid import Grid
-
-# TODO:
-# test grid_list with negatives and 0, 1.
-# test neighbors, bounds, etc
-# test error handling later? can't make more mines than there are tiles etc
 
 
 class TestGrid(unittest.TestCase):
     def setUp(self):
         self.grid = Grid(5)
         self.grid2 = Grid(3)
-        self.grid2x2 = Grid(2)
 
     def test_grid_length_matches_5x5_grid(self):
         self.assertEqual(len(self.grid.list), 25)
 
     def test_grid_len_matches_5x5_grid(self):
         self.assertEqual(self.grid.len, 25)
+
+    def test_grid_negative_size_raises_exception(self):
+        with self.assertRaises(InvalidGridSize):
+            g = Grid(-1)
+
+    def test_grid_size_zero_raises_exception(self):
+        with self.assertRaises(InvalidGridSize):
+            g = Grid(0)
+
+    def test_grid_size_2_raises_exception(self):
+        with self.assertRaises(InvalidGridSize):
+            g = Grid(2)
+
+    def test_grid_size_over_30_raises_exception(self):
+        with self.assertRaises(InvalidGridSize):
+            g = Grid(31)
 
     def test_set_mines_adds_one_mine(self):
         self.grid.set_mines(1)
@@ -35,13 +46,13 @@ class TestGrid(unittest.TestCase):
                 mines += 1
         self.assertEqual(mines, 6)
 
-    def test_set_mines_wont_add_too_many_mines(self):
-        self.grid.set_mines(30)
-        mines = 0
-        for i in self.grid.list:
-            if i == 9:
-                mines += 1
-        self.assertEqual(mines, 0)
+    def test_set_mines_with_zero_mines_raises_exception(self):
+        with self.assertRaises(InvalidMineAmount):
+            self.grid.set_mines(0)
+
+    def test_set_mines_with_too_many_mines_raises_exception(self):
+        with self.assertRaises(InvalidMineAmount):
+            self.grid.set_mines(30)
 
     #check index viability
     def test_check_index_viability_with_0_returns_True(self):
