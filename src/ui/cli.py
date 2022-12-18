@@ -20,9 +20,6 @@ class CLI:
     self.grid.set_mines(m)
     self.grid.set_neighbors()
 
-    print("Vastaus:")
-    print(str(self.grid))
-
     print("\n")
     self.msweep = Minesweeper(self.grid)
 
@@ -67,7 +64,7 @@ class CLI:
     self.generate_new_game_if_hit_bomb(index) #for the first round
 
     self.msweep.add_shown_tiles(index)
-    print(self.msweep.current_state()) # not for final release
+    print(self.msweep.current_state())
 
     while True:
         if self.msweep.check_win():
@@ -97,5 +94,3 @@ class CLI:
               print("Hävisit pelin :(")
               print(str(self.msweep.grid))
               sys.exit(0)
-          # elif tile == 0:
-          #     print("(ei vielä avaa muita läheisiä 0-tiiliä)")

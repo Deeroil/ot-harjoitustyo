@@ -32,6 +32,7 @@ class Minesweeper:
     # muista selittää että indeksointi alkaa 0:sta ja ylävasemmasta kulmasta TAI muuta näitä
     # tässä on uhkia että otan suoraan indeksin, jos esim antaisi ihan väärät x/y-koordinaatit
     # mutta luku olisi sopiva silti?
+    # TODO: rename to get_tile?
     def check_tile(self, index):
         """Returns the number in the grid corresponding the given index.
 
@@ -44,13 +45,13 @@ class Minesweeper:
             Integer with the number
 
         """
-        # print(f"chosen tile has number: {self.backgrid.grid[index]}")
         if self.grid.check_index_viability(index) is False:
             return False
         return self.grid.list[index]
 
     def find_nearby_zeros(self, index, zeros: set):
-        """Returns a set of nearby indices which have zeros and does the same for each zero.
+        """Edits a given a set by adding nearby indices which have zeros
+        and does the same for each zero.
 
         Finds zeros neighboring each other and collects a set of their indices using recursion.
 
@@ -150,7 +151,6 @@ class Minesweeper:
         if self.grid.check_index_viability(index) is False:
             return
         flags_left = self.grid.mines - len(self.flags)
-        # print('lippuja:', flags_left)
         if flags_left <= 0:
             print("lippuja liikaa! poista ensin lippu ")
             return

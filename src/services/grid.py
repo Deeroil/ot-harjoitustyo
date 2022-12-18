@@ -72,6 +72,7 @@ class Grid:
             return False
         return True
 
+    # TODO: rename to neighbors
     def check_neighbors(self, index):
         """Returns all valid neighbor indices for an index.
 
@@ -134,7 +135,6 @@ class Grid:
             if i < 0 or i >= self.len:
                 continue
             if self.list[i] == 9:
-                # print("mine spotted in", i)
                 mines += 1
         return mines
 

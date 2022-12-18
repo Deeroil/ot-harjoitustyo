@@ -126,7 +126,5 @@ def pygame_play():
             screen.blit(pygame.font.SysFont('Comic Sans', 30).render("Voitit! :)", True, "black"), rect)
             # pysäytä peli? anna mahdollisuus aloittaa alusta?
 
-
-
         pygame.display.flip()
         clock.tick(60)
