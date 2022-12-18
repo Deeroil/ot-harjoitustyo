@@ -86,8 +86,8 @@ class Minesweeper:
             self.showntiles = self.showntiles.union(zeros)
             self.showntiles = self.showntiles.union(neighbors)
 
-        self.add_shown_tiles(i)
-        return number #is this used?
+        self.showntiles.add(index)
+        return number
 
     def check_win(self):
         """Returns true if win condition is fulfilled.
