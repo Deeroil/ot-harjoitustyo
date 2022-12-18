@@ -35,6 +35,10 @@ class Grid:
             self.list.append(0)
         self.mines = 0
 
+    def set_up_grid(self, mines):
+        self.set_mines(mines)
+        self.set_neighbors()
+
     def set_mines(self, amount):
         """Sets given amount of mines on the list and randomizes the order.
 
