@@ -33,6 +33,17 @@ class Minesweeper:
     # tässä on uhkia että otan suoraan indeksin, jos esim antaisi ihan väärät x/y-koordinaatit
     # mutta luku olisi sopiva silti?
     def check_tile(self, index):
+        """Returns the number in the grid corresponding the given index.
+
+        Checks also if index is viable.
+
+        Args:
+            index: an index of the grid.list
+
+        Returns:
+            Integer with the number
+
+        """
         # print(f"chosen tile has number: {self.backgrid.grid[index]}")
         if self.grid.check_index_viability(index) is False:
             return False
@@ -104,6 +115,21 @@ class Minesweeper:
                 if self.grid.list[i] != 9:
                     return False
             return True
+        return False
+
+    def check_loss(self):
+        """Returns true if a mine has been opened.
+
+        Checks loss condition by checking if showntiles
+        has any indices of the grid with a mine in them.
+
+        Returns:
+            Boolean, True on loss and False otherwise.
+
+        """
+        for i in self.showntiles:
+            if self.grid.list[i] == 9:
+                return True
         return False
 
     def set_flag(self, index):
