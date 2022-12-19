@@ -32,8 +32,6 @@ class GUI:
                 t = Tile(rec, index)
                 self.tiles.append(t)
 
-        self.pygame_loop()
-
     def open_tile(self, mouse_pos):
         for i in range(len(self.tiles)):
             if self.tiles[i].rect.collidepoint(mouse_pos):
