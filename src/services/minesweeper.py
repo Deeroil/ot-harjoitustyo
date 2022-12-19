@@ -187,6 +187,17 @@ class Minesweeper:
         self.flags.remove(index)
 
     def get_shown_tile(self, index):
+        """Returns the tile value to show to user.
+
+            Args:
+                index: tile to check
+
+            Returns:
+                "_": if tile isn't opened and doesn't have a flag
+                "F": if tile isn't opened and has a flag
+                Else a number indicating a mine (9) or the amount of nearby mines a tile has (0-8).
+
+        """
         if index in self.showntiles:
             return self.get_tile(index)
         if index in self.flags:
