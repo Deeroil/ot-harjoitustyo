@@ -43,9 +43,6 @@ def pygame_play():
                 raise SystemExit
 
             # left click
-            # TODO: use showntiles instead of just setting value?
-            #       or maybe it doesnt matter?
-            # TODO: open neighbors
             if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 mouse_pos = event.pos
                 for i in range(len(tiles)):
@@ -55,14 +52,8 @@ def pygame_play():
                         tiles[i].value = str(msweep.get_shown_tile(i))
 
             # right click
-            # TODO: fix flickering
-            # TODO: this is unrealiable - doesn't always switch.
-            #           - SORT OF fixed with MOUSEBUTTONUP instead of DOWN, but not really
-            # TODO: fix underscores in a cleaner way
-            # TODO: this right now will hide the shown tile's value
             if event.type == pygame.MOUSEBUTTONUP and event.button == 3:
                 mouse_pos = event.pos
-                print("Right click")
                 for i in range(len(tiles)):
                     if tiles[i].rect.collidepoint(mouse_pos):
                         if i in msweep.flags:
@@ -71,10 +62,8 @@ def pygame_play():
                             msweep.set_flag(i)
                         tiles[i].value = msweep.get_shown_tile(i)
 
-                        # TODO: fix, this is quickfix
                         if tiles[i].value == "_":
                             tiles[i].value = ""
-
 
             if event.type == pygame.MOUSEMOTION:
                 mouse_pos = event.pos
@@ -95,15 +84,14 @@ def pygame_play():
 
             screen.blit(t.font.render(t.value, True, "darkgreen"), t.rect)
 
-        # TODO: use msweep.check_loss instead?
-        # or do I want to get the rect placement from somewhere?
-        for t in tiles:
-            if t.value == "9":
-                pygame.draw.rect(screen, "darkred", t.rect)
-                screen.blit(t.font.render("Hävisit", True, "black"), t.rect)
-                pygame.display.flip()
-                pygame.time.delay(1000)
-                return
+        if msweep.check_loss():
+            losing_tiles = [obj for obj in tiles if obj.value == "9"]
+            tile = losing_tiles[0]
+            pygame.draw.rect(screen, "darkred", tile.rect)
+            screen.blit(tile.font.render("Hävisit", True, "black"), tile.rect)
+            pygame.display.flip()
+            pygame.time.delay(1000)
+            return
 
         if msweep.check_win():
             rect = (100, 100, 150, 100)
