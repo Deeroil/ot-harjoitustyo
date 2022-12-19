@@ -5,12 +5,16 @@ from .tile import Tile
 
 
 # TODO:
-# Visual:
-#   - show amount of flags ("mines") left
 # choices: some other than only one size of grid
 
 class GUI:
     """Class for graphical interface for Minesweeper.
+
+        Attributes:
+            grid: a Grid object for Minesweeper
+            msweep: a Minesweeper object
+            tiles: a list of Tile objects for making an interactable grid in the UI
+            menu: a list of Tile objects for sidebar buttons
     """
 
     def __init__(self):
@@ -23,15 +27,28 @@ class GUI:
 
         pygame.init()
 
-        # fill tiles
+        self.init_tiles(size)
+        self.init_menu()
+    
+    def init_tiles(self, size):
+        """Initializes list "tiles" which makes the game grid.
+
+            Makes a list of tiles so an nxn grid can be drawn.
+
+            Args:
+                size: width of an nxn grid
+        """
         for y in range(size):
             for x in range(size):
                 index = x + y*self.grid.width
                 rec = pygame.Rect(x*30, y*30, 30, 30)
                 t = Tile(rec, index)
                 self.tiles.append(t)
+    
+    def init_menu(self):
+        """Initializes list "menu" which makes the side bar buttons.
 
-        # fill menu
+        """
         i = 0
         values = ["restart", "size", "quit"]
         for x in [0,50, 100]:
@@ -41,24 +58,37 @@ class GUI:
             self.menu.append(button)
             i += 1
 
-    def open_tile(self, mouse_pos):
+    def handle_tile_click(self, mouse_pos):
+        """Handles grid tile left clicks.
+
+            Adds clicked tile to opened tiles and changes
+            the value of the tile object to the value of the grid.
+
+            Args:
+                mouse_pos: mouse position event, event.pos
+        """
         for i in range(len(self.tiles)):
             if self.tiles[i].rect.collidepoint(mouse_pos):
                 self.msweep.add_shown_tiles(i)
                 self.tiles[i].value = str(self.msweep.get_shown_tile(i))
-        
-        self.click_menu(mouse_pos)
 
-    def click_menu(self, mouse_pos):
+    def handle_menu(self, mouse_pos):
+        """Handles menu button left clicks.
+
+            Handles restart, size and quit buttons of the side bar.
+            Right now the "size" doesn't work.
+
+            Args:
+                mouse_pos: mouse position event, event.pos
+
+        """
         for i in range(len(self.menu)):
             if self.menu[i].rect.collidepoint(mouse_pos):
                 if self.menu[i].value == "restart":
-                    print("clicked restart")
                     self.__init__()
 
                 elif self.menu[i].value == "size":
-                    print("clicked size")
-                    self.__init__()
+                    print("clicked size, nothing happened")
 
                 elif self.menu[i].value == "quit":
                     print("clicked quit")
@@ -66,6 +96,13 @@ class GUI:
                     raise SystemExit
 
     def toggle_flag(self, mouse_pos):
+        """Toggles flag on/off in a tile if mouse position is correct.
+
+            Doesn't add a flag if can't be added (because of Minesweeper-class methods).
+
+            Args:
+                mouse_pos: mouse position event, event.pos
+        """
         for i in range(len(self.tiles)):
             if self.tiles[i].rect.collidepoint(mouse_pos):
                 if i in self.msweep.flags:
@@ -74,56 +111,98 @@ class GUI:
                     self.msweep.set_flag(i)
                 self.tiles[i].value = self.msweep.get_shown_tile(i)
 
-                if self.tiles[i].value == "_":
-                    self.tiles[i].value = ""
-
     def draw_tiles(self, screen):
-         for t in self.tiles:
-                t.value = str(self.msweep.get_shown_tile(t.index))
+        """Draws the tiles of the game grid on the GUI.
 
-                if t.value == "F":
-                    pygame.draw.rect(screen, "lightseagreen", t.rect)
-                elif t.value == "_":
-                    if t.value == "_":
-                        t.value = ""
-                    pygame.draw.rect(screen, "lightseagreen", t.rect)
-                else:
-                    pygame.draw.rect(screen, "aquamarine2", t.rect)
+            Also sets the borders and tile values as is supposed to.
 
-                if t.value == "0":
-                    t.value = " "
+            Args:
+                screen: pygame display
+        """
+        for t in self.tiles:
+            t.value = str(self.msweep.get_shown_tile(t.index))
+            t.draw_tile(screen)
+            t.draw_border(screen)
 
-                # border
-                pygame.draw.rect(screen, t.color, t.rect, width=2, border_radius=2,
-                                 border_top_left_radius=-1, border_top_right_radius=-1,
-                                 border_bottom_left_radius=-1, border_bottom_right_radius=-1)
+            if t.value == "0":
+                t.value = " "
+            shown = " " + t.value
+            screen.blit(t.font.render(shown, True, "darkgreen"), t.rect)
 
-                shown = " " + t.value
-                screen.blit(t.font.render(shown, True, "darkgreen"), t.rect)
+    def blit_menu(self, screen, shown, rect):
+        """Blits the screen right font size for menu.
+
+            Adds text to a rectangle with Comic Sans, in dark green.
+
+            Args:
+                screen: pygame display
+                shown: string with the text for the rectangle
+                rect: rectangle size and position
+        
+        """
+        screen.blit(pygame.font.SysFont('Comic Sans', 13).render(shown, True, "darkgreen"), rect)
 
     def draw_menu(self, screen):
-        for t in self.menu:
-            pygame.draw.rect(screen, "aquamarine2", t.rect)
-            pygame.draw.rect(screen, t.color, t.rect, width=2, border_radius=2,
-                                    border_top_left_radius=-1, border_top_right_radius=-1,
-                                    border_bottom_left_radius=-1, border_bottom_right_radius=-1)
+        """Draws menu buttons on the side bar.
 
+            Args:
+                screen: pygame display
+
+        """
+        for t in self.menu:
+            t.draw_tile(screen)
+            t.draw_border(screen)
             shown = " " + t.value
-            screen.blit(pygame.font.SysFont('Comic Sans', 13).render(shown, True, "darkgreen"), t.rect)
+            self.blit_menu(screen, shown, t.rect)
 
     def draw_stats(self, screen):
-        """waa.
-        """
+        """Shows the current amount of flags and total amount of mines on the side bar.
 
+            Args:
+                screen: pygame display
+        """
         flags_left = self.grid.mines - len(self.msweep.flags)
         shown = f"flags: {flags_left}"
-        screen.blit(pygame.font.SysFont('Comic Sans', 13).render(shown, True, "darkgreen"), pygame.Rect(300, 250, 50, 30))
+        self.blit_menu(screen, shown, pygame.Rect(300, 250, 50, 30))
 
         shown = f"mines: {self.msweep.grid.mines}"
-        screen.blit(pygame.font.SysFont('Comic Sans', 13).render(shown, True, "darkgreen"), pygame.Rect(300, 270, 50, 30))
+        self.blit_menu(screen, shown, pygame.Rect(300, 270, 50, 30))
 
+    def handle_loss(self, screen):
+        """Marks the losing tile red with an X, and starts the game over after a while.
+
+            Args:
+                screen: pygame display
+        """
+        losing_tiles = [obj for obj in self.tiles if obj.value == "9"]
+        tile = losing_tiles[0]
+
+        pygame.draw.rect(screen, "darkred", tile.rect)
+        screen.blit(tile.font.render(
+            "X", True, "black"), tile.rect)
+        pygame.display.flip()
+        pygame.time.delay(1000)
+        self.__init__()
+
+    def handle_win(self, screen):
+        """Draws a happy face in the side bar and starts the game over after a while.
+
+            Args:
+                screen: pygame display
+        """
+        rect = (300, 150, 50, 50)
+        pygame.draw.rect(screen, "green", rect)
+        screen.blit(pygame.font.SysFont('Comic Sans', 30).render(
+            ":)", True, "black"), rect)
+
+        pygame.display.flip()
+        pygame.time.delay(1500)
+        self.__init__()
 
     def pygame_loop(self):
+        """ Runs the game loop and the game.
+
+        """
         screen = pygame.display.set_mode([350, 300])
         clock = pygame.time.Clock()
         pygame.display.set_caption("Minesweeper")
@@ -136,7 +215,8 @@ class GUI:
 
                 # left click
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
-                    self.open_tile(event.pos)
+                    self.handle_tile_click(event.pos)
+                    self.handle_menu(event.pos)
 
                 # right click
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 3:
@@ -151,34 +231,15 @@ class GUI:
                         i.handle_hover(mouse_pos)
 
             screen.fill("lightgreen")
-
             self.draw_menu(screen)
-
             self.draw_tiles(screen)
-
             self.draw_stats(screen)
 
             if self.msweep.check_loss():
-                losing_tiles = [obj for obj in self.tiles if obj.value == "9"]
-                tile = losing_tiles[0]
-
-                pygame.draw.rect(screen, "darkred", tile.rect)
-                screen.blit(tile.font.render(
-                    "X", True, "black"), tile.rect)
-                pygame.display.flip()
-                pygame.time.delay(1000)
-                self.__init__()
-                # return
+                self.handle_loss(screen)
 
             if self.msweep.check_win():
-                rect = (300, 150, 50, 50)
-                pygame.draw.rect(screen, "green", rect)
-                screen.blit(pygame.font.SysFont('Comic Sans', 30).render(
-                    ":)", True, "black"), rect)
-
-                pygame.display.flip()
-                pygame.time.delay(1500)
-                self.__init__()
+                self.handle_win(screen)
 
             pygame.display.flip()
             clock.tick(60)
