@@ -114,6 +114,7 @@ class Minesweeper:
 
         Checks win condition if amount of flags equals amount of mines in the game.
         If all the flags are set on the mines, game has been won.
+        If all tiles are shown except the mines, the game is also won.
 
         Returns:
             Boolean, True on win and False otherwise.
@@ -122,6 +123,12 @@ class Minesweeper:
         if len(self.flags) == self.grid.mines:
             for i in self.flags:
                 if self.grid.list[i] != 9:
+                    return False
+            return True
+
+        if self.grid.len - self.grid.mines == len(self.showntiles):
+            for i in self.showntiles:
+                if self.grid.list[i] == 9:
                     return False
             return True
         return False
