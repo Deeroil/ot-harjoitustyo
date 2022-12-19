@@ -1,6 +1,7 @@
-from ui.pygame_ui import pygame_play
+from ui.pygame_ui import GUI
 # TODO: kaikenlaista
 #     - myös virheidenkäsittely!
 
 if __name__ == "__main__":
-    pygame_play()
+    gui = GUI()
+    gui.pygame_play()
