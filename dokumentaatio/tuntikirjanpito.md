@@ -18,6 +18,7 @@
 | 13.12.|  1   | arkkitehtuurikuvauksen edistäminen, dokumentaation parantaminen jne|
 | 16.12.|  5   | suunnittelua, nollien avaamisalgoritmin ja rekursion kanssa pyörittelyä|
 | 18.12.|  4   | virheidenkäsittelyä, bugien fiksaamista, refaktorointia, lisätty pelitoiminnallisuutta GUI:iin jne|
+| 19.12.|  4   | GUI hiomista, menu-nappien aloitus, lisätty toinen voittotapa|
 |       |      | |
 |       |      | |
-| yht   |  56  | |
+| yht   |  60  | |

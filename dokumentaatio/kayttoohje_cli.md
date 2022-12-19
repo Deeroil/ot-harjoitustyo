@@ -62,6 +62,6 @@ Jos avattu ruutu on tyhjä (0), eli ruudun vieressä ei ole miinaa, avataan myö
 Pelaajalta kysytään ensimmäisen avatun ruudun jälkeen myös, haluaako hän merkitä jonkun ruuduista lipulla, tai poistaa lipun jostain ruudusta.
 Tällöin vastataan kirjoittamalla komentoriville F (flag, halutaan asettaa ruutuun lippu) tai R (remove, halutaan poistaa ruudusta lippu). Lippu kuvastaa ruutua, jonka alla pelaaja uskoo olevan miina. Lippuja voi asettaa yhteensä yhtä monta kuin miinoja on ruudukossa.
 
-Peli voitetaan jos kaikki miinat saadaan merkittyä oikein lipuilla ilman että osutaan miinaan.
+Peli voitetaan jos kaikki miinat saadaan merkittyä oikein lipuilla ilman että osutaan miinaan, tai jos avataan kaikki ruudut joissa ei ole miinaa.
 
 Peli hävitään jos pelaaja avaa ruudun, jossa oli miina. Tällöin ohjelma tulostaa ruudukon jossa näkyy kaikki miinat ja niiden naapurit, ja ohjelma sulkeutuu.

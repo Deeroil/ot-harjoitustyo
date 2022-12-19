@@ -37,3 +37,5 @@
 
 - tyhjän ruudun avaaminen avaa myös viereiset ruudut
 - vierekkäin olevat tyhjät ruudut avautuvat kerralla
+- pelin voittaa myös avaamalla kaikki ruudut joissa ei ole miinaa
+- menu-nappien lisääminen

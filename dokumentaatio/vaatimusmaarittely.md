@@ -17,6 +17,7 @@ TEHTY (graafisella käyttöliittymällä)
 * Käyttäjä voi merkata avaamattomaan ruutuun lipun hiiren oikealla näppäimellä. Uudestaan klikkaaminen poistaa lipun.
 * Käyttäjä voi laittaa lipun vain yhtä moneen ruutuun kuin miinoja on peliruudukossa.
 * Peli voitetaan merkitsemällä oikeat ruudut lipulla, tästä näkyy ilmoitus käyttäjälle
+* Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 
 TEHTY (tästä alaspäin koskee komentorivikäyttöliittymää)
 * Käyttäjä voi "avata" peliruudukosta kerralla yhden ruudun (tehty osittain)
@@ -29,11 +30,10 @@ TEHTY (tästä alaspäin koskee komentorivikäyttöliittymää)
 	* Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi" (lippu/flag). Vaarallisuus merkitsee miinan oletettua sijaitsemiskohtaa.
 	* Vaaralliseksi voi merkitä vain yhtä monta ruutua kuin miinoja on peliruudukossa.
 * Peli voitetaan kun käyttäjä on merkannut kaikki miinat vaarallisiksi osumatta yhteenkään miinaan
-	* täytyy ehkä pohtia vielä haluanko tämän riittävän voittoon.
+* Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 * Käyttäjä voi aloittaa uuden pelin voittaessaan sulkematta ohjelmaa
 
 EI TEHTY:
-* Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 * Pelin päättyessä voi aloittaa pelin alusta
 
 ## Jatkokehitysideoita

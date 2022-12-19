@@ -6,13 +6,13 @@ Ohjelman rakenne on eriytetty kahteen hakemistoon, UI ja Services.
 
 UI sisältää kaksi vaihtoehtoista käyttöliittymää, joista pygame_ui.py on graafinen ja cli.py sisältää komentorivikäyttöliittymän. Kumpikin näistä riippuu Services-hakemistossa olevista luokista.
 
-Services sisältää sovelluslogiikkaan kuuluvat luokat Minesweeper ja Grid.
+Services sisältää sovelluslogiikkaan kuuluvat luokat Minesweeper ja Grid, sekä tiedoston errors jossa on näihin kuuluvat exceptionit.
 
 ## Käyttöliittymä
 
 ### GUI / Graafinen
 
-Tällä hetkellä graafinen käyttöliittymä piirtää 3x3-peliruudukon ja ei ole muita erillisiä näkymiä.
+Tällä hetkellä graafinen käyttöliittymä piirtää 10x10-peliruudukon ja ei ole muita erillisiä näkymiä.
 
 ### CLI / Komentorivi
 
