@@ -6,18 +6,15 @@ from .tile import Tile
 
 # TODO:
 # Visual:
-#   - move font placements
 #   - show amount of flags ("mines") left
-# Minesweeper functionality
-#
-# choices: some other than only 3x3 grid
+# choices: some other than only one size of grid
 
 class GUI:
     """Class for graphical interface for Minesweeper.
     """
 
     def __init__(self):
-        n = 3
+        n = 10
         self.grid = Grid(n)
         self.grid.set_up_grid(2)
         self.msweep = Minesweeper(self.grid)
@@ -28,14 +25,13 @@ class GUI:
         for y in range(n):
             for x in range(n):
                 index = x + y*self.grid.width
-                rec = pygame.Rect(x*100, y*100, 80, 80)
+                rec = pygame.Rect(x*30, y*30, 30, 30)
                 t = Tile(rec, index)
                 self.tiles.append(t)
 
     def open_tile(self, mouse_pos):
         for i in range(len(self.tiles)):
             if self.tiles[i].rect.collidepoint(mouse_pos):
-                # tiles[i].value = str(msweep.grid.list[i])
                 self.msweep.add_shown_tiles(i)
                 self.tiles[i].value = str(self.msweep.get_shown_tile(i))
 
@@ -50,6 +46,30 @@ class GUI:
 
                 if self.tiles[i].value == "_":
                     self.tiles[i].value = ""
+
+    def draw_tiles(self, screen):
+         for t in self.tiles:
+                t.value = str(self.msweep.get_shown_tile(t.index))
+
+                if t.value == "F":
+                    pygame.draw.rect(screen, "lightseagreen", t.rect)
+                elif t.value == "_":
+                    if t.value == "_":
+                        t.value = ""
+                    pygame.draw.rect(screen, "lightseagreen", t.rect)
+                else:
+                    pygame.draw.rect(screen, "aquamarine2", t.rect)
+
+                if t.value == "0":
+                    t.value = " "
+
+                # border
+                pygame.draw.rect(screen, t.color, t.rect, width=2, border_radius=2,
+                                 border_top_left_radius=-1, border_top_right_radius=-1,
+                                 border_bottom_left_radius=-1, border_bottom_right_radius=-1)
+
+                shown = " " + t.value
+                screen.blit(t.font.render(shown, True, "darkgreen"), t.rect)
 
     def pygame_loop(self):
         screen = pygame.display.set_mode([300, 300])
@@ -76,17 +96,7 @@ class GUI:
 
             screen.fill("lightgreen")
 
-            for t in self.tiles:
-                t.value = str(self.msweep.get_shown_tile(t.index))
-                if t.value == "_":
-                    t.value = ""
-
-                pygame.draw.rect(screen, "aquamarine1", t.rect)
-                pygame.draw.rect(screen, t.color, t.rect, width=2, border_radius=2,
-                                 border_top_left_radius=-1, border_top_right_radius=-1,
-                                 border_bottom_left_radius=-1, border_bottom_right_radius=-1)
-
-                screen.blit(t.font.render(t.value, True, "darkgreen"), t.rect)
+            self.draw_tiles(screen)
 
             if self.msweep.check_loss():
                 losing_tiles = [obj for obj in self.tiles if obj.value == "9"]
@@ -94,17 +104,20 @@ class GUI:
 
                 pygame.draw.rect(screen, "darkred", tile.rect)
                 screen.blit(tile.font.render(
-                    "Hävisit", True, "black"), tile.rect)
+                    "X", True, "black"), tile.rect)
                 pygame.display.flip()
                 pygame.time.delay(1000)
                 return
 
             if self.msweep.check_win():
-                rect = (100, 100, 150, 100)
+                rect = (150, 150, 50, 50)
                 pygame.draw.rect(screen, "green", rect)
                 screen.blit(pygame.font.SysFont('Comic Sans', 30).render(
-                    "Voitit! :)", True, "black"), rect)
-                # pysäytä peli? anna mahdollisuus aloittaa alusta?
+                    ":)", True, "black"), rect)
+
+                pygame.display.flip()
+                pygame.time.delay(1500)
+                self.__init__()
 
             pygame.display.flip()
             clock.tick(60)

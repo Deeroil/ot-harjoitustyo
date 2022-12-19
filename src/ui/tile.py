@@ -7,7 +7,7 @@ class Tile:
         self.color = "darkblue"
         self.value = ""
         self.index = i
-        self.font = pygame.font.SysFont('Comic Sans', 30)
+        self.font = pygame.font.SysFont('Comic Sans', 20)
 
     def handle_hover(self, mouse_pos):
         if self.rect.collidepoint(mouse_pos):
