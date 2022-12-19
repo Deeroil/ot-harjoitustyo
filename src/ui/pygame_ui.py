@@ -29,7 +29,7 @@ class GUI:
 
         self.init_tiles(size)
         self.init_menu()
-    
+
     def init_tiles(self, size):
         """Initializes list "tiles" which makes the game grid.
 
@@ -44,14 +44,14 @@ class GUI:
                 rec = pygame.Rect(x*30, y*30, 30, 30)
                 t = Tile(rec, index)
                 self.tiles.append(t)
-    
+
     def init_menu(self):
         """Initializes list "menu" which makes the side bar buttons.
 
         """
         i = 0
         values = ["restart", "size", "quit"]
-        for x in [0,50, 100]:
+        for x in [0, 50, 100]:
             rect = pygame.Rect(300, 0+x, 50, 30)
             button = Tile(rect, i)
             button.value = values[i]
@@ -138,9 +138,10 @@ class GUI:
                 screen: pygame display
                 shown: string with the text for the rectangle
                 rect: rectangle size and position
-        
+
         """
-        screen.blit(pygame.font.SysFont('Comic Sans', 13).render(shown, True, "darkgreen"), rect)
+        screen.blit(pygame.font.SysFont('Comic Sans', 13).render(
+            shown, True, "darkgreen"), rect)
 
     def draw_menu(self, screen):
         """Draws menu buttons on the side bar.

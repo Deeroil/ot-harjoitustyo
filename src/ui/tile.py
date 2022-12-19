@@ -14,6 +14,7 @@ class Tile:
             index: index of the Tile in a list, or the index corresponding this tile
             font: font used in the Tile.
     """
+
     def __init__(self, rect, i):
         self.rect = rect
         self.border_color = "darkblue"
@@ -43,8 +44,8 @@ class Tile:
                 screen: pygame display
         """
         pygame.draw.rect(screen, self.border_color, self.rect, width=2, border_radius=2,
-                    border_top_left_radius=-1, border_top_right_radius=-1,
-                    border_bottom_left_radius=-1, border_bottom_right_radius=-1)
+                         border_top_left_radius=-1, border_top_right_radius=-1,
+                         border_bottom_left_radius=-1, border_bottom_right_radius=-1)
 
     def handle_hover(self, mouse_pos):
         """Changes Tile border color on hover.
