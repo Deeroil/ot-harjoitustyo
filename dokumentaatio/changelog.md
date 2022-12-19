@@ -32,3 +32,8 @@
   - lisäksi käyttäjä näkee visuaalisesti, mikä ruutu on hiiren alla (hover-efekti)
 - korjattu miinaruudukon naapurien laskentaa vielä lisää
 - lisätty testejä
+
+## Viikko 7
+
+- tyhjän ruudun avaaminen avaa myös viereiset ruudut
+- vierekkäin olevat tyhjät ruudut avautuvat kerralla

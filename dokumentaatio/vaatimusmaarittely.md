@@ -12,8 +12,9 @@ TEHTY (graafisella käyttöliittymällä)
 * Käyttäjä voi klikata peliruudukosta auki ruudun hiiren vasemmalla näppäimellä
 	* jos ruudussa on miina, hävitään peli ja ohjelma sulkeutuu
 	* jos ruudussa ei ollut miinaa, ruudussa lukee viereisten miinojen määrä
+	* Jos ruutu on "tyhjä" eli ruudussa ei ole miinaa eikä sen välittömänä naapurina ole miinaa/miinoja, paljastuu ruudukosta alue joka on reunustettu naapurinumeroita sisältävillä ruuduilla.
+	* Jos ruutu on tyhjä ja tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
 * Käyttäjä voi merkata avaamattomaan ruutuun lipun hiiren oikealla näppäimellä. Uudestaan klikkaaminen poistaa lipun.
-	* (tässä vielä hieman jokin bugi)
 * Käyttäjä voi laittaa lipun vain yhtä moneen ruutuun kuin miinoja on peliruudukossa.
 * Peli voitetaan merkitsemällä oikeat ruudut lipulla, tästä näkyy ilmoitus käyttäjälle
 
@@ -23,6 +24,8 @@ TEHTY (tästä alaspäin koskee komentorivikäyttöliittymää)
 	* ensimmäisellä kierroksella ensimmäinen avattu ruutu ei voi osua miinaan (tarkistaa CLI-versiossa)
 	* Kun peli päättyy miinaan, näytetään kaikkien miinojen sijainnit (tehty osittain: näyttää koko taustaruudukon)
 	* Jos klikatulla ruudulla on naapurina miina/miinoja, tulee näkyviin kyseinen numero
+	* Jos ruutu on "tyhjä" eli ruudussa ei ole miinaa eikä sen välittömänä naapurina ole miinaa/miinoja, paljastuu ruudukosta alue joka on reunustettu naapurinumeroita sisältävillä ruuduilla.
+	* Jos ruutu on tyhjä ja tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
 	* Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi" (lippu/flag). Vaarallisuus merkitsee miinan oletettua sijaitsemiskohtaa.
 	* Vaaralliseksi voi merkitä vain yhtä monta ruutua kuin miinoja on peliruudukossa.
 * Peli voitetaan kun käyttäjä on merkannut kaikki miinat vaarallisiksi osumatta yhteenkään miinaan
@@ -30,9 +33,6 @@ TEHTY (tästä alaspäin koskee komentorivikäyttöliittymää)
 * Käyttäjä voi aloittaa uuden pelin voittaessaan sulkematta ohjelmaa
 
 EI TEHTY:
-* Ruudun avaamisesta tekemättömät
-	* Jos ruutu on "tyhjä" eli ruudussa ei ole miinaa eikä sen välittömänä naapurina ole miinaa/miinoja, paljastuu ruudukosta alue joka on reunustettu naapurinumeroita sisältävillä ruuduilla.
-	* Jos ruutu on tyhjä ja tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
 * Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 * Pelin päättyessä voi aloittaa pelin alusta
 
@@ -46,14 +46,16 @@ Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
 - Käyttäjä voi valita miinojen määrän useammasta valmiiksi määritellystä vaihtoehdosta
 	- Miinojen määrän valitseminen kustomoidusti rajatulta väliltä (tehty CLI)
 - Pelin haastavuuden lisääminen, erilaiset pelimuodot
+
 ### UI
-- Graafinen käyttöliittymä
+- Graafinen käyttöliittymä (tehty)
 - Peliruudukon ja/tai käyttöliittymän värien kustomointi itse valittujen värien mukaan
 	- näiden asetusten tallentaminen
 - Animaatioita ja niille toggle-mahdollisuus (on/off)
 - Kustomoitavat teemat joista valita
 
 ### Pelissä
+- Lipun voi asettaa vain jos lipun vieressä on jokin avattu ruutu
 - Pelin voi aloittaa alusta kesken pelin
 - Käyttäjä näkee jäljellä olevan miinojen oletetun lukumäärän, vaarallisiksi merkattujen ruutujen määrän perusteella
 - Käyttäjä voi merkata avaamattoman ruudun kysymysmerkillä

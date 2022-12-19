@@ -17,7 +17,7 @@
 | 12.12.|  8   | pygameen tutustuminen, graafisen käyttöliittymän aloittaminen, käyttöohjeiden tekeminen |
 | 13.12.|  1   | arkkitehtuurikuvauksen edistäminen, dokumentaation parantaminen jne|
 | 16.12.|  5   | suunnittelua, nollien avaamisalgoritmin ja rekursion kanssa pyörittelyä|
-| 18.12.|  1   | bugien fiksaamista jne|
+| 18.12.|  4   | virheidenkäsittelyä, bugien fiksaamista, refaktorointia, lisätty pelitoiminnallisuutta GUI:iin jne|
 |       |      | |
 |       |      | |
-| yht   |  53  | |
+| yht   |  56  | |

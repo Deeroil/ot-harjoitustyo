@@ -30,16 +30,17 @@ Pelin tavoitteena on selviytyä miinakentästä avaamalla ruutuja, jotta voi pä
 Ohjelma alkaa kysymällä halutun ruudukon kokoa. Tässä koko viittaa nxn-kokoisen ruudukon sivun pituuteen, esim luvulla 3 tulee seuraavan kokoinen ruudukko:
 
 ```
-0 0 0
-0 0 0
-0 0 0
+_ _ _
+_ _ _
+_ _ _
 ```
 
-Luvulla 0 tai alle, ohjelma sulkeutuu.
-
+Luvulla 0 tai alle, ohjelma sulkeutuu. Ohjelma sulkeutuu myös jos ruudukon sivun pituudeksi tulisi suurempi kuin 30.
 Seuravaaksi ohjelma pyytää miinojen määrää. Miinojen määrän ollessa 0 tai alle, tai jos miinoja olisi useampi kuin ruudukossa paikkoja, ohjelma sulkeutuu.
 
-Tämän jälkeen alkuvalmistelut on tehty, ja peli alkaa. (Tällä hetkellä peli myös tulostaa ruudukon eli vastaukset.)
+Edellisissä tapauksissa ohjelma sulkeutuu myös jos syöte ei ole muuten sopivaa, muun muassa jos syöte on tyhjä merkkijono.
+
+Tämän jälkeen alkuvalmistelut on tehty, ja peli alkaa.
 
 ### Pelin toiminta
 
@@ -56,12 +57,11 @@ Koordinaatit alkavat numerosta 0, vasemmasta ylänurkasta. Esimerkki koordinaate
 
 Tällöin ruudun alta paljastuu joko miina, jolloin peli päättyy häviöön, tai numero, joka merkitsee viereisissä ruuduissa olevien miinojen määrää.
 
+Jos avattu ruutu on tyhjä (0), eli ruudun vieressä ei ole miinaa, avataan myös tyhjän ruudun viereidet ruudut. Jos tyhjän ruudun vieressä on tyhjiä ruutuja, toistetaan sama toimenpide niillekin ja pelaajalle avautuu suurempi avattu alue.
+
 Pelaajalta kysytään ensimmäisen avatun ruudun jälkeen myös, haluaako hän merkitä jonkun ruuduista lipulla, tai poistaa lipun jostain ruudusta.
 Tällöin vastataan kirjoittamalla komentoriville F (flag, halutaan asettaa ruutuun lippu) tai R (remove, halutaan poistaa ruudusta lippu). Lippu kuvastaa ruutua, jonka alla pelaaja uskoo olevan miina. Lippuja voi asettaa yhteensä yhtä monta kuin miinoja on ruudukossa.
 
 Peli voitetaan jos kaikki miinat saadaan merkittyä oikein lipuilla ilman että osutaan miinaan.
 
 Peli hävitään jos pelaaja avaa ruudun, jossa oli miina. Tällöin ohjelma tulostaa ruudukon jossa näkyy kaikki miinat ja niiden naapurit, ja ohjelma sulkeutuu.
-
-
-
