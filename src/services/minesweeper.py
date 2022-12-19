@@ -24,6 +24,7 @@ class Minesweeper:
 
     minesw = Minesweeper(g)
     """
+
     def __init__(self, grid: Grid):
         self.grid = grid
         self.showntiles = set()

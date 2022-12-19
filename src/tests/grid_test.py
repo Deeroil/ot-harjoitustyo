@@ -54,47 +54,47 @@ class TestGrid(unittest.TestCase):
         with self.assertRaises(InvalidMineAmount):
             self.grid.set_mines(30)
 
-    #check index viability
+    # check index viability
     def test_check_index_viability_with_0_returns_True(self):
         self.assertTrue(self.grid.check_index_viability(0))
 
     def test_check_index_viability_with_last_index_returns_True(self):
         self.assertTrue(self.grid.check_index_viability(self.grid.len - 1))
-    
+
     def test_check_index_viability_with_length_returns_False(self):
         self.assertFalse(self.grid.check_index_viability(self.grid.len))
 
     def test_check_index_viability_with_neg_one_returns_False(self):
         self.assertFalse(self.grid.check_index_viability(-1))
-    
+
     def test_check_index_viability_with_too_big_index_returns_False(self):
         self.assertFalse(self.grid.check_index_viability(100))
 
     def test_check_index_viability_with_ok_index_returns_True(self):
         self.assertTrue(self.grid.check_index_viability(4))
 
-    #set neighbors
+    # set neighbors
     def test_set_neighbors_with3x3_and_one_mine(self):
-        compare_grid = [1,1,1,1,9,1,1,1,1]
-        self.grid2.list[4] = 9 #setting a mine
+        compare_grid = [1, 1, 1, 1, 9, 1, 1, 1, 1]
+        self.grid2.list[4] = 9  # setting a mine
         self.grid2.set_neighbors()
         self.assertEqual(self.grid2.list, compare_grid)
 
     def test_set_neighbors_5x5_2mines_1(self):
-        compare_grid = [1,1,1,0,0,
-                        1,9,1,0,0,
-                        1,1,1,0,0,
-                        0,0,0,1,1,
-                        0,0,0,1,9]
+        compare_grid = [1, 1, 1, 0, 0,
+                        1, 9, 1, 0, 0,
+                        1, 1, 1, 0, 0,
+                        0, 0, 0, 1, 1,
+                        0, 0, 0, 1, 9]
         self.grid.list[6] = 9
         self.grid.list[24] = 9
         self.grid.set_neighbors()
         self.assertEqual(self.grid.list, compare_grid)
 
     def test_set_neighbors_3x3_3mines_1(self):
-        compare_grid = [2,9,2,
-                        3,9,3,
-                        2,9,2]
+        compare_grid = [2, 9, 2,
+                        3, 9, 3,
+                        2, 9, 2]
         self.grid2.list[1] = 9
         self.grid2.list[4] = 9
         self.grid2.list[7] = 9
@@ -102,9 +102,9 @@ class TestGrid(unittest.TestCase):
         self.assertEqual(self.grid2.list, compare_grid)
 
     def test_set_neighbors_3x3_corners(self):
-        compare_grid = [9,2,9,
-                        2,4,2,
-                        9,2,9]
+        compare_grid = [9, 2, 9,
+                        2, 4, 2,
+                        9, 2, 9]
         self.grid2.list[0] = 9
         self.grid2.list[2] = 9
         self.grid2.list[6] = 9

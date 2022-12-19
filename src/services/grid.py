@@ -22,6 +22,7 @@ class Grid:
 
     grid = Grid(3)
     """
+
     def __init__(self, width):
         """Constructor for creating empty nxn-sized grid. The grid is operated as a list.
 
@@ -106,16 +107,16 @@ class Grid:
 
         neighbor_indexes = top_row | bottom_row | left_col | right_col
 
-        if 0 <= index <= self.width - 1: #index on top row
+        if 0 <= index <= self.width - 1:  # index on top row
             neighbor_indexes -= top_row
 
-        if self.len - self.width <= index <= self.len - 1: #index on bottom row
+        if self.len - self.width <= index <= self.len - 1:  # index on bottom row
             neighbor_indexes -= bottom_row
 
-        if index % self.width == 0: #index on left column
+        if index % self.width == 0:  # index on left column
             neighbor_indexes -= left_col
 
-        if index % self.width == self.width - 1: #index on right column
+        if index % self.width == self.width - 1:  # index on right column
             neighbor_indexes -= right_col
 
         return neighbor_indexes
