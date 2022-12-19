@@ -60,7 +60,7 @@ class CLI:
           Args:
             index: index of the first opened tile
         """
-        if self.msweep.check_tile(index) == 9:
+        if self.msweep.get_tile(index) == 9:
             print("osuttiin pommiin jo")
             for i in range(10):
                 print("...generoidaan toinen ruudukko")
@@ -137,7 +137,7 @@ class CLI:
                 print(self.msweep.current_state())
                 continue
 
-            tile = self.msweep.check_tile(index)
+            tile = self.msweep.get_tile(index)
             # 0 is falsy so != doesnt work
             if tile is not False:
                 self.msweep.add_shown_tiles(index)

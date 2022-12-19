@@ -11,16 +11,16 @@ class TestMinesweeper(unittest.TestCase):
 
     # check tile
     def test_check_tile_1_2(self):
-        self.assertEqual(self.minesw.check_tile(7), 7)
+        self.assertEqual(self.minesw.get_tile(7), 7)
 
     def test_check_tile_0_0(self):
-        self.assertEqual(self.minesw.check_tile(0), 0)
+        self.assertEqual(self.minesw.get_tile(0), 0)
 
     def test_check_tile_doesnt_work_with_negative_index(self):
-        self.assertFalse(self.minesw.check_tile(-2))
+        self.assertFalse(self.minesw.get_tile(-2))
 
     def test_check_tile_false(self):
-        self.assertFalse(self.minesw.check_tile(0), 10)
+        self.assertFalse(self.minesw.get_tile(0), 10)
 
     # flag tests
     def test_set_flag_works_on_unopened_tile_when_grid_has_mines(self):

@@ -30,11 +30,7 @@ class Minesweeper:
         self.showntiles = set()
         self.flags = set()
 
-    # muista selittää että indeksointi alkaa 0:sta ja ylävasemmasta kulmasta TAI muuta näitä
-    # tässä on uhkia että otan suoraan indeksin, jos esim antaisi ihan väärät x/y-koordinaatit
-    # mutta luku olisi sopiva silti?
-    # TODO: rename to get_tile?
-    def check_tile(self, index):
+    def get_tile(self, index):
         """Returns the number in the grid corresponding the given index.
 
         Checks also if index is viable.
@@ -64,9 +60,9 @@ class Minesweeper:
             The set with indices for the cluster of zeros found
 
         """
-        neighbors = self.grid.check_neighbors(index)
+        neighbors = self.grid.neighbor_indices(index)
         for i in neighbors:
-            if self.check_tile(i) == 0 and i not in zeros:
+            if self.get_tile(i) == 0 and i not in zeros:
                 zeros.add(i)
                 self.find_nearby_zeros(i, zeros)
         return zeros
@@ -100,7 +96,7 @@ class Minesweeper:
             zeros = self.find_nearby_zeros(index, set())
             zeros |= {index}
             for i in zeros:
-                neighbors = neighbors.union(self.grid.check_neighbors(i))
+                neighbors = neighbors.union(self.grid.neighbor_indices(i))
                 if i in self.flags:
                     self.flags.remove(i)
             self.showntiles = self.showntiles.union(zeros)
@@ -192,7 +188,7 @@ class Minesweeper:
 
     def get_shown_tile(self, index):
         if index in self.showntiles:
-            return self.check_tile(index)
+            return self.get_tile(index)
         if index in self.flags:
             return "F"
         return "_"

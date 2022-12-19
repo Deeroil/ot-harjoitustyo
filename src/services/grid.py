@@ -80,8 +80,7 @@ class Grid:
             return False
         return True
 
-    # TODO: rename to neighbors
-    def check_neighbors(self, index):
+    def neighbor_indices(self, index):
         """Returns all valid neighbor indices for an index.
 
             Checks all possible indices for given index and adds them to a set.
@@ -136,7 +135,7 @@ class Grid:
         if self.check_index_viability(index) is False:
             return False
 
-        neighbor_indexes = self.check_neighbors(index)
+        neighbor_indexes = self.neighbor_indices(index)
 
         mines = 0
         for i in neighbor_indexes:
@@ -147,7 +146,7 @@ class Grid:
         return mines
 
     def set_neighbors(self):
-        """Sets the number of neighbors of a tile, for every non-mine tile.
+        """Sets the number of neighboring mines of a tile, for every non-mine tile.
 
             Changes list content to express the amount of mines
             each non-mine tile has as a neighbor.
