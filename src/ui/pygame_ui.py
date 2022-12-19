@@ -19,7 +19,7 @@ from .tile import Tile
 def pygame_play():
     n = 3
     grid = Grid(n)
-    grid.set_mines(3)
+    grid.set_mines(2)
     grid.set_neighbors()
     msweep = Minesweeper(grid)
 
@@ -31,9 +31,9 @@ def pygame_play():
 
     for y in range(n):
         for x in range(n):
-            # print(f"y: {y} x:{x} y+x", y+x)
+            index = x + y*grid.width
             rec = pygame.Rect(x*100, y*100, 80, 80)
-            t = Tile(rec)
+            t = Tile(rec, index)
             tiles.append(t)
 
     while True:
@@ -50,7 +50,9 @@ def pygame_play():
                 mouse_pos = event.pos
                 for i in range(len(tiles)):
                     if tiles[i].rect.collidepoint(mouse_pos):
-                        tiles[i].value = str(msweep.grid.list[i])
+                        # tiles[i].value = str(msweep.grid.list[i])
+                        msweep.add_shown_tiles(i)
+                        tiles[i].value = str(msweep.get_shown_tile(i))
 
             # right click
             # TODO: fix flickering
@@ -82,6 +84,9 @@ def pygame_play():
         screen.fill("lightgreen")
 
         for t in tiles:
+            t.value = str(msweep.get_shown_tile(t.index))
+            if t.value == "_":
+                t.value = ""
             pygame.draw.rect(screen, "aquamarine1", t.rect)
 
             pygame.draw.rect(screen, t.color, t.rect, width=2, border_radius=2,
