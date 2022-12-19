@@ -1,6 +1,7 @@
 import pygame
 from services.grid import Grid
 from services.minesweeper import Minesweeper
+from .tile import Tile
 
 
 ###TODO:
@@ -11,30 +12,9 @@ from services.minesweeper import Minesweeper
 #
 # choices: some other than only 3x3 grid
 
-class Tile:
-    def __init__(self, rect):
-        self.rect = rect
-        self.color = "darkblue"
-        self.value = ""
-        self.font = pygame.font.SysFont('Comic Sans', 30)
-
-    # on every movement of the mouse, maybe necessary, maybe a bad idea?
-    def handle_hover(self, mouse_pos):
-        if self.rect.collidepoint(mouse_pos):
-            self.color = "yellow"
-        else:
-            self.color = "darkblue"
-
-    # def draw_tile(self):
-    #     pygame.draw.rect(screen, self.color, self.rect, width=2, border_radius=2,
-    #                      border_top_left_radius=-1, border_top_right_radius=-1,
-    #                      border_bottom_left_radius=-1, border_bottom_right_radius=-1)
-
-
-#not used, just chilling here
-class RectGrid:
-    def __init__(self, x):
-        self.x = x
+# class GUI:
+#     """Class for graphical interface for Minesweeper.
+#     """
 
 def pygame_play():
     n = 3
