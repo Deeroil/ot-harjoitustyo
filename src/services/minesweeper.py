@@ -76,6 +76,7 @@ class Minesweeper:
 
         If the tile has no surrounding mines (is a zero), then the neighbours will be added
         to showntiles. If zero is neighbor to other zeros, this will be done to them as well.
+        If the tile was flagged, it will be unflagged and opened.
 
         Returns:
             An int containing the number of the index in the grid
@@ -84,6 +85,9 @@ class Minesweeper:
         """
         if self.grid.check_index_viability(index) is False:
             return False
+
+        if index in self.flags:
+            self.remove_flag(index)
 
         # is this useful?
         if index in self.showntiles:
@@ -97,6 +101,8 @@ class Minesweeper:
             zeros |= {index}
             for i in zeros:
                 neighbors = neighbors.union(self.grid.check_neighbors(i))
+                if i in self.flags:
+                    self.flags.remove(i)
             self.showntiles = self.showntiles.union(zeros)
             self.showntiles = self.showntiles.union(neighbors)
 
@@ -178,19 +184,12 @@ class Minesweeper:
         self.flags.remove(index)
 
     def get_shown_tile(self, index):
-        if index in self.flags:
-            return "F"
         if index in self.showntiles:
             return self.check_tile(index)
+        if index in self.flags:
+            return "F"
         return "_"
 
-# palauttaa stringinä grid jossa näkyy auki klikatut
-#     _: avaamaton
-#     F: flag, merkitty vaaralliseksi
-#   Avatut ruudut:
-#     0: tyhjä
-#     1-8: ruudulla n naapuria
-#     9: pommi/miina
     def current_state(self):
         """Returns a string showing the current game matrix, from the user's point of view.
 
