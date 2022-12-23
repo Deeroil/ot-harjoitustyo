@@ -6,6 +6,7 @@ from .tile import Tile
 
 # TODO:
 # choices: some other than only one size of grid
+# save game state
 
 class GUI:
     """Class for graphical interface for Minesweeper.
@@ -17,10 +18,11 @@ class GUI:
             menu: a list of Tile objects for sidebar buttons
     """
 
-    def __init__(self):
-        size = 10
+    def __init__(self, size=10, mines=5):
+        size = size
+        mines = mines
         self.grid = Grid(size)
-        self.grid.set_up_grid(5)
+        self.grid.set_up_grid(mines)
         self.msweep = Minesweeper(self.grid)
         self.tiles = []
         self.menu = []
@@ -72,6 +74,15 @@ class GUI:
                 self.msweep.add_shown_tiles(i)
                 self.tiles[i].value = str(self.msweep.get_shown_tile(i))
 
+    def save_game_state(self):
+        pass
+
+    def set_up_custom_game(self, size, mines):
+        try:
+            self.__init__(size, mines)
+        except:
+            pass
+
     def handle_menu(self, mouse_pos):
         """Handles menu button left clicks.
 
@@ -88,7 +99,8 @@ class GUI:
                     self.__init__()
 
                 elif self.menu[i].value == "size":
-                    print("clicked size, nothing happened")
+                    print("clicked size, now just 10x10 grid with 10 mines")
+                    self.set_up_custom_game(10,10)
 
                 elif self.menu[i].value == "quit":
                     print("clicked quit")
