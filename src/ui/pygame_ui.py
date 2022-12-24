@@ -1,12 +1,12 @@
 import pygame
 from services.grid import Grid
 from services.minesweeper import Minesweeper
+from repository.save_file import SaveFile
 from .tile import Tile
 
 
 # TODO:
 # choices: some other than only one size of grid
-# save game state
 # TODO: change amount of mines in default game!
 # TODO: stats text too big, or change the size of screen?
 
@@ -26,12 +26,26 @@ class GUI:
     """
 
     def __init__(self, size=10, mines=5, wins=0):
-        self.size = size
-        self.mines = mines
-        self.wins = wins
-        self.grid = Grid(size)
-        self.grid.set_up_grid(mines)
-        self.msweep = Minesweeper(self.grid)
+
+        # if savefile exists, load game. Ignores any errors
+        try:
+            save = SaveFile.load()
+        except:
+            save = None
+
+        if save:
+            self.size = save.minesweeper.grid.width
+            self.mines = save.minesweeper.grid.mines
+            self.msweep = save.minesweeper
+            self.wins = save.wins
+        else:
+            self.size = size
+            self.mines = mines
+            self.wins = wins
+
+            grid = Grid(size)
+            grid.set_up_grid(mines)
+            self.msweep = Minesweeper(grid)
         self.tiles = []
         self.menu = []
 
@@ -50,7 +64,7 @@ class GUI:
         """
         for y in range(size):
             for x in range(size):
-                index = x + y*self.grid.width
+                index = x + y*self.msweep.grid.width
                 rec = pygame.Rect(x*30, y*30, 30, 30)
                 t = Tile(rec, index)
                 self.tiles.append(t)
@@ -96,6 +110,7 @@ class GUI:
 
             Handles restart, size and quit buttons of the side bar.
             Right now the "size" doesn't work.
+            Saves game on quit.
 
             Args:
                 mouse_pos: mouse position event, event.pos
@@ -112,6 +127,8 @@ class GUI:
 
                 elif self.menu[i].value == "quit":
                     print("clicked quit")
+                    save = SaveFile(self.msweep, self.wins)
+                    save.save()
                     pygame.quit()
                     raise SystemExit
 
@@ -185,7 +202,7 @@ class GUI:
                 screen: pygame display
         """
 
-        flags_left = self.grid.mines - len(self.msweep.flags)
+        flags_left = self.msweep.grid.mines - len(self.msweep.flags)
         shown = f"flags: {flags_left}"
         self.blit_menu(screen, shown, pygame.Rect(300, 230, 50, 30))
 
@@ -198,13 +215,15 @@ class GUI:
     def handle_loss(self, screen):
         """Marks the losing tile red with an X, and starts the game over after a while.
 
-            Win counter is set to default (zero).
+            Win counter is set to default (zero) and save file is destroyed if exists.
 
             Args:
                 screen: pygame display
         """
         losing_tiles = [obj for obj in self.tiles if obj.value == "9"]
         tile = losing_tiles[0]
+
+        SaveFile.remove()
 
         pygame.draw.rect(screen, "darkred", tile.rect)
         screen.blit(tile.font.render(
