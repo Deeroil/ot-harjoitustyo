@@ -7,20 +7,28 @@ from .tile import Tile
 # TODO:
 # choices: some other than only one size of grid
 # save game state
+# TODO: change amount of mines in default game!
+# TODO: stats text too big, or change the size of screen?
 
 class GUI:
     """Class for graphical interface for Minesweeper.
 
+        Default game is on 10x10 grid with 5 mines.
+
         Attributes:
+            size: size of the grid (tiles in a row)
+            mines: amount of mines
+            wins: counter for wins in a row
             grid: a Grid object for Minesweeper
             msweep: a Minesweeper object
             tiles: a list of Tile objects for making an interactable grid in the UI
             menu: a list of Tile objects for sidebar buttons
     """
 
-    def __init__(self, size=10, mines=5):
-        size = size
-        mines = mines
+    def __init__(self, size=10, mines=5, wins=0):
+        self.size = size
+        self.mines = mines
+        self.wins = wins
         self.grid = Grid(size)
         self.grid.set_up_grid(mines)
         self.msweep = Minesweeper(self.grid)
@@ -169,20 +177,28 @@ class GUI:
             self.blit_menu(screen, shown, t.rect)
 
     def draw_stats(self, screen):
-        """Shows the current amount of flags and total amount of mines on the side bar.
+        """Shows the current amount of flags, total amount of mines and wins on the side bar.
+
+            Wins show the amount of wins in a row.
 
             Args:
                 screen: pygame display
         """
+
         flags_left = self.grid.mines - len(self.msweep.flags)
         shown = f"flags: {flags_left}"
-        self.blit_menu(screen, shown, pygame.Rect(300, 250, 50, 30))
+        self.blit_menu(screen, shown, pygame.Rect(300, 230, 50, 30))
 
         shown = f"mines: {self.msweep.grid.mines}"
+        self.blit_menu(screen, shown, pygame.Rect(300, 250, 50, 30))
+
+        shown = f"wins: {self.wins}"
         self.blit_menu(screen, shown, pygame.Rect(300, 270, 50, 30))
 
     def handle_loss(self, screen):
         """Marks the losing tile red with an X, and starts the game over after a while.
+
+            Win counter is set to default (zero).
 
             Args:
                 screen: pygame display
@@ -195,10 +211,12 @@ class GUI:
             "X", True, "black"), tile.rect)
         pygame.display.flip()
         pygame.time.delay(1000)
-        self.__init__()
+        self.__init__(self.size, self.mines)
 
     def handle_win(self, screen):
         """Draws a happy face in the side bar and starts the game over after a while.
+
+            Win counter goes up by 1.
 
             Args:
                 screen: pygame display
@@ -210,7 +228,7 @@ class GUI:
 
         pygame.display.flip()
         pygame.time.delay(1500)
-        self.__init__()
+        self.__init__(self.size, self.mines, self.wins + 1)
 
     def pygame_loop(self):
         """ Runs the game loop and the game.
