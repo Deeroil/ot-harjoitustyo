@@ -1,4 +1,5 @@
 import sys
+from termcolor import colored, cprint
 from services.errors import InvalidGridSize, InvalidMineAmount
 from services.grid import Grid
 from services.minesweeper import Minesweeper
@@ -21,7 +22,7 @@ class CLI:
                 "Montako miinaa? (pitää olla välillä [1...ruudukossa olevat paikat], muuten ohjelma suljetaan) "))
             self.grid.set_mines(m)
         except (InvalidGridSize, InvalidMineAmount):
-            "Annettu luku oli väärällä välillä, suljetaan ohjelma"
+            cprint("Annettu luku oli väärällä välillä, suljetaan ohjelma", "red")
             sys.exit(0)
         except ValueError:
             print("Ei ollut numero! Suljetaan ohjelma")
@@ -41,7 +42,7 @@ class CLI:
             x_koord = int(input("Mikä x-koordinaatti? "))
             y_koord = int(input("Mikä y-koordinaatti? "))
         except ValueError:
-            print("Ei ollut sopiva syöte! Anna sopiva kokonaisluku")
+            cprint("Ei ollut sopiva syöte! Anna sopiva kokonaisluku", "red")
 
         index = x_koord + y_koord*self.grid.width
         return index
@@ -112,7 +113,7 @@ class CLI:
 
         while True:
             if self.msweep.check_win():
-                print("Voitit pelin!")
+                cprint("Voitit pelin!", "green")
                 cont = input(
                     "Kirjoita y aloittaaksesi alusta, muulla syötteellä suljet pelin")
                 if cont == "y":

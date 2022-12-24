@@ -10,6 +10,7 @@ packages = [{include = "ot_harjoitustyo"}]
 python = "^3.8"
 invoke = "^1.7.3"
 pygame = "^2.1.2"
+termcolor = "^2.1.1"
 
 
 [tool.poetry.group.dev.dependencies]
