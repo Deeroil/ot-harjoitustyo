@@ -122,7 +122,7 @@ class GUI:
             if self.menu[i].rect.collidepoint(mouse_pos):
                 if self.menu[i].value == "restart":
                     SaveFile.remove()
-                    self.__init__()
+                    self.__init__(self.size, self.mines)
 
                 elif self.menu[i].value == "size":
                     print("clicked size, now just 10x10 grid with 10 mines")
