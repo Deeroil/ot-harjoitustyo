@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-# TODO: vaihda tää ehkä?
+
 dirname = os.path.dirname(__file__)
 
 try:

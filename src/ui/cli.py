@@ -4,8 +4,6 @@ from services.errors import InvalidGridSize, InvalidMineAmount
 from services.grid import Grid
 from services.minesweeper import Minesweeper
 
-# TODO:
-#     - function for replaying
 
 
 class CLI:

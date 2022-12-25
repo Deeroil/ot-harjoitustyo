@@ -6,10 +6,7 @@ from repository.highscore_repository import highscore_repository
 from .tile import Tile
 
 
-# TODO:
-# choices: some other than only one size of grid
-# TODO: change amount of mines in default game!
-# TODO: stats text too big, or change the size of screen?
+
 
 class GUI:
     """Class for graphical interface for Minesweeper.
@@ -260,17 +257,17 @@ class GUI:
         pygame.time.delay(1000)
         self.__init__(self.size, self.mines)
 
-    #TODO: edit docstring to include highscore addition
     def handle_win(self, screen):
         """Draws a happy face in the side bar and starts the game over after a while.
 
             Win counter goes up by 1, earlier save is removed.
+            New row added to highscore database.
 
             Args:
                 screen: pygame display
         """
 
-        #TODO: add users?
+        #add more users later
         highscore_repository.add("User", self.wins)
         SaveFile.remove()
 
