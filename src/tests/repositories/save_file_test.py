@@ -3,7 +3,7 @@ from repository.save_file import SaveFile
 from services.minesweeper import Minesweeper
 from services.grid import Grid
 
-class TestUserRepository(unittest.TestCase):
+class TestSaveFile(unittest.TestCase):
     def setUp(self):
         SaveFile.remove()
         

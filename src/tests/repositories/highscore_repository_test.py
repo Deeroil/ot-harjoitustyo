@@ -1,7 +1,7 @@
 import unittest
 from repository.highscore_repository import highscore_repository
 
-class TestUserRepository(unittest.TestCase):
+class TestHighscoreRepository(unittest.TestCase):
     def setUp(self):
         highscore_repository.delete_all()
         self.user1 = "Alph"
