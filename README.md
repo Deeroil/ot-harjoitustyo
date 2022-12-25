@@ -61,7 +61,9 @@ If "command invoke is not found" or that sort of error occurs, try to `poetry in
   - if empty tile has neighboring empty tiles, they're opened
   - game ends when a mine is clicked
 - user can flag a tile by clicking with right mouse button
-- user wins when all of the tiles with a mine have been flagged
+- user wins when all of the tiles with a mine have been flagged, or all non-mine tiles have been opened
+- sidebar with buttons
+- saves file on quit
 
 
 
@@ -94,12 +96,3 @@ So the cli program knows how to
 - quit if you hit a mine
 - win if you flag all correct tiles
 - and a bit more
-
-### Known issues/bugs
-
-#### in desktop app
-- the GUI could be centered
-- little functionality compared to CLI version
-
-#### in command line app
-- you can open a tile which has a flag, it could have a warning first or just not allow it?
