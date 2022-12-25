@@ -26,7 +26,7 @@ Miinaharava on logiikkapeli, jossa yritetään päätellä ruudukon kaikki ruudu
 
 [testausdokumentti](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/testausdokumentti.md)
 
-[release](https://github.com/Deeroil/ot-harjoitustyo/releases/tag/viikko6)
+[release](https://github.com/Deeroil/ot-harjoitustyo/releases/tag/loppupalautus)
 
 ### Installation and running
 

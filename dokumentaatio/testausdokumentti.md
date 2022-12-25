@@ -37,9 +37,9 @@ Ohjelman molempia versioita on testattu manuaalisesti Windowsilla ja Linuxilla (
 
 Sovellus on otettu käyttöön ja testattu käyttöohjeiden [gui](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md) [cli](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje_cli.md) kuvaamilla tavoilla.
 
-# [testaa vielä eri konfiguraatioita envien kautta]
+Sovelluksen konfiguimista .env-tiedoston avulla on myös testattu.
 
-GUI-sovellusta on testattu tallennetun tietokannan ja tallennustiedoston kanssa, sekä niin että niitä ei ole ollut valmiiksi.
+GUI-sovellusksen toiintaa on testattu voittoputkitietokannan ja pelitallennustiedoston kanssa, sekä niin että niitä ei ole ollut valmiiksi luotuina vaan sovellus on luonut ne ajon aikana.
 
 ### Toiminnallisuudet
 
