@@ -59,17 +59,17 @@ Näiden alapuolella on vielä jäljellä olevien lippujen määrä, miinojen mä
 Pelin alkutilanne, avaanaton 10x10 -ruudukko.
 Oikealla sivupalkki. Listaa parhaista tuloksista ei näy, sillä yhtään peliä ei olla pelattu.
 
-![Aloitustilanne](./pygame_aloitus.png)
+![Aloitustilanne](./kuvat/pygame_aloitus.png)
 
 Seuraavaa kuvaa varten on avattu ruutuja, ja merkitty kolme ruuduista lipulla (F). Vaaleammat ruudut on avattuja.
 
 Hiiren kursori on alhaalla olevan ruudun päällä, sen näkee keltaisista reunoista.
 
-![Peli](./pygame_pelitilanne.png)
+![Peli](./kuvat/pygame_pelitilanne.png)
 
 Viimaisessä pelissä ollaan ensin voitettu yksi peli, ja sitten avataan ruutu jossa on miina ja peli hävitään.
 Tämän jälkeen peli alkaa pian automaattisesti alusta.
 (Pelin aikana näkyi voittoputkessa 1, mutta häviämishetkellä voittoputki päivittyy nollaksi.)
 
-![Häviö](./pygame_havio.png)
+![Häviö](./kuvat/pygame_havio.png)
 
