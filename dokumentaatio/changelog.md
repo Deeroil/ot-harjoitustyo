@@ -41,3 +41,4 @@
 - menu-nappien lisääminen
 - pelitilan tallentaminen
 - voittoputken tallentaminen tietokantaan
+- konfiguroitavat tiedostonimet tietokannalle ja tallennustiedostolle, ja erilliset tiedostonimet samoille tiedostoille testausta varten

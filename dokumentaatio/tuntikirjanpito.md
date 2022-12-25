@@ -21,5 +21,5 @@
 | 19.12.|  4   | GUI hiomista, menu-nappien aloitus, lisätty toinen voittotapa|
 | 23.12.|  1   | GUI ruudukon koon vaihtamisen aloittaminen |
 | 24.12.|  8   | Pelitilan tallennus, voittoputken tallennus, dokumentaation siistintä |
-|       |      | |
-| yht   |  69  | |
+| 25.12.|  6   | Lisätty testikattavuutta, dotenv sekä siistitty ja lisätty dokumentaatiota|
+| yht   |  75  | |

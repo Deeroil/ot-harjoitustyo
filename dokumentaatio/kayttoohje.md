@@ -4,12 +4,29 @@ Aloita lataamalla projektin viimeisimmän [releasen](https://github.com/Deeroil/
 
 Linkki komentorivikäyttöliittymän käyttöohjeeseen [tässä](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje_cli.md)
 
+## Konfigurointi
+
+Ohjelman luoman tietokannan ja pelitallennustiedoston nimet voi halutessaan konfiguroida *.env*-tiedoston avulla. Tiedostot luodaan automaattisesti *data*-hakemistoon, jos niitä ei ole vielä.
+
+```
+SAVE_FILENAME=save.bin
+DATABASE_FILENAME=highscores.db
+```
+
+Testaukseen käytettävien tiedostojen nimet voi konfiguroida samalla tavalla *.env.test* -tiedostossa.
+
 ## Asentaminen ja käynnistäminen
 
 Ensin asenna riippuvuudet komennolla:
 
 ```
 poetry install
+```
+
+Jos et ole suorittanut ohjelman tätä versiota aiemmin, aloita alustamalla tietokanta komennolla
+
+```
+poetry run invoke build
 ```
 
 Tämän jälkeen GUI-versio ohjelmasta käynnistetään komennolla 
@@ -56,7 +73,8 @@ Näiden alapuolella on vielä jäljellä olevien lippujen määrä, miinojen mä
 
 ## Ohjeita tukevia kuvia
 
-Pelin alkutilanne, avaanaton 10x10 -ruudukko.
+Pelin alkutilanne, avaamaton 10x10 -ruudukko.
+Ohjekuvissa näkyvässä pelissä on vain 5 miinaa.
 Oikealla sivupalkki. Listaa parhaista tuloksista ei näy, sillä yhtään peliä ei olla pelattu.
 
 ![Aloitustilanne](./kuvat/pygame_aloitus.png)

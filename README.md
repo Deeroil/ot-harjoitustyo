@@ -24,11 +24,15 @@ Miinaharava on logiikkapeli, jossa yritetään päätellä ruudukon kaikki ruudu
 
 [arkkitehtuuri](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)
 
+[testausdokumentti](https://github.com/Deeroil/ot-harjoitustyo/blob/master/dokumentaatio/testausdokumentti.md)
+
 [release](https://github.com/Deeroil/ot-harjoitustyo/releases/tag/viikko6)
 
 ### Installation and running
 
 First install dependencies by running `poetry install` in the project directory.
+
+If this is your first time running the program, initialize database with `poetry run invoke build` before starting the game. (you can skip this step if you will only use the command-line program)
 
 Then you can run the app with `poetry run invoke start` to open the desktop version with the graphical user interface.
 
@@ -54,7 +58,7 @@ If "command invoke is not found" or that sort of error occurs, try to `poetry in
 
 #### Graphical User Interface:
 
-- preset with a 3x3 grid (for now)
+- preset with a 10x10 grid
 - the tiles change border color on hover
 - user can open tiles by clicking with left mouse button
   - if the tile is empty, neighboring tiles are shown
@@ -64,6 +68,7 @@ If "command invoke is not found" or that sort of error occurs, try to `poetry in
 - user wins when all of the tiles with a mine have been flagged, or all non-mine tiles have been opened
 - sidebar with buttons
 - saves file on quit
+- keeps track of top three win streaks
 
 
 
