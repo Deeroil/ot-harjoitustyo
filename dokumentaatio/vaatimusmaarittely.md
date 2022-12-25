@@ -51,14 +51,13 @@ Miinaharava-pelin pelaaminen työpöytäsovelluksena
 
 ## Jatkokehitysideoita
 Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
-* Käyttäjä voi käyttää sekä näppäimistöä että hiirtä toimintoihin
 
-### Ennen peliä ja asetukset
-- Käyttäjä voi valita peliruudukon koon useammasta valmiiksi määritellystä vaihtoehdosta
-- Käyttäjä voi valita miinojen määrän useammasta valmiiksi määritellystä vaihtoehdosta
+### Asetukset
+- Käyttäjä voi valita graafisessa käyttöliittymässä peliruudukon koon ja miinojen määrän useammasta valmiiksi määritellystä vaihtoehdosta
 - Pelin haastavuuden lisääminen, erilaiset pelimuodot
 
 ### UI
+- Käyttäjän nimen vaihtaminen, mm. voittoputki-highscoreja varten
 - Peliruudukon ja/tai käyttöliittymän värien kustomointi itse valittujen värien mukaan
 	- näiden asetusten tallentaminen
 - Animaatioita ja niille toggle-mahdollisuus (on/off)
@@ -70,3 +69,11 @@ Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
 - Käyttäjä voi merkata avaamattoman ruudun kysymysmerkillä
 - Pelin keston laskeminen sekunneissa
 - Pelaaminen ajastetusti, käyttäjä häviää jos ei ole tarpeeksi nopea
+- Käyttäjä voi käyttää sekä näppäimistöä että hiirtä toimintoihin
+
+### muut
+- Tietokannan kehittäminen
+	- tallennetaan vain parhaat 4 tulosta per käyttäjä
+	- mahdollisuus asettaa salasana käyttäjälle
+	- myös muiden tietojen tallentaminen, kuten nopeus
+	- eri highscoret eri kokoisille ruudukoille
