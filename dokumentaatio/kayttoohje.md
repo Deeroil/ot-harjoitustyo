@@ -62,7 +62,7 @@ Sivupalkissa on kolme nappia:
 
 Restart (aloita alusta): Aloittaa pelin alusta. Tällöin myös menettää mahdollisen voittoputken.
 
-Size (koko): Vaihtaa ruudukon koon oletuskoosta 10x10-ruudukoksi jossa on 10 miinaa.
+Size (koko): Vaihtaa ruudukon 10x10-ruudukoksi, jossa on 15 miinaa. Tämän painaminen lopettaa voittoputken.
 
 Quit (lopeta): Lopettaa pelin ja tallentaa samalla pelitilanteen. 
 

@@ -11,7 +11,7 @@ from .tile import Tile
 class GUI:
     """Class for graphical interface for Minesweeper.
 
-        Default game is on 10x10 grid with 5 mines.
+        Default game is on 10x10 grid with 10 mines.
 
         Attributes:
             size: size of the grid (tiles in a row)
@@ -23,7 +23,7 @@ class GUI:
             menu: a list of Tile objects for sidebar buttons
     """
 
-    def __init__(self, size=10, mines=5, wins=0):
+    def __init__(self, size=10, mines=10, wins=0):
 
         # if savefile exists, load game. Ignores any errors
         try:
@@ -94,9 +94,6 @@ class GUI:
                 self.msweep.add_shown_tiles(i)
                 self.tiles[i].value = str(self.msweep.get_shown_tile(i))
 
-    def save_game_state(self):
-        pass
-
     def set_up_custom_game(self, size, mines):
         try:
             SaveFile.remove()
@@ -122,8 +119,8 @@ class GUI:
                     self.__init__(self.size, self.mines)
 
                 elif self.menu[i].value == "size":
-                    print("clicked size, now just 10x10 grid with 10 mines")
-                    self.set_up_custom_game(10,10)
+                    print("clicked size, now 10x10 grid with 15 mines")
+                    self.set_up_custom_game(10,15)
 
                 elif self.menu[i].value == "quit":
                     print("clicked quit")

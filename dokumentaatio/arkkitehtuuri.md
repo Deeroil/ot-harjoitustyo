@@ -56,6 +56,7 @@ Kuvataan muutama toiminnallisuus sekvenssikaavioina ja tekstillä.
 
 Käyttäjä voi klikata hiirellä peliruudukkoa ja onnistuneesti pelata pelejä.
 
+
 ### Komentorivikäyttöliittymä
 
 Sekvenssikaavio komentorivikäyttöliittymä-pelin ruudukon ja pelin (Minesweeper) alustamisesta, sekä karkea luonnos sen pelitoiminnallisuudesta ja luokkien suhteista kun CLI.play() suoriutuu eli peli on käynnissä.
