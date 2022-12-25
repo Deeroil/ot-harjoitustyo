@@ -5,6 +5,10 @@ def start(ctx):
     ctx.run("python src/index.py", pty=True)
 
 @task
+def build(ctx):
+    ctx.run("python src/init_db.py", pty=True)
+
+@task
 def command_line(ctx):
     ctx.run("python src/cli_index.py", pty=True)
 

@@ -4,5 +4,9 @@ __pycache__
 .coverage
 htmlcov
 
-highscores.db
-save.bin
+
+# data
+data/highscores.db
+data/test-highscores.db
+data/save.bin
+data/test-save.bin

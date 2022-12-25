@@ -1,7 +1,6 @@
 import pickle
 import os
-
-FILENAME = "save.bin"
+from config import SAVE_FILE_PATH as FILENAME
 
 
 class SaveFile:
