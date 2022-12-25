@@ -48,5 +48,10 @@ class HighscoreRepository:
 
         return [(row["user"], row["wins"]) for row in rows]
 
+    def delete_all(self):
+        cursor = self._connection.cursor()
+        cursor.execute('delete from highscores')
+        self._connection.commit()
+
 
 highscore_repository = HighscoreRepository(get_db_connection())

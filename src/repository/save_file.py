@@ -28,9 +28,14 @@ class SaveFile:
     def load():
         """Returns saved file.
 
+        Doesn't raise error if save file doesn't exist.
+
         """
-        with open(FILENAME, "rb") as file:
-            return pickle.load(file)
+        try:
+            with open(FILENAME, "rb") as file:
+                return pickle.load(file)
+        except FileNotFoundError:
+            pass
 
     @staticmethod
     def remove():
