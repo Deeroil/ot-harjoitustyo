@@ -296,6 +296,8 @@ class GUI:
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    save = SaveFile(self.msweep, self.wins)
+                    save.save()
                     pygame.quit()
                     raise SystemExit
 
