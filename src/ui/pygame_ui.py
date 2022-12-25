@@ -2,6 +2,7 @@ import pygame
 from services.grid import Grid
 from services.minesweeper import Minesweeper
 from repository.save_file import SaveFile
+from repository.highscore_repository import highscore_repository
 from .tile import Tile
 
 
@@ -101,6 +102,7 @@ class GUI:
 
     def set_up_custom_game(self, size, mines):
         try:
+            SaveFile.remove()
             self.__init__(size, mines)
         except:
             pass
@@ -119,6 +121,7 @@ class GUI:
         for i in range(len(self.menu)):
             if self.menu[i].rect.collidepoint(mouse_pos):
                 if self.menu[i].value == "restart":
+                    SaveFile.remove()
                     self.__init__()
 
                 elif self.menu[i].value == "size":
@@ -167,7 +170,7 @@ class GUI:
             screen.blit(t.font.render(shown, True, "darkgreen"), t.rect)
 
     def blit_menu(self, screen, shown, rect):
-        """Blits the screen right font size for menu.
+        """Blits the side bar in right font size for menu.
 
             Adds text to a rectangle with Comic Sans, in dark green.
 
@@ -193,24 +196,49 @@ class GUI:
             shown = " " + t.value
             self.blit_menu(screen, shown, t.rect)
 
-    def draw_stats(self, screen):
-        """Shows the current amount of flags, total amount of mines and wins on the side bar.
+    
+    def blit_stats(self, screen, shown, y):
+        """Blits the side bar with stats.
 
-            Wins show the amount of wins in a row.
+            Adds text to a rectangle with Comic Sans, in dark green.
+
+            Args:
+                screen: pygame display
+                shown: string with the text for the rectangle
+                y: stat position on the y axis in the side bar-
+
+        """
+        screen.blit(pygame.font.SysFont('Comic Sans', 13).render(
+            shown, True, "darkgreen"), pygame.Rect(300, y, 50, 30))
+
+
+    def draw_stats(self, screen):
+        """Shows the stats on the side bar.
+
+            Stats consist of the best 3 highscores (consecutive wins),
+            current amount of flags, total amount of mines and the amount of wins in a row.
 
             Args:
                 screen: pygame display
         """
 
+        self.blit_stats(screen, "Best:", 140)
+
+        best = highscore_repository.find_top_3()
+
+        for i in range(len(best)):
+            shown = f"#{i+1}: {best[i][1]}, {best[i][0]}"       
+            self.blit_stats(screen, shown, 160+20*i)
+
         flags_left = self.msweep.grid.mines - len(self.msweep.flags)
         shown = f"flags: {flags_left}"
-        self.blit_menu(screen, shown, pygame.Rect(300, 230, 50, 30))
+        self.blit_stats(screen, shown, 230)
 
         shown = f"mines: {self.msweep.grid.mines}"
-        self.blit_menu(screen, shown, pygame.Rect(300, 250, 50, 30))
+        self.blit_stats(screen, shown, 250)
 
         shown = f"wins: {self.wins}"
-        self.blit_menu(screen, shown, pygame.Rect(300, 270, 50, 30))
+        self.blit_stats(screen, shown, 270)
 
     def handle_loss(self, screen):
         """Marks the losing tile red with an X, and starts the game over after a while.
@@ -232,14 +260,22 @@ class GUI:
         pygame.time.delay(1000)
         self.__init__(self.size, self.mines)
 
+    #TODO: edit docstring to include highscore addition
     def handle_win(self, screen):
         """Draws a happy face in the side bar and starts the game over after a while.
 
-            Win counter goes up by 1.
+            Win counter goes up by 1, earlier save is removed.
 
             Args:
                 screen: pygame display
         """
+
+        #TODO: add users?
+        highscore_repository.add("User", self.wins)
+        SaveFile.remove()
+
+        print("wins", self.wins)
+
         rect = (300, 150, 50, 50)
         pygame.draw.rect(screen, "green", rect)
         screen.blit(pygame.font.SysFont('Comic Sans', 30).render(
@@ -253,7 +289,7 @@ class GUI:
         """ Runs the game loop and the game.
 
         """
-        screen = pygame.display.set_mode([350, 300])
+        screen = pygame.display.set_mode([400, 300])
         clock = pygame.time.Clock()
         pygame.display.set_caption("Minesweeper")
 
