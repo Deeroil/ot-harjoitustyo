@@ -19,6 +19,7 @@
 | 16.12.|  5   | suunnittelua, nollien avaamisalgoritmin ja rekursion kanssa pyörittelyä|
 | 18.12.|  4   | virheidenkäsittelyä, bugien fiksaamista, refaktorointia, lisätty pelitoiminnallisuutta GUI:iin jne|
 | 19.12.|  4   | GUI hiomista, menu-nappien aloitus, lisätty toinen voittotapa|
+| 23.12.|  1   | GUI ruudukon koon vaihtamisen aloittaminen |
+| 24.12.|  8   | Pelitilan tallennus, voittoputken tallennus, dokumentaation siistintä |
 |       |      | |
-|       |      | |
-| yht   |  60  | |
+| yht   |  69  | |

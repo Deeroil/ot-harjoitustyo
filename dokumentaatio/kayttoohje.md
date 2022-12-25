@@ -39,20 +39,37 @@ Peli voitetaan jos kaikki miinat saadaan merkittyä oikein lipuilla ilman että 
 
 Peli hävitään jos pelaaja avaa ruudun, jossa oli miina. Tällöin peli alkaa alusta hetken kuluttua.
 
+### Sivupalkki
+
+Sivupalkissa on kolme nappia:
+
+Restart (aloita alusta): Aloittaa pelin alusta. Tällöin myös menettää mahdollisen voittoputken.
+
+Size (koko): Vaihtaa ruudukon koon oletuskoosta 10x10-ruudukoksi jossa on 10 miinaa.
+
+Quit (lopeta): Lopettaa pelin ja tallentaa samalla pelitilanteen. 
+
+Peli pitää kirjaa peräkkäisistä voitoista, ja näyttää parhaimmat 3 voittoputkea sivupalkissa.
+
+Näiden alapuolella on vielä jäljellä olevien lippujen määrä, miinojen määrä ruudukossa sekä tämänhetkisen voittoputken pituus.
+
 
 ## Ohjeita tukevia kuvia
 
-Pelin alkutilanne, tyhjä 10x10 -ruudukko.
-Oikealla menu-napit, "restart" aloittaa pelin alusta ja "quit" sulkee pelin. Size-nappi ei toimi vielä.
+Pelin alkutilanne, avaanaton 10x10 -ruudukko.
+Oikealla sivupalkki. Listaa parhaista tuloksista ei näy, sillä yhtään peliä ei olla pelattu.
 
 ![Aloitustilanne](./pygame_aloitus.png)
 
-Seuraavaa kuvaa varten on avattu ruutuja, ja merkitty yksi ruuduista lipulla (F). Vaaleammat ruudut on avattuja. Hiiri on yläoikealla olevan ruudun päällä, sen näkee keltaisista reunoista.
+Seuraavaa kuvaa varten on avattu ruutuja, ja merkitty kolme ruuduista lipulla (F). Vaaleammat ruudut on avattuja.
+
+Hiiren kursori on alhaalla olevan ruudun päällä, sen näkee keltaisista reunoista.
 
 ![Peli](./pygame_pelitilanne.png)
 
-Avataan ruutu jossa on miina ja peli hävitään.
-Peli alkaa alusta.
+Viimaisessä pelissä ollaan ensin voitettu yksi peli, ja sitten avataan ruutu jossa on miina ja peli hävitään.
+Tämän jälkeen peli alkaa pian automaattisesti alusta.
+(Pelin aikana näkyi voittoputkessa 1, mutta häviämishetkellä voittoputki päivittyy nollaksi.)
 
 ![Häviö](./pygame_havio.png)
 

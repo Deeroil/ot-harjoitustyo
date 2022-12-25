@@ -5,33 +5,50 @@ Miinaharava-pelin pelaaminen työpöytäsovelluksena
 
 ## Perusversion tarjoama toiminnallisuus
 
-### Pelinäkymä
+### Graafinen käyttöliittymä
 
-TEHTY (graafisella käyttöliittymällä)
-* yksinkertainen graafinen käyttöliittymä pygamella
+### Pelinäkymä
 * Käyttäjä voi klikata peliruudukosta auki ruudun hiiren vasemmalla näppäimellä
 	* jos ruudussa on miina, hävitään peli ja ohjelma sulkeutuu
 	* jos ruudussa ei ollut miinaa, ruudussa lukee viereisten miinojen määrä
 	* Jos ruutu on "tyhjä" eli ruudussa ei ole miinaa eikä sen välittömänä naapurina ole miinaa/miinoja, paljastuu ruudukosta alue joka on reunustettu naapurinumeroita sisältävillä ruuduilla.
-	* Jos ruutu on tyhjä ja tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
 * Käyttäjä voi merkata avaamattomaan ruutuun lipun hiiren oikealla näppäimellä. Uudestaan klikkaaminen poistaa lipun.
 * Käyttäjä voi laittaa lipun vain yhtä moneen ruutuun kuin miinoja on peliruudukossa.
 * Peli voitetaan merkitsemällä oikeat ruudut lipulla, tästä näkyy ilmoitus käyttäjälle
 * Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 
-TEHTY (tästä alaspäin koskee komentorivikäyttöliittymää)
-* Käyttäjä voi "avata" peliruudukosta kerralla yhden ruudun (tehty osittain)
-	* Jos ruudussa on miina, peli päättyy (tehty)
-	* ensimmäisellä kierroksella ensimmäinen avattu ruutu ei voi osua miinaan (tarkistaa CLI-versiossa)
-	* Kun peli päättyy miinaan, näytetään kaikkien miinojen sijainnit (tehty osittain: näyttää koko taustaruudukon)
+- Pelin voi aloittaa alusta kesken pelin
+- Pelitila tallennetaan kun peli suljetaan, ja peli jatkuu samasta kohdasta kun peli avataan uudestaan.
+- Käyttäjä näkee pelin kaikkien miinojen lukumäärän
+- Käyttäjä jäljellä olevien lippujen lukumäärän
+- Käyttäjä näkee montako voittoa on saanut putkeen
+
+
+
+### Komentoriviversio
+
+### Ennen peliä
+- Käyttäjä voi valita peliruudukon koon useammasta valmiiksi määritellystä vaihtoehdosta
+	- Peliruudukon koon valitseminen omavalintaisesti, rajatulta väliltä
+ 	- Miinojen määrän valitseminen kustomoidusti rajatulta väliltä
+
+### Pelinäkymä
+
+* Käyttäjä voi "avata" peliruudukosta kerralla yhden ruudun
+	* Jos ruudussa on miina, peli päättyy
+	* ensimmäisellä kierroksella ensimmäinen avattu ruutu ei voi osua miinaan
 	* Jos klikatulla ruudulla on naapurina miina/miinoja, tulee näkyviin kyseinen numero
 	* Jos ruutu on "tyhjä" eli ruudussa ei ole miinaa eikä sen välittömänä naapurina ole miinaa/miinoja, paljastuu ruudukosta alue joka on reunustettu naapurinumeroita sisältävillä ruuduilla.
 	* Jos ruutu on tyhjä ja tyhjiä ruutuja on useampi lähekkäin, avautuu suurempi alue
-	* Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi" (lippu/flag). Vaarallisuus merkitsee miinan oletettua sijaitsemiskohtaa.
-	* Vaaralliseksi voi merkitä vain yhtä monta ruutua kuin miinoja on peliruudukossa.
-* Peli voitetaan kun käyttäjä on merkannut kaikki miinat vaarallisiksi osumatta yhteenkään miinaan
+	* Käyttäjä voi merkitä peliruudukon ruudun "vaaralliseksi" lipulla. Lippu kuvaa miinan oletettua sijaitsemiskohtaa. Lipun voi myös poistaa.
+	* Lipulla voi merkitä vain yhtä monta ruutua kuin miinoja on peliruudukossa.
+	* Kun peli päättyy miinaan, näytetään kaikkien miinojen sijainnit
+		* näyttää koko taustaruudukon
+* Peli voitetaan kun käyttäjä on merkannut kaikki miinat lipuilla osumatta yhteenkään miinaan
 * Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 * Käyttäjä voi aloittaa uuden pelin voittaessaan sulkematta ohjelmaa
+
+
 
 EI TEHTY:
 * Pelin päättyessä voi aloittaa pelin alusta
@@ -42,26 +59,21 @@ Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
 
 ### Ennen peliä ja asetukset
 - Käyttäjä voi valita peliruudukon koon useammasta valmiiksi määritellystä vaihtoehdosta
-	- Peliruudukon koon valitseminen omavalintaisesti rajatulta väliltä (tehty CLI)
 - Käyttäjä voi valita miinojen määrän useammasta valmiiksi määritellystä vaihtoehdosta
-	- Miinojen määrän valitseminen kustomoidusti rajatulta väliltä (tehty CLI)
 - Pelin haastavuuden lisääminen, erilaiset pelimuodot
 
 ### UI
-- Graafinen käyttöliittymä (tehty)
 - Peliruudukon ja/tai käyttöliittymän värien kustomointi itse valittujen värien mukaan
 	- näiden asetusten tallentaminen
 - Animaatioita ja niille toggle-mahdollisuus (on/off)
 - Kustomoitavat teemat joista valita
+- Kuva kirjaimen "F" tilalle tarkoittamaan lippua
 
 ### Pelissä
 - Lipun voi asettaa vain jos lipun vieressä on jokin avattu ruutu
-- Pelin voi aloittaa alusta kesken pelin
-- Käyttäjä näkee jäljellä olevan miinojen oletetun lukumäärän, vaarallisiksi merkattujen ruutujen määrän perusteella
 - Käyttäjä voi merkata avaamattoman ruudun kysymysmerkillä
 - Pelin keston laskeminen sekunneissa
 - Pelaaminen ajastetusti, käyttäjä häviää jos ei ole tarpeeksi nopea
-- Mahdollisuus pelitilan tallentamiseen mm. kun peli suljetaan
 
 ### Pelin jälkeen
 - High score -näyttö ja sen tietojen tallettaminen tietokantaan
