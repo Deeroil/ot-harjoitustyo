@@ -22,7 +22,8 @@ Miinaharava-pelin pelaaminen työpöytäsovelluksena
 - Käyttäjä näkee pelin kaikkien miinojen lukumäärän
 - Käyttäjä jäljellä olevien lippujen lukumäärän
 - Käyttäjä näkee montako voittoa on saanut putkeen
-
+- Käyttäjän paras voittoputki tallennetaan tietokantaan
+- Kolme parasta voittoputkea näytetään käyttäjälle
 
 
 ### Komentoriviversio
@@ -48,11 +49,6 @@ Miinaharava-pelin pelaaminen työpöytäsovelluksena
 * Peli myös voitetaan jos käyttäjä on avannut kaikki ruudut paitsi ne joissa on miina
 * Käyttäjä voi aloittaa uuden pelin voittaessaan sulkematta ohjelmaa
 
-
-
-EI TEHTY:
-* Pelin päättyessä voi aloittaa pelin alusta
-
 ## Jatkokehitysideoita
 Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
 * Käyttäjä voi käyttää sekä näppäimistöä että hiirtä toimintoihin
@@ -74,8 +70,3 @@ Perusversion toteuttamisen jälkeen voidaan kehittää mm. seuraavin tavoin:
 - Käyttäjä voi merkata avaamattoman ruudun kysymysmerkillä
 - Pelin keston laskeminen sekunneissa
 - Pelaaminen ajastetusti, käyttäjä häviää jos ei ole tarpeeksi nopea
-
-### Pelin jälkeen
-- High score -näyttö ja sen tietojen tallettaminen tietokantaan
-- High scoreen uniikin nimimerkin valitseminen
-	- salasanalukitsemisen mahdollisuus nimimerkille
